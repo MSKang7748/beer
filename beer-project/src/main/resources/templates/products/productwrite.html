@@ -1,0 +1,84 @@
+<header th:include="@{/commons/header.html}"></header>
+<body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
+
+  <div class="site-wrap">
+
+    <div class="site-mobile-menu site-navbar-target">
+      <div class="site-mobile-menu-header">
+        <div class="site-mobile-menu-close mt-3">
+          <span class="icon-close2 js-menu-toggle"></span>
+        </div>
+      </div>
+      <div class="site-mobile-menu-body"></div>
+    </div>
+
+    <div class="hero-2" style="background-image: url('images/hero_2.jpg');">
+     <div class="container">
+        <div class="row justify-content-center text-center align-items-center">
+          <div class="col-md-8">
+            <span class="sub-title">Get In Touch</span>
+            <h2>Contact</h2>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="site-section bg-light">
+      <div class="container">
+        <div class="row">
+
+          <div class="col-lg-12">
+            <div class="section-title mb-5">
+              <h2>상품정보를 입력해주세요</h2>
+            </div>
+            <form action="/product/productWrite" method="post" enctype="multipart/form-data">
+                  <div class="row">
+                      <div class="col-md-6 form-group">
+                          <label for="fname">ID</label>
+                          <input type="text" name="id" id="id" class="form-control form-control-lg">
+                      </div>
+                      <div class="col-md-6 form-group">
+                          <label for="lname">카테고리</label>
+                          <br>
+                          <select class="" name="beerDiv">
+                          	<option value="제조키트">제조키트</option>
+                          	<option value="제조원료">제조원료</option>
+                          	<option value="맥주">맥주</option>
+                          </select>
+                      </div>
+                  </div>
+                  <div class="row">
+                      <div class="col-md-6 form-group">
+                          <label for="eaddress">제목</label>
+                          <input type="text" name="beerName" id="beerName" class="form-control form-control-lg">
+                      </div>
+                      <div class="col-md-6 form-group">
+                          <label for="tel">가격</label>
+                          <input type="number" name="beerPrice" id="beerPrice" class="form-control form-control-lg">
+                      </div>
+                  </div>
+                  <div class="row">
+                      <div class="col-md-12 form-group">
+                          <label for="message">내용</label>
+                          <textarea name="beerContent" id="beerContent" cols="30" rows="10" class="form-control"></textarea>
+                      </div>
+                  </div>
+                  <div class="row">
+                      <div class="col-md-12 form-group">
+                          <label for="file">첨부파일</label>
+                          <input type="file" id="beerFile" name="beerFile" multiple="multiple"></input>
+                      </div>
+                  </div>
+                     <input type="submit" class="btn btn-primary py-3 px-5" value="등록"/>
+                	 <a href="/product/list" class="btn btn-primary py-3 px-5">돌아가기</a>
+                </form>
+               </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+<footer th:include="@{/commons/footer.html}"></footer> 

@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <title>Wines &mdash; Website Template by Colorlib</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  
+  <link href="https://fonts.googleapis.com/css?family=Cinzel:400,700|Montserrat:400,700|Roboto&display=swap" rel="stylesheet"> 
+
+
+  <link rel="stylesheet" th:href="@{/fonts/icomoon/style.css}">
+
+  <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+  <link rel="stylesheet" th:href="@{/css/jquery-ui.css}">
+  <link rel="stylesheet" th:href="@{/css/owl.carousel.min.css}">
+  <link rel="stylesheet" th:href="@{/css/owl.theme.default.min.css}">
+  <link rel="stylesheet" th:href="@{/css/owl.theme.default.min.css}">
+
+  <link rel="stylesheet" th:href="@{/css/jquery.fancybox.min.css}">
+
+  <link rel="stylesheet" th:href="@{/css/bootstrap-datepicker.css}">
+
+  <link rel="stylesheet" th:href="@{/fonts/flaticon/font/flaticon.css}">
+
+  <link rel="stylesheet" th:href="@{/css/aos.css}">
+  <link th:href="@{/css/jquery.mb.YTPlayer.min.css}" media="all" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" th:href="@{/css/style.css}">
+
+	<div class="header-top">
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-12 text-center">
+            <a href="/" class="site-logo">
+              <img th:src="@{/images/logo.png}" alt="Image" class="img-fluid">
+            </a>
+          </div>
+          <a href="#" class="mx-auto d-inline-block d-lg-none site-menu-toggle js-menu-toggle text-black"><span
+                class="icon-menu h3"></span></a>
+        </div>
+      </div>
+      <div class="site-navbar py-2 js-sticky-header site-navbar-target d-none pl-0 d-lg-block" role="banner">
+
+      <div class="container">
+        <div class="d-flex align-items-center">
+          
+          <div class="mx-auto">
+            <nav class="site-navigation position-relative text-left" role="navigation">
+              <ul class="site-menu main-menu js-clone-nav mx-auto d-none pl-0 d-lg-block border-none">
+                <li><a href="/" class="nav-link text-left">Home</a></li>
+                <li class="active"><a href="/subsq/list" class="nav-link text-left">Content</a></li>
+                <li><a href="/product/list" class="nav-link text-left">Wines</a></li>
+                <li><a href="/product/cart" class="nav-link text-left">Cart</a></li>
+                <li><a href="/qna/qnalist" class="nav-link text-left">Q&A</a></li>
+                <li><a href="/subsq/write" class="nav-link text-left">Write</a></li>
+              </ul>                                                                                                                                                                                                                                                                                         
+            </nav>
+
+          </div>
+         
+        </div>
+      </div>
+    </div>
+    </div>
+
+</head>
+
+<body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
+
+  <div class="site-wrap">
+
+    <div class="site-section">
+      <div class="container">
+        <div class="row mb-5">
+          <div class="col-12">
+            <h2>Recent Posts</h2>
+		<!--  <ul id="ul_top_menu"> -->
+            <input type="button" class="btn btn-primary py-3 px-5"><a th:href="@{/subsq/}" value="상품명"></a></input>
+            <input type="button" class="btn btn-primary py-3 px-5"><a th:href="@{/subsq/}" value="신상품"></a></input>
+            <input type="button" class="btn btn-primary py-3 px-5"><a th:href="@{/subsq/}" value="인기상품"></a></input>
+<!--          </ul> -->
+
+          </div>
+        </div>
+        <div class="row">
+        
+          <div class="col-lg-4 mb-4" th:each="Subscription : ${Subscription}">
+            <div class="entry2">
+              
+              <div class="excerpt">
+              <span class="post-category text-white bg-secondary mb-3" th:text="${Subscription.subsqDiv}"></span>
+ 		   	  <img th:src="@{'/images/' + ${Subscription.files[0].subsqSavedFileName}}" alt="Image" class="img-fluid rounded">
+              <h2><a th:text="${Subscription.subsqTitle}"></a></h2>
+              <div class="post-meta align-items-center text-left clearfix">
+                <span class="d-inline-block mt-1" th:text="${Subscription.id}"></span>
+                <span th:text="${Subscription.subsqDate}">&nbsp;-&nbsp;</span>
+              </div>
+                <p th:text="${Subscription.subsqContent}"></p>
+                <p><a th:href="@{/subsq/detail(subsqNo=${Subscription.subsqNo})}">More detail</a></p>
+              </div>
+    				
+			</div>
+			<input type="checkbox" id="subsq" name="subsq" th:value="${Subscription.subsqDiv}" onClick="javascript:check(form1.confirm)"><label for="subsq">구독</label> </input>
+		  </div>
+    
+     <div class="row text-center pt-5 border-top">
+
+          <div class="col-md-12">
+            <div class="custom-pagination">
+				<c:if test="${pagination.prev}">
+						<li><a class="active" href="#"
+							onClick="fn_prev('${pagination.page}', '${pagination.range}', '${pagination.rangeSize}', '${ param.type }')">이전</a></li>
+					</c:if>
+					<c:forEach begin="${pagination.startPage}" end="${pagination.endPage}" var="idx">
+						<li> <c:out value="${pagination.page == idx ? 'active' : ''}"/>
+							<a href="#" onClick="fn_pagination('${idx}', '${pagination.range}', '${pagination.rangeSize}', '${ param.type }')"></a>
+						</li>
+					</c:forEach>
+					<c:if test="${pagination.next}">
+						<li>
+							<a href="#" onClick="fn_next('${pagination.range}','${pagination.range}', '${pagination.rangeSize}', '${ param.type }')">다음</a>
+						</li>
+					</c:if>
+	            </div>
+	          </div>
+	        </div>
+	      </div>
+	   </div>
+    
+    <div class="site-section site-section-sm site-blocks-1 border-0" data-aos="fade">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6 col-lg-4 d-lg-flex mb-4 mb-lg-0 pl-4" data-aos="fade-up" data-aos-delay="">
+            <div class="icon mr-4 align-self-start">
+              <span class="icon-truck text-primary"></span>
+            </div>
+            <div class="text">
+              <h2 class="font-heading-serif">Free Shipping</h2>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus at iaculis quam. Integer accumsan
+                tincidunt fringilla.</p>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-4 d-lg-flex mb-4 mb-lg-0 pl-4" data-aos="fade-up" data-aos-delay="100">
+            <div class="icon mr-4 align-self-start">
+              <span class="icon-refresh2 text-primary"></span>
+            </div>
+            <div class="text">
+              <h2 class="font-heading-serif">Free Returns</h2>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus at iaculis quam. Integer accumsan
+                tincidunt fringilla.</p>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-4 d-lg-flex mb-4 mb-lg-0 pl-4" data-aos="fade-up" data-aos-delay="200">
+            <div class="icon mr-4 align-self-start">
+              <span class="icon-help text-primary"></span>
+            </div>
+            <div class="text">
+              <h2 class="font-heading-serif">Customer Support</h2>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus at iaculis quam. Integer accumsan
+                tincidunt fringilla.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="site-section bg-light">
+      <div class="container">
+        <div class="owl-carousel owl-slide-3 owl-slide">
+        
+          <blockquote class="testimony">
+            <img th:src="@{/images/person_1.jpg}" alt="Image">
+            <p>&ldquo;Lorem ipsum dolor sit amet, consectetur adipisicing elit. Libero sapiente beatae, nemo quasi quo neque consequatur rem porro reprehenderit, a dignissimos unde ut enim fugiat deleniti quae placeat in cumque?&rdquo;</p>
+            <p class="small text-primary">&mdash; Collin Miller</p>
+          </blockquote>
+          <blockquote class="testimony">
+            <img th:src="@{/images/person_2.jpg}" alt="Image">
+            <p>&ldquo;Lorem ipsum dolor sit amet, consectetur adipisicing elit. Libero sapiente beatae, nemo quasi quo neque consequatur rem porro reprehenderit, a dignissimos unde ut enim fugiat deleniti quae placeat in cumque?&rdquo;</p>
+            <p class="small text-primary">&mdash; Harley Perkins</p>
+          </blockquote>
+          <blockquote class="testimony">
+            <img th:src="@{/images/person_3.jpg}" alt="Image">
+            <p>&ldquo;Lorem ipsum dolor sit amet, consectetur adipisicing elit. Libero sapiente beatae, nemo quasi quo neque consequatur rem porro reprehenderit, a dignissimos unde ut enim fugiat deleniti quae placeat in cumque?&rdquo;</p>
+            <p class="small text-primary">&mdash; Levi Morris</p>
+          </blockquote>
+          <blockquote class="testimony">
+            <img th:src="@{/images/person_1.jpg}" alt="Image">
+            <p>&ldquo;Lorem ipsum dolor sit amet, consectetur adipisicing elit. Libero sapiente beatae, nemo quasi quo neque consequatur rem porro reprehenderit, a dignissimos unde ut enim fugiat deleniti quae placeat in cumque?&rdquo;</p>
+            <p class="small text-primary">&mdash; Allie Smith</p>
+          </blockquote>
+        
+        </div>
+      </div>
+    </div>
+    
+<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+	
+	<script type="text/javascript">              
+      $(function(){
+                  
+         $('#type_form').on('change', function(event){
+            
+            this.form.submit();
+            
+         });
+      });
+ 
+   
+		//이전 버튼 이벤트
+		function fn_prev(page, range, rangeSize , type) {
+
+			var page = ((range - 2) * rangeSize) + 1;
+			var range = range - 1;
+			var url = "${pageContext.request.contextPath}/subsqlist";
+
+			url = url + "?page=" + page;
+			url = url + "&range=" + range; 
+			url = url + "&type=" + type ;
+
+			location.href = url;
+
+		}
+
+		//페이지 번호 클릭
+		function fn_pagination(page, range, rangeSize, type) {
+
+			var url = "${pageContext.request.contextPath}/subsqlist";
+
+			url = url + "?page=" + page;
+			url = url + "&range=" + range;
+			url = url + "&type=" + type ;
+
+			location.href = url;
+
+		}
+
+		//다음 버튼 이벤트
+		function fn_next(page, range, rangeSize, type) {
+
+			var page = parseInt((range * rangeSize)) + 1;
+
+			var range = parseInt(range) + 1;
+
+			var url = "${pageContext.request.contextPath}/subsqlist";
+
+			url = url + "?page=" + page;
+			url = url + "&range=" + range;
+			url = url + "&type=" + type ;
+
+			location.href = url;
+		}
+
+		$('input[name="subsq"]').change(function() {
+		    var value = $(this).val();  
+		    var checked = $(this).prop('checked');
+
+		    if(checked) // checked가 참이라면
+		        alert("해당 분야 구독을 하시겠습니까?");       // 시간 되면 '해당 분야'를 thymeleaf써서 subsqDiv값 가져오게 하자.
+		    else
+		        alert("해당 분야 구독을 취소하시겠습니까?"); 
+		});
+		
+
+	</script>
+  
+<footer th:include="@{/commons/footer.html}"></footer> 

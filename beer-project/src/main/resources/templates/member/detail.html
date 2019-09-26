@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+ 	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorator="layouts/main">
+<head>
+</head>
+<body>
+    <div id="pageContainer">
+		<div id="inputcontent" layout:fragment="content">
+			<br /><br />
+		    <div id="inputmain">
+		        <div class="inputsubtitle">회원기본정보</div>
+		        <table>
+		            <tr>
+		                <th>아이디(ID)</th>
+		                <td th:text="${ member.memberId }"></td>
+		            </tr>
+		            <tr>
+		                <th>이메일</th>
+		                <td><input type="text" id="email" name="email"
+		                		   th:value="${ member.email }"></td>
+		            </tr>
+		            <tr>
+		                <th>사용자구분</th>
+		                <td>
+		                	<input type="radio" name="userType" value="user" th:checked="${ member.userType eq 'user' }">사용자</input>
+		                	<input type="radio" name="userType" value="admin" th:checked="${ member.userType eq 'admin' }">관리자</input>
+		                </td>
+		            </tr>
+		            <tr>
+		                <th>활성화여부</th>
+		                <td>
+		                	<input type="checkbox" name="active" value="true" th:checked="${ member.active }">활성사용자</input>
+		                </td>
+		            </tr>
+		            <tr>
+		                <th>등록일자</th>
+		                <td th:text="${ member.regDate }"></td>
+		            </tr>		            		            
+		        </table>
+		        <div class="buttons">
+		        	<a th:href="@{/member/list}">목록</a>
+		        </div>
+		    </div>
+		</div>
+	</div>
+</body>
+</html> 		

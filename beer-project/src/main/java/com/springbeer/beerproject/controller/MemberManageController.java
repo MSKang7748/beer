@@ -1,0 +1,108 @@
+package com.springbeer.beerproject.controller;
+
+import java.util.List;
+
+import javax.servlet.http.HttpSession;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import com.springbeer.beerproject.entity.MemberEntity;
+import com.springbeer.beerproject.service.MemberService;
+
+@Controller
+@RequestMapping(value = "/member")
+public class MemberManageController {
+	
+	@Autowired
+	MemberService memberService;
+
+	@GetMapping("/list")
+	public String showList(Model model) {
+		
+		List<MemberEntity> members = memberService.findAllMembers();
+		model.addAttribute("members", members);
+		
+		return "member/list";
+	}
+	
+	@GetMapping("/register")
+	public String showRegisterForm() {
+		return "member/register";
+	}
+	
+	@PostMapping("/register")
+	public String register(MemberEntity member, Model model) {
+//		if (!member.getPasswd().equals(confirm)) {
+//			return "redirect:/account/register";
+//		}		
+		
+//		System.out.println(member); //에러 찾을 때 콘솔에 연결 데이터 확인.
+		memberService.registerMember(member);		
+		return "/home";
+	}
+	
+	/////////////////////
+	@GetMapping("/login")
+	public String showLoginForm() {		
+		return "member/login";  		
+	}
+	
+	@PostMapping("/login")
+	public String login(String memberId, String passwd, HttpSession session) {
+		
+		//passwd = Util.getHashedString(passwd, "SHA-256"); //암호화		
+		//MemberEntity member = memberService.findMemberByIdAndPasswd(memberId, passwd);
+		MemberEntity member = memberService.findMemberById(memberId);
+		
+		if (member != null) { //로그인 가능 -> 로그인 처리 : 세션에 로그인 데이터 저장
+			session.setAttribute("loginuser", member); //로그인 처리
+			return "redirect:/home"; 			
+		} else { //로그인 실패
+			return "member/login";			
+		}	
+	}
+		
+	@GetMapping("/logout")  
+	public String logout(HttpSession session) {
+		
+	 session.removeAttribute("loginuser"); 
+	 return "redirect:/home"; 
+	 }
+	
+	
+	
+	 ////////////////////////
+	
+	@GetMapping("/detail/{memberId}")
+	public String showMemberDetail(@PathVariable String memberId, Model model) {
+		
+		MemberEntity member = memberService.findMemberById(memberId);
+		model.addAttribute("member", member);
+		
+		return "member/detail";
+	}
+	//////////////////////////////////////////
+	@DeleteMapping("/delete/{memberId}")
+	public String delete(@PathVariable String memberId) {
+		memberService.unregisterMember(memberId);
+		return "redirect:/member/list";
+	}
+	
+	@PutMapping("/update/{memberId}")
+	public String update(MemberEntity member, RedirectAttributes attrs) {
+		memberService.modifyMember(member);		
+		attrs.addFlashAttribute("update","success");
+		
+		return "redirect:/member/detail";
+	}
+	
+}

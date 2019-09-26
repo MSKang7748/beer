@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org"
+ 	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"	  
+	  layout:decorator="layouts/main">
+
+<header th:include="@{/commons/header.html}"></header>
+
+<body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
+
+  <div class="site-wrap">
+
+    <div class="site-mobile-menu site-navbar-target">
+      <div class="site-mobile-menu-header">
+        <div class="site-mobile-menu-close mt-3">
+          <span class="icon-close2 js-menu-toggle"></span>
+        </div>
+      </div>
+      <div class="site-mobile-menu-body"></div>
+    </div>
+    <div class="site-section bg-primary py-5 page-title-wrap mt-5" th:each="product : ${ products }">
+      <div class="container">
+        <h1 th:text="${ product.beerName }"></h1>
+      </div>
+    </div>
+
+
+    <div class="site-section mt-5" th:each="product : ${ products }">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-6">
+            <div class="owl-carousel hero-slide owl-style">
+              <img th:each="pfile:${product.productFileEntity}" th:src="@{/images/{fileName}(fileName=${pfile.productSavedFileName})}" alt="Image" class="img-fluid">
+            </div>
+          </div>
+          <div class="col-lg-5 ml-auto">
+            <h2 class="text-primary" th:text="${ product.beerName }"></h2>
+            <p th:text="${ product.beerContent }"></p>
+			<br>
+            <p style="text-align: right;" th:text="${ product.beerPrice } + '원'"></p>
+            <div class="mb-5">
+              <div class="input-group mb-3" style="max-width: 200px;">
+                <div class="input-group-prepend">
+                  <button class="btn btn-outline-primary js-btn-minus" type="button">&minus;</button>
+                </div>
+                <input type="text" class="form-control text-center border mr-0" value="1" placeholder=""
+                  aria-label="Example text with button addon" aria-describedby="button-addon1">
+                <div class="input-group-append">
+                  <button class="btn btn-outline-primary js-btn-plus" type="button">&plus;</button>
+                </div>
+              </div>
+    
+            </div>
+            <p><a href="/product/cart" class="buy-now btn btn-sm height-auto px-4 py-3 btn-primary">Add To Cart</a></p>
+
+
+          </div>
+        </div>
+        <p><a th:href="@{/product/productDelete/{no}(no=${product.beerNo})}" class="buy-now btn btn-sm height-auto px-4 py-3 btn-primary">삭제</a></p>
+        <p><a th:href="@{/product/productUpdate/{no}(no=${product.beerNo})}" class="buy-now btn btn-sm height-auto px-4 py-3 btn-primary">수정</a></p>
+      </div>
+    </div>
+
+    <div class="hero-2" style="background-image: url('images/hero_2.jpg');">
+     <div class="container">
+        <div class="row justify-content-center text-center align-items-center">
+          <div class="col-md-8">
+            <span class="sub-title">Welcome</span>
+            <h2>Wines For Everyone</h2>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="site-section bg-primary">
+      <div class="container">
+        <div class="owl-carousel owl-slide-3 owl-slide-3-white owl-slide">
+        
+          <blockquote class="testimony">
+            <img th:src="@{/images/person_1.jpg}" alt="Image">
+            <p>&ldquo;Lorem ipsum dolor sit amet, consectetur adipisicing elit. Libero sapiente beatae, nemo quasi quo neque consequatur rem porro reprehenderit, a dignissimos unde ut enim fugiat deleniti quae placeat in cumque?&rdquo;</p>
+          </blockquote>
+          <blockquote class="testimony">
+            <img th:src="@{/images/person_2.jpg}" alt="Image">
+            <p>&ldquo;Lorem ipsum dolor sit amet, consectetur adipisicing elit. Libero sapiente beatae, nemo quasi quo neque consequatur rem porro reprehenderit, a dignissimos unde ut enim fugiat deleniti quae placeat in cumque?&rdquo;</p>
+          </blockquote>
+          <blockquote class="testimony">
+            <img th:src="@{/images/person_3.jpg}" alt="Image">
+            <p>&ldquo;Lorem ipsum dolor sit amet, consectetur adipisicing elit. Libero sapiente beatae, nemo quasi quo neque consequatur rem porro reprehenderit, a dignissimos unde ut enim fugiat deleniti quae placeat in cumque?&rdquo;</p>
+          </blockquote>
+          <blockquote class="testimony">
+            <img th:src="@{/images/person_1.jpg}" alt="Image">
+            <p>&ldquo;Lorem ipsum dolor sit amet, consectetur adipisicing elit. Libero sapiente beatae, nemo quasi quo neque consequatur rem porro reprehenderit, a dignissimos unde ut enim fugiat deleniti quae placeat in cumque?&rdquo;</p>
+          </blockquote>
+        
+        </div>
+      </div>
+    </div>
+ 
+<footer th:include="@{/commons/footer.html}"></footer> 

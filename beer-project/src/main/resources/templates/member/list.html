@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+ 	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"	  
+	  layout:decorator="layouts/main">
+<head>
+</head>
+<body>
+    <div id="pageContainer">
+        
+		<div id="content" layout:fragment="content">
+        	<br /><br />
+        	<div style='text-align:center'>
+        		[&nbsp;<a href="/member/register">사용자 등록</a>&nbsp;]
+        	</div>
+        	<br /><br />        	
+        	<table border="1" align="center" width="700px">
+        		<tr style="height:30px;background-color:orange">
+        			<td>아이디</td>
+        			<td>이메일</td>
+        			<td>사용자구분</td>
+        			<td>활성화여부</td>
+        			<td>등록일자</td>
+        		</tr>
+				
+        		<tr style="height:30px" th:each="member : ${ members }">
+        			<td>
+        				<a th:href="@{/member/detail/} + ${member.memberId}" th:text="${ member.memberId }"></a>
+        			</td>
+        			<td th:text="${ member.email }"></td>
+        			<td th:text="${ member.userType }"></td>
+        			<td th:text="${ member.active ? '활성사용자' : '비활성사용자' }"></td>
+        			<td th:text="${ member.regDate }"></td>
+        		</tr>
+
+        	</table>
+        	
+        </div>
+	</div>
+</body>
+</html>
+
+
+
+
+
+
+
+
