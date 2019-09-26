@@ -20,8 +20,8 @@ public interface ProductService {
 
 	void productImageDelete(Long beerNo);
 
-//	void insertProductFile(ProductFileEntity productFile);
-//
-//	void updateProduct(ProductEntity productEntity);
+	void insertProductFile(ProductFileEntity productFile);
+
+	void updateProduct(ProductEntity productEntity);
 
 }

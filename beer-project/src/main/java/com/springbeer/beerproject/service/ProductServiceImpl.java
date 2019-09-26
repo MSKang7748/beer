@@ -59,18 +59,18 @@ public class ProductServiceImpl implements ProductService {
 		
 	}
 
-//	@Override
-//	public void insertProductFile(ProductFileEntity productFile) {
-//		
-//		productRepository.insertImage(productFile);
-//		
-//	}
-//
-//	@Override
-//	public void updateProduct(ProductEntity productEntity) {
-//		
-//		productRepository.modifyProduct(productEntity);
-//		
-//	}
+	@Override
+	public void insertProductFile(ProductFileEntity productFile) {
+		
+		productRepository.save(productFile);
+		
+	}
+
+	@Override
+	public void updateProduct(ProductEntity productEntity) {
+		
+		productRepository.save(productEntity);
+		
+	}
 	
 }

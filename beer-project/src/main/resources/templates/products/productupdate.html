@@ -38,7 +38,7 @@
             <div class="section-title mb-5">
               <h2>수정할 정보를 입력해주세요</h2>
             </div>
-            <form action="/product/productUpdate" method="post" enctype="multipart/form-data">
+            <form th:action="@{/product/productUpdate/{no}(no=${product.beerNo})}" method="post" enctype="multipart/form-data">
                   <div class="row">
                       <div class="col-md-6 form-group">
                           <label for="fname">ID</label>
@@ -47,11 +47,23 @@
                       <div class="col-md-6 form-group">
                           <label for="lname">카테고리</label>
                           <br>
-                          <select class="" name="beerDiv">
-                          	<option value="제조키트">제조키트</option>
+                          <div th:switch="${product.beerDiv}">
+                          <select class="" name="beerDiv" th:case="제조키트" >
+                          	<option value="제조키트" selected="selected">제조키트</option>
                           	<option value="제조원료">제조원료</option>
                           	<option value="맥주">맥주</option>
                           </select>
+                          <select class="" name="beerDiv" th:case="제조원료" >
+                          	<option value="제조키트">제조키트</option>
+                          	<option value="제조원료" selected="selected">제조원료</option>
+                          	<option value="맥주">맥주</option>
+                          </select>
+                          <select class="" name="beerDiv" th:case="맥주" >
+                          	<option value="제조키트">제조키트</option>
+                          	<option value="제조원료">제조원료</option>
+                          	<option value="맥주" selected="selected">맥주</option>
+                          </select>
+                          </div>
                       </div>
                   </div>
                   <div class="row">
@@ -77,7 +89,7 @@
                       </div>
                       <div class="col-md-12 form-group">
                           <label for="file">첨부파일</label>
-                          <input type="file" id="beerFile" name="beerFile" multiple="multiple"></input>
+                          <input type="file" name="beerFile">
                       </div>
                   </div>
                      <input type="submit" class="btn btn-primary py-3 px-5" value="등록"/>

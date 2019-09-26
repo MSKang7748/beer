@@ -32,8 +32,10 @@ public interface ProductRepository extends CrudRepository<ProductEntity, Integer
 		   	   	   "WHERE pfe.beerNo = :beerNo")
 	void deleteImageById(@Param("beerNo")Long beerNo);
 
-//	void insertImage(ProductFileEntity productFile);
-//	
+//	@Query(value = "INSERT INTO productFile(fileNo, productSavedFileName, productUserFileName) " +
+//				   "VALUES(productFile.fileNo, productFile.productSavedFileName, productFile.productUserFileName)")
+	void save(@Param("productFile")ProductFileEntity productFile);
+	
 //	@Modifying
 //	@Transactional
 //	@Query(value = "UPDATE ProductEntity as pe " +
