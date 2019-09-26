@@ -49,32 +49,6 @@
 						<span class="focus-input100"></span>
 				</div>
 
-				<div class="wrap-input100 input100-select">
-					<span class="label-input100">Needed Services</span>
-					<div>
-						<select class="selection-2" name="service">
-							<option>Choose Services</option>
-							<option>Online Store</option>
-							<option>eCommerce Bussiness</option>
-							<option>UI/UX Design</option>
-							<option>Online Services</option>
-						</select>
-					</div>
-					<span class="focus-input100"></span>
-				</div>
-
-				<div class="wrap-input100 input100-select">
-					<span class="label-input100">Budget</span>
-					<div>
-						<select class="selection-2" name="budget">
-							<option>Select Budget</option>
-							<option>1500 $</option>
-							<option>2000 $</option>
-							<option>2500 $</option>
-						</select>
-					</div>
-					<span class="focus-input100"></span>
-				</div>
 
 				<div class="wrap-input100 validate-input"
 					data-validate="Message is required">
@@ -85,12 +59,15 @@
 
 				<div>
 					<div>
-					&nbsp&nbsp&nbsp&nbsp
-						<form>
+					&nbsp&nbsp&nbsp&nbsp	
 							<input type="button" onclick="location.href='/subsq/list'" class="btn btn-primary py-3 px-5" value="구독글보기" /> 
 					&nbsp&nbsp		
 							<input type="button" onclick="location.href='/mypage/mypageupdate'" class="btn btn-primary py-3 px-5" value="정보수정" />
-						</form>
+					<br><br>
+					&nbsp&nbsp&nbsp&nbsp	
+							<input type="button" onclick="location.href='/products/cartlist'" class="btn btn-primary py-3 px-5" id="cartlist_button" value="구매내역"/>                        
+					&nbsp&nbsp		
+							<input type="button" onclick="location.href='/'" class="btn btn-primary py-3 px-5" value="돌아가기" />
 					</div>
 				</div>
 			</form>

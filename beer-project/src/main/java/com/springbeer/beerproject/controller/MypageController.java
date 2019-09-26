@@ -30,7 +30,7 @@ public class MypageController {
 		return "/mypage/mypagelist";
 	}
 	
-	@RequestMapping(path = "/update", method = RequestMethod.GET)
+	@RequestMapping(path = "/mypageupdate", method = RequestMethod.GET)
 	public String updateForm (Model model, Mypage mypage) {   
 		
 		String name = "이용은";
