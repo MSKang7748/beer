@@ -39,15 +39,19 @@
                           <label for="eaddress">제목</label>
                           <input type="text" id="subsqTitle" name="subsqTitle" class="form-control form-control-lg"  th:value="${subsqupdate.subsqTitle}">
                       </div>
-                     <!--  <div class="col-md-6 form-group">
-                          <label for="tel">관련 글 번호</label>
-                          <input type="text" id="textno" class="form-control form-control-lg">
-                      </div> -->
+
                   </div>
                   <div class="row">
                       <div class="col-md-12 form-group">
                           <label for="message">내용</label>
                           <textarea name="subsqContent" id="subsqContent" cols="30" rows="10" class="form-control" th:text="${subsqupdate.subsqContent}"></textarea>
+                      </div>
+                  </div>
+                  
+                    <div class="row">
+                      <div class="col-md-12 form-group">
+                          <label for="file">첨부파일</label>
+                          <input type="file" id="subfile" name="subfile"></textarea>
                       </div>
                   </div>
                      <input type="submit" class="btn btn-primary py-3 px-5" value="수정하기"/>                 

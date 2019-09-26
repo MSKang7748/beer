@@ -34,46 +34,11 @@ public class SubsqController {
 	SubsqService subsqService;
 	
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
-	public String contentList(Model model
-			 
-		//	,@RequestParam(required = false, defaultValue = "1") int page
-		//	, @RequestParam(required = false, defaultValue = "1") int range, HttpSession session
-			) {
+	public String contentList(Model model) {
 
 		List<Subscription> Subscriptions = subsqService.findSubsqList();
-
 		model.addAttribute("Subscription",Subscriptions);
 
-		// Member loginuser = (Member) session.getAttribute("loginuser");
-		
-//		if(loginuser!=null) {
-//			model.addAttribute("id", loginuser.getId());
-//		}
-		
-//		try {
-//			String category = "darkbeer"; // 입력 값이 RAM이고 이것에 해당되는 DB를 찾아서 pagination
-//
-//			int listCnt = contentService.findMemoryListCnt(category);
-//
-//			// Pagination 媛앹껜�깮�꽦
-//			Pagination pagination = new Pagination();
-//			pagination.pageInfo(page, range, listCnt);
-//
-//			model.addAttribute("pagination", pagination);
-//
-//			
-//	        // �쟾泥대━�뒪�듃
-//			List<Content> products = productService.findMemoryList(pagination,category);
-//			if(products ==null) {
-//				return "redirect:/";
-//			}
-//			
-			
-//			model.addAttribute("product", products);
-//			model.addAttribute("listCnt", listCnt);
-//		}catch(Exception e) {
-//			e.printStackTrace();
-//		}
 		return "/subscripts/subsqlist";
 	}
 	
@@ -81,12 +46,7 @@ public class SubsqController {
 	@RequestMapping(value = "/detail", method=RequestMethod.GET)
 	public String subsqDetail(@RequestParam(name="subsqNo") int subsqNo, Model model) {
 		
-		List<Subscription> subsqDetails = subsqService.subsqdetail(subsqNo);		
-//		for (Subscription subsqDetail : subsqDetails) {
-//			List<SubFile> files = subsqService.subsqDetailFileListBySubsqNo(subsqDetails.get(0));
-//			subsqDetail.setFileList(files);
-//		}
-		
+		List<Subscription> subsqDetails = subsqService.subsqdetail(subsqNo);
 		model.addAttribute("subsqdetail", subsqDetails);
 		
 	return "/subscripts/subsqdetail";
@@ -97,19 +57,48 @@ public class SubsqController {
 	public String subsqUpdate(@RequestParam(name="subsqNo") int subsqNo, Model model) {
 		
 		List<Subscription> subsqUpdate = subsqService.subsqupdate(subsqNo);		
-//		for (Subscription subsqDetail : subsqDetails) {
-//			List<SubFile> files = subsqService.subsqDetailFileListBySubsqNo(subsqDetails.get(0));
-//			subsqDetail.setFileList(files);
-//		}
+
 		model.addAttribute("subsqupdate", subsqUpdate);
 
 	return "/subscripts/subsqupdate";
 	}
 	
 	@PostMapping(value = "/subsqupdatewrite/{subsqNo}")
-	public String subsqUpdateWrite(@PathVariable("subsqNo") int subsqNo, Subscription subscription, Model model) {
+	public String subsqUpdateWrite(@PathVariable("subsqNo") int subsqNo, Subscription subscription, Model model,MultipartHttpServletRequest req) {
 		
-		subsqService.subsqupdatewrite(subscription);
+		MultipartFile mf = req.getFile("subfile");
+		boolean test = mf.isEmpty();
+		
+		if (test == false) { // 파일 안 넣어도 업로드 가능 하려면  @Query사용해야 될 듯.
+	
+			ServletContext application = req.getServletContext();
+			String path = application.getRealPath("/images/");
+
+			String subsqUserFileName =  mf.getOriginalFilename();
+			if (subsqUserFileName.contains("\\")) { 
+ 
+				subsqUserFileName = subsqUserFileName.substring(subsqUserFileName.lastIndexOf("\\") + 1);
+			}
+			String subsqSavedFileName = Util.makeUniqueFileName(subsqUserFileName);
+
+					try {
+
+						mf.transferTo(new File(path, subsqSavedFileName));
+
+						SubFile subFile = new SubFile();
+						subFile.setSubsqSavedFileName(subsqSavedFileName);
+						subFile.setSubsqUserFileName(subsqUserFileName);
+						ArrayList<SubFile> fileList = new ArrayList<SubFile>();
+						fileList.add(subFile);
+						subscription.setFiles(fileList); // 일일이 VO에 담는 것을 Controller에서 옮김.
+						
+						subsqService.subsqupdatewrite(subscription);
+
+					} catch (Exception e) {
+						e.printStackTrace();
+					} 
+				} 
+
 	return "redirect:/subsq/list";
 	}
 	
