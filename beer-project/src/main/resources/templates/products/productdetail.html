@@ -51,13 +51,13 @@
               </div>
     
             </div>
-            <p><a href="/product/cart" class="buy-now btn btn-sm height-auto px-4 py-3 btn-primary">Add To Cart</a></p>
+            <p><a href="@{/product/productDetail/{beerNo}(beerNo = ${product.beerNo})}" class="buy-now btn btn-sm height-auto px-4 py-3 btn-primary">Add To Cart</a></p>
 
 
           </div>
         </div>
         <p><a th:href="@{/product/productDelete/{no}(no=${product.beerNo})}" class="buy-now btn btn-sm height-auto px-4 py-3 btn-primary">삭제</a></p>
-        <p><a th:href="@{/product/productUpdate(beerNo=${product.beerNo})}" class="buy-now btn btn-sm height-auto px-4 py-3 btn-primary">수정</a></p>
+        <p><a th:href="@{/product/productUpdate/{no}(no=${product.beerNo})}" class="buy-now btn btn-sm height-auto px-4 py-3 btn-primary">수정</a></p>
       </div>
     </div>
 

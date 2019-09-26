@@ -21,7 +21,7 @@
           </div>
         </div>
         <div class="row mb-5">
-          <form class="col-md-12" method="post">
+          <form class="col-md-12">
             <div class="site-blocks-table">
               <table class="table table-bordered">
                 <thead>
@@ -34,22 +34,24 @@
                     <th class="product-remove">Remove</th>
                   </tr>
                 </thead>
-                <tbody>
+                <tbody th:each="products : ${products}">
                   <tr>
                     <td class="product-thumbnail">
-                      <img th:src="@{/images/wine_1.png}" alt="Image" class="img-fluid">
+                      <img th:each="pfile:${products.productFileEntity}" th:src="@{/images/{fileName}(fileName=${pfile.productSavedFileName})}" alt="Image" class="img-fluid">
                     </td>
                     <td class="product-name">
-                      <h2 class="h5 cart-product-title text-black">Trius Cabernet France 2011</h2>
+                      <h2 class="h5 cart-product-title text-black" th:text="${products.beerName}"></h2>
                     </td>
-                    <td>$55.00</td>
+                    <td>
+                    	<input th:value="${products.beerPrice}" readonly=readonly/>
+                    </td>
                     <td>
                       <div class="input-group mb-3" style="max-width: 120px;">
                         <div class="input-group-prepend">
                           <button class="btn btn-outline-primary js-btn-minus" type="button">&minus;</button>
                         </div>
                         <input type="text" class="form-control text-center border mr-0" value="1" placeholder=""
-                          aria-label="Example text with button addon" aria-describedby="button-addon1">
+                          aria-label="Example text with button addon" aria-describedby="button-addon1" name=cartCnt>
                         <div class="input-group-append">
                           <button class="btn btn-outline-primary js-btn-plus" type="button">&plus;</button>
                         </div>
@@ -60,30 +62,6 @@
                     <td><a href="#" class="btn btn-primary height-auto btn-sm">X</a></td>
                   </tr>
     
-                  <tr>
-                    <td class="product-thumbnail">
-                      <img th:src="@{/images/wine_2.png}" alt="Image" class="img-fluid">
-                    </td>
-                    <td class="product-name">
-                      <h2 class="h5 cart-product-title text-black">Trius Cabernet France 2011</h2>
-                    </td>
-                    <td>$49.00</td>
-                    <td>
-                      <div class="input-group mb-3" style="max-width: 120px;">
-                        <div class="input-group-prepend">
-                          <button class="btn btn-outline-primary js-btn-minus" type="button">&minus;</button>
-                        </div>
-                        <input type="text" class="form-control text-center border mr-0" value="1" placeholder=""
-                          aria-label="Example text with button addon" aria-describedby="button-addon1">
-                        <div class="input-group-append">
-                          <button class="btn btn-outline-primary js-btn-plus" type="button">&plus;</button>
-                        </div>
-                      </div>
-    
-                    </td>
-                    <td>$49.00</td>
-                    <td><a href="#" class="btn btn-primary height-auto btn-sm">X</a></td>
-                  </tr>
                 </tbody>
               </table>
             </div>

@@ -8,7 +8,6 @@ import com.springbeer.beerproject.entity.CartEntity;
 
 public interface CartRepository extends CrudRepository<CartEntity, Integer> {
 	
-	List<CartEntity> findById(Long beerNo);
 
 //	List<CartEntity> findByBeerNo(Long beerNo);
 	

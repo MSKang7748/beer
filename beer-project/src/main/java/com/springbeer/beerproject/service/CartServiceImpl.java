@@ -21,13 +21,10 @@ public class CartServiceImpl implements CartService {
 	}
 
 	@Override
-	public List<CartEntity> cartFindByBeerNo(Long beerNo) {
+	public void addtoCartByBeerNo(CartEntity cartentity) {
+		cartRepository.save(cartentity);
 		
-		List<CartEntity> cartEntity = cartRepository.findById(beerNo);
-		
-		return cartEntity;
 	}
-
 	
 	
 	

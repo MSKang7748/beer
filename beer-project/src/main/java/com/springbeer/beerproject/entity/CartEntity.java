@@ -29,7 +29,7 @@ public class CartEntity {
 	private String id;
 	
 	@Column(name = "beer_no")
-	private int beerNo;
+	private Long beerNo;
 	
 	@Column(name = "cart_cnt")
 	private int cartCnt;

@@ -23,5 +23,7 @@ public interface ProductService {
 	void insertProductFile(ProductFileEntity productFile);
 
 	void updateProduct(ProductEntity productEntity);
+	
+	List<ProductEntity> cartFindByBeerNo(Long beerNo);
 
 }
