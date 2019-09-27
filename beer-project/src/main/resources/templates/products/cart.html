@@ -1,138 +1,148 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org"
+ 	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"	  
+	  layout:decorator="layouts/main">
+
 <header th:include="@{/commons/header.html}"></header>
 
 <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
+ 
+ 		<div class="site-wrap">
+	    <div class="site-mobile-menu site-navbar-target">
+	      <div class="site-mobile-menu-header">
+	        <div class="site-mobile-menu-close mt-3">
+	          <span class="icon-close2 js-menu-toggle"></span>
+	        </div>
+	      </div>
+	      <div class="site-mobile-menu-body"></div>
+	    </div>
+	
+	    <div class="site-section  pb-0">
+	      <div class="container">
+	        <div class="row mb-5 justify-content-center">
+	          <div class="col-7 section-title text-center mb-5">
+	            <h2 class="d-block">Cart</h2>
+	          </div>
+	        </div>
+	        <div class="row mb-5">
+	          <form class="col-md-12">
+	            <div class="site-blocks-table">
+	              <table class="table table-bordered">
+	                <thead>
+	                  <tr>
+	                    <th class="product-thumbnail">Image</th>
+	                    <th class="product-name">Product</th>
+	                    <th class="product-price">Price</th>
+	                    <th class="product-quantity">Quantity</th>
+	                    <th class="product-total">Total</th>
+	                    <th class="product-remove">Remove</th>
+	                  </tr>
+	                </thead>
+	                <tbody th:each="products : ${products}">
+	                  <tr>
+	                    <td class="product-thumbnail">
+	                      <img th:each="pfile:${products.productFileEntity}" th:src="@{/images/{fileName}(fileName=${pfile.productSavedFileName})}" alt="Image" class="img-fluid">
+	                    </td>
+	                    <td class="product-name">
+	                      <h2 class="h5 cart-product-title text-black" th:text="${products.beerName}"></h2>
+	                    </td>
+	                    <td>
+	                    	<input type="number" id="price" th:value="${products.beerPrice}" readonly="readonly"/>
+	                    </td>
+	                    <td>
+	                      <div class="input-group mb-3" style="max-width: 120px;">
+	                        
+	                        </div>
+	                        <input type="number" class="form-control text-center border mr-0" value="1" min="1" id="count" oninput="countValue()"
+	                          aria-label="Example text with button addon" aria-describedby="button-addon1" name=cartCnt>
+	                        
 
-  <div class="site-wrap">
+	                    </td>
+	                    <td id="orderDetail" th:text="${products.beerPrice}"></td>
+	                    <td><a href="@{/product/productDelete/{mo}(mo=${product.beerNo})}" class="btn btn-primary height-auto btn-sm">X</a></td>
+	                  </tr>
+	    
+	                </tbody>
+	              </table>
+	            </div>
+	          </form>
+	        </div>
+	    
+	      </div>
+	    </div>
+	
+	    <div class="site-section pt-5 bg-light">
+	    <form action="/product/checkout" method="GET">
+	      <div class="container">
+	        <div class="row">
+	          <div class="col-md-6">
+	            <div class="row mb-5">
+	              <div class="col-md-6 mb-3 mb-md-0">
+	                <button class="btn btn-primary btn-md btn-block">Update Cart</button>
+	              </div>
+	              <div class="col-md-6">
+	                <button class="btn btn-outline-primary btn-md btn-block">Continue Shopping</button>
+	              </div>
+	            </div>
+	            <div class="row">
+	              <div class="col-md-12">
+	                <label class="text-black h4" for="coupon">Coupon</label>
+	                <p>Enter your coupon code if you have one.</p>
+	              </div>
+	              <div class="col-md-8 mb-3 mb-md-0">
+	                <input type="text" class="form-control py-3" id="coupon" placeholder="Coupon Code">
+	              </div>
+	              <div class="col-md-4">
+	                <button class="btn btn-primary btn-md px-4">Apply Coupon</button>
+	              </div>
+	            </div>
+	          </div>
+	          <div class="col-md-6 pl-5">
+	            <div class="row justify-content-end">
+	              <div class="col-md-7">
+	                <div class="row">
+	                  <div class="col-md-12 text-right border-bottom mb-5">
+	                    <h3 class="text-black h4 text-uppercase">Cart Totals</h3>
+	                  </div>
+	                </div>
+	                <div class="row mb-3">
+	                  <div class="col-md-6">
+	                    <span class="text-black">Subtotal</span>
+	                  </div>
+	                  <div class="col-md-6 text-right">
+	                    <strong class="text-black">$230.00</strong>
+	                  </div>
+	                </div>
+	                <div class="row mb-5">
+	                  <div class="col-md-6">
+	                    <span class="text-black">Total</span>
+	                  </div>
+	                  <div class="col-md-6 text-right">
+	                    <strong class="text-black">$230.00</strong>
+	                  </div>
+	                </div>
+	    
+	                <div class="row">
+	                  <div class="col-md-12">
+	                    <button class="btn btn-primary btn-lg btn-block" type="submit">Proceed To Checkout</button>
+	                  </div>
+	                </div>
+	              </div>
+	            </div>
+	          </div>
+	        </div>
+	      </div>
+	      </form>
+	    </div>
 
-    <div class="site-mobile-menu site-navbar-target">
-      <div class="site-mobile-menu-header">
-        <div class="site-mobile-menu-close mt-3">
-          <span class="icon-close2 js-menu-toggle"></span>
-        </div>
-      </div>
-      <div class="site-mobile-menu-body"></div>
-    </div>
-
-    <div class="site-section  pb-0">
-      <div class="container">
-        <div class="row mb-5 justify-content-center">
-          <div class="col-7 section-title text-center mb-5">
-            <h2 class="d-block">Cart</h2>
-          </div>
-        </div>
-        <div class="row mb-5">
-          <form class="col-md-12">
-            <div class="site-blocks-table">
-              <table class="table table-bordered">
-                <thead>
-                  <tr>
-                    <th class="product-thumbnail">Image</th>
-                    <th class="product-name">Product</th>
-                    <th class="product-price">Price</th>
-                    <th class="product-quantity">Quantity</th>
-                    <th class="product-total">Total</th>
-                    <th class="product-remove">Remove</th>
-                  </tr>
-                </thead>
-                <tbody th:each="products : ${products}">
-                  <tr>
-                    <td class="product-thumbnail">
-                      <img th:each="pfile:${products.productFileEntity}" th:src="@{/images/{fileName}(fileName=${pfile.productSavedFileName})}" alt="Image" class="img-fluid">
-                    </td>
-                    <td class="product-name">
-                      <h2 class="h5 cart-product-title text-black" th:text="${products.beerName}"></h2>
-                    </td>
-                    <td>
-                    	<input th:value="${products.beerPrice}" readonly=readonly/>
-                    </td>
-                    <td>
-                      <div class="input-group mb-3" style="max-width: 120px;">
-                        <div class="input-group-prepend">
-                          <button class="btn btn-outline-primary js-btn-minus" type="button">&minus;</button>
-                        </div>
-                        <input type="text" class="form-control text-center border mr-0" value="1" placeholder=""
-                          aria-label="Example text with button addon" aria-describedby="button-addon1" name=cartCnt>
-                        <div class="input-group-append">
-                          <button class="btn btn-outline-primary js-btn-plus" type="button">&plus;</button>
-                        </div>
-                      </div>
-    
-                    </td>
-                    <td>$49.00</td>
-                    <td><a href="#" class="btn btn-primary height-auto btn-sm">X</a></td>
-                  </tr>
-    
-                </tbody>
-              </table>
-            </div>
-          </form>
-        </div>
-    
-      </div>
-    </div>
-
-    <div class="site-section pt-5 bg-light">
-    <form action="/product/checkout" method="GET">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-6">
-            <div class="row mb-5">
-              <div class="col-md-6 mb-3 mb-md-0">
-                <button class="btn btn-primary btn-md btn-block">Update Cart</button>
-              </div>
-              <div class="col-md-6">
-                <button class="btn btn-outline-primary btn-md btn-block">Continue Shopping</button>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-12">
-                <label class="text-black h4" for="coupon">Coupon</label>
-                <p>Enter your coupon code if you have one.</p>
-              </div>
-              <div class="col-md-8 mb-3 mb-md-0">
-                <input type="text" class="form-control py-3" id="coupon" placeholder="Coupon Code">
-              </div>
-              <div class="col-md-4">
-                <button class="btn btn-primary btn-md px-4">Apply Coupon</button>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-6 pl-5">
-            <div class="row justify-content-end">
-              <div class="col-md-7">
-                <div class="row">
-                  <div class="col-md-12 text-right border-bottom mb-5">
-                    <h3 class="text-black h4 text-uppercase">Cart Totals</h3>
-                  </div>
-                </div>
-                <div class="row mb-3">
-                  <div class="col-md-6">
-                    <span class="text-black">Subtotal</span>
-                  </div>
-                  <div class="col-md-6 text-right">
-                    <strong class="text-black">$230.00</strong>
-                  </div>
-                </div>
-                <div class="row mb-5">
-                  <div class="col-md-6">
-                    <span class="text-black">Total</span>
-                  </div>
-                  <div class="col-md-6 text-right">
-                    <strong class="text-black">$230.00</strong>
-                  </div>
-                </div>
-    
-                <div class="row">
-                  <div class="col-md-12">
-                    <button class="btn btn-primary btn-lg btn-block" type="submit">Proceed To Checkout</button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      </form>
-    </div>
+<script src="http://code.jquery.com/jquery-3.4.1.js"></script>
+<script type="text/javascript">
+	function countValue() {
+	      var x = document.getElementById("count").value; // 숫자가 올라갈 수록 x도 증가한다
+	      var price = document.getElementById("price").value;
+	      document.getElementById("orderDetail").innerHTML = price * x
+	}
+</script>
 
 <footer th:include="@{/commons/footer.html}"></footer>
