@@ -28,19 +28,19 @@ public class MemberServiceImpl implements MemberService {
 		
 	}
 
-	@Override
-	public MemberEntity findMemberById(String memberId) {		
-		//Optional<MemberEntity> result = memberRepository.findById(memberId);
-		//MemberEntity member = result.orElse(null);	
-		//return member;
-		
-		return null;
-	}
+
 	
 	@Override
 	public MemberEntity findMemberByIdAndPasswd(String memberId, String passwd) {
 		MemberEntity member = memberRepository.findByMemberIdAndPasswd(memberId, passwd);
 		return member;
+	}
+
+	@Override
+	public MemberEntity findByMemberId(String memberId) {
+			
+		MemberEntity mp = memberRepository.findByMemberId(memberId);
+		return mp;
 	}
 	
       ///////////////////////////////
@@ -54,9 +54,10 @@ public class MemberServiceImpl implements MemberService {
 		memberRepository.save(member);  		
 	}
 
-	 
-
-
-	
+	@Override
+	public MemberEntity findMemberById(String memberId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 }

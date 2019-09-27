@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletContext;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,6 +21,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.springbeer.beerproject.common.Util;
+import com.springbeer.beerproject.entity.MemberEntity;
 import com.springbeer.beerproject.entity.SubFile;
 import com.springbeer.beerproject.entity.Subscription;
 import com.springbeer.beerproject.service.SubsqService;
@@ -34,12 +36,33 @@ public class SubsqController {
 	SubsqService subsqService;
 	
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
-	public String contentList(Model model) {
+	public String contentList(Model model, HttpSession session) {
+
+		MemberEntity member = (MemberEntity) session.getAttribute("loginuser");
+		
+		if (member == null) {
+			return "redirect:/member/login";
+		}
+		String usertype = member.getUserType();
+		
+		if (usertype.equals("admin")) {
+
+			List<Subscription> Subscriptions = subsqService.findSubsqList();
+			model.addAttribute("Subscription",Subscriptions);
+			return "/subscripts/subsqlist";
+		}
+		
+		if (usertype.equals("specialist")) {
+
+			List<Subscription> Subscriptions = subsqService.findSubsqList();
+			model.addAttribute("Subscription",Subscriptions);
+			return "/subscripts/subsqlist";
+		}
 
 		List<Subscription> Subscriptions = subsqService.findSubsqList();
 		model.addAttribute("Subscription",Subscriptions);
 
-		return "/subscripts/subsqlist";
+		return "/subscripts/subsqlist2";
 	}
 	
 	
@@ -155,6 +178,18 @@ public class SubsqController {
 					} 
 
 	return "redirect:/subsq/list";
+	}
+	
+	@GetMapping(value = "/mysubsq")
+	public String mysubsq(Model model) {
+
+		String subsqDiv = "grain"; // darkbeer말고 id에 따른 div를 넣어야 한다.
+		
+		List<Subscription> mysubsq = subsqService.findMylistByDiv(subsqDiv); //id에 해당되는 구독분야 리스트 가져옴.
+		
+		model.addAttribute("mysubsq", mysubsq);
+
+		return "/subscripts/mysubsqlist";
 	}
 	
 	@RequestMapping(value = "/listNew", method = RequestMethod.GET)

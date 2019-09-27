@@ -14,4 +14,5 @@ public interface SubsqRepository extends CrudRepository<Subscription, Integer> {
 		List<Subscription> findById(int subsqNo);
 		List<SubFile> findById(Subscription subscription);
 
+		List<Subscription> findBySubsqDiv(String subsqDiv);
 }

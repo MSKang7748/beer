@@ -68,6 +68,12 @@ public class SubsqServiceImpl implements SubsqService {
 		subsqRepository.save(subscription);
 	}
 
+	@Override
+	public List<Subscription> findMylistByDiv(String subsqDiv) {
+		List<Subscription> mylist = subsqRepository.findBySubsqDiv(subsqDiv);
+		return mylist;
+	}
+
 
 
 }

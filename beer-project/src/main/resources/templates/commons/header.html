@@ -25,6 +25,26 @@
   <link rel="stylesheet" th:href="@{/css/aos.css}">
   <link th:href="@{/css/jquery.mb.YTPlayer.min.css}" media="all" rel="stylesheet" type="text/css">
   <link rel="stylesheet" th:href="@{/css/style.css}">
+  
+  
+<link rel="icon" type="image/png" th:href="@{/images/icons/favicon.ico}" />
+<link rel="stylesheet" type="text/css"
+	th:href="@{/vendor/bootstrap/css/bootstrap.min.css}">
+<link rel="stylesheet" type="text/css"
+	th:href="@{/fonts/font-awesome-4.7.0/css/font-awesome.min.css}">
+<link rel="stylesheet" type="text/css"
+	th:href="@{/vendor/animate/animate.css}">
+<link rel="stylesheet" type="text/css"
+	th:href="@{/vendor/css-hamburgers/hamburgers.min.css}">
+<link rel="stylesheet" type="text/css"
+	th:href="@{/vendor/animsition/css/animsition.min.css}">
+<link rel="stylesheet" type="text/css"
+	th:href="@{/vendor/select2/select2.min.css}">
+<link rel="stylesheet" type="text/css"
+	th:href="@{/vendor/daterangepicker/daterangepicker.css}">
+
+<link rel="stylesheet" type="text/css" th:href="@{/css/util2.css}">
+<link rel="stylesheet" type="text/css" th:href="@{/css/main2.css}">
 
 	<div class="header-top">
       <div class="container">
@@ -53,16 +73,12 @@
 
                 <li><a href="/product/cart" class="nav-link text-left">Cart</a></li>
                 <li><a href="/qna/qnalist" class="nav-link text-left">Q&A</a></li>
-                <li><a href="/mypage/mypagelist" class="pl-4">Mypage</a></li>
                
                 <li th:if="${ session.loginuser == null }"><a href="/member/login" class="nav-link text-left">Login</a></li>
                 <li th:if="${ session.loginuser == null }"><a href="/member/register" class="nav-link text-left">Register</a></li>
-                			
-				<li th:if="${ session.loginuser != null }"><a href="#" th:text="${ session.loginuser.memberId } + '님 환영합니다.'" class="nav-link text-left"></a></li>
+				<li th:if="${ session.loginuser != null }"><a th:href="@{/member/mypagelist/{memberId}(memberId=${session.loginuser.memberId})}" th:text="${ session.loginuser.memberId } + '님 환영합니다.'" class="nav-link text-left"></a></li>
                 <li th:if="${ session.loginuser != null }"><a href="/member/logout" class="nav-link text-left">로그아웃</a></li>
-	           
-               
-                
+
               </ul>                                                                                                                                                                                                                                                                                         
             </nav>
 

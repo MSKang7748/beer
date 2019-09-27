@@ -20,5 +20,6 @@ public interface SubsqService {
 	void subsqdelete(int subsqNo);
 
 	void subsqupdatewrite(Subscription subscription);
+	List<Subscription> findMylistByDiv(String subsqDiv);
 
 }

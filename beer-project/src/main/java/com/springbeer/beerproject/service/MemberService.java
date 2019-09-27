@@ -18,6 +18,8 @@ public interface MemberService {
 
 	void modifyMember(MemberEntity member);
 
+	MemberEntity findByMemberId(String memberId);
+
 	
 
  

@@ -53,8 +53,7 @@
                 <li><a href="/product/list" class="nav-link text-left">Wines</a></li>
                 <li><a href="/product/cart" class="nav-link text-left">Cart</a></li>
                 <li><a href="/qna/qnalist" class="nav-link text-left">Q&A</a></li>
-                <li><a href="/subsq/write" class="nav-link text-left">Write</a></li>
-              </ul>                                                                                                                                                             
+              </ul>                                                                                                                                                                                                                                                                                         
             </nav>
 
           </div>
@@ -79,19 +78,19 @@
         </div>
         <div class="row">
         
-          <div class="col-lg-4 mb-4" th:each="Subscription : ${Subscription}">
+          <div class="col-lg-4 mb-4" th:each="mysubsq : ${mysubsq}">
             <div class="entry2">
               
               <div class="excerpt">
-              <span class="post-category text-white bg-secondary mb-3" th:text="${Subscription.subsqDiv}"></span>
- 		   	  <img th:src="@{'/images/' + ${Subscription.files[0].subsqSavedFileName}}" alt="Image" class="img-fluid rounded">
-              <h2><a th:text="${Subscription.subsqTitle}"></a></h2>
+              <span class="post-category text-white bg-secondary mb-3" th:text="${mysubsq.subsqDiv}"></span>
+ 		   	  <img th:src="@{'/images/' + ${mysubsq.files[0].subsqSavedFileName}}" alt="Image" class="img-fluid rounded">
+              <h2><a th:text="${mysubsq.subsqTitle}"></a></h2>
               <div class="post-meta align-items-center text-left clearfix">
-                <span class="d-inline-block mt-1" th:text="${Subscription.id}"></span>
-                <span th:text="${Subscription.subsqDate}">&nbsp;-&nbsp;</span>
+                <span class="d-inline-block mt-1" th:text="${mysubsq.id}"></span>
+                <span th:text="${mysubsq.subsqDate}">&nbsp;-&nbsp;</span>
               </div>
-                <p th:text="${Subscription.subsqContent}"></p>
-                <p><a th:href="@{/subsq/detail(subsqNo=${Subscription.subsqNo})}">More detail</a></p>
+                <p th:text="${mysubsq.subsqContent}"></p>
+                <p><a th:href="@{/subsq/detail(subsqNo=${mysubsq.subsqNo})}">More detail</a></p>
               </div>
     				
 			</div>

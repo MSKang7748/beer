@@ -10,7 +10,7 @@ import org.springframework.data.jpa.repository.Query;
 public interface MemberRepository extends CrudRepository<MemberEntity, Integer> {
 	
 	MemberEntity findByMemberIdAndPasswd(String memberId, String passwd);
-	
-	
 
+	MemberEntity findByMemberId(String memberId);
+	
 }
