@@ -76,7 +76,7 @@ public class MemberManageController {
 	 return "redirect:/home"; 
 	 }
 	
-	 ////////////////////////
+	 //////////////////////// mypage
 	
 	@GetMapping(path = "/mypageupdate")
 	public String mypageupdate(Model model, HttpSession session) {
@@ -92,11 +92,30 @@ public class MemberManageController {
 		return "/mypage/mypageupdate";
 	}
 	
-	@PostMapping(path="/mypageupdate")
-	public String mypageupdatewrite(Model model, HttpSession session) {
+	@PostMapping(path = "mypageupdate")
+	public String mypageupdate(MemberEntity member) {
 
-		return "/mypage/mypagelist";
+		String memberId = member.getMemberId();
+		String passwd = member.getPasswd();
+		String email = member.getEmail();
+		String phone = member.getPhone();
+		
+		MemberEntity memberinfo = memberService.findMemberById(memberId);
+
+		memberinfo.setEmail(email);
+		memberinfo.setPhone(phone);
+		memberinfo.setPasswd(passwd);
+		
+		memberService.updateMember(memberinfo);
+		
+		return "redirect:/member/mypagelist/" + member.getMemberId();
 	}
+	
+//	@PostMapping(path="/mypageupdate")
+//	public String mypageupdatewrite(Model model, HttpSession session) {
+//
+//		return "/mypage/mypagelist";
+//	}
 	
 
 	@RequestMapping(path = "/mypagelist/{memberId}", method = RequestMethod.GET)

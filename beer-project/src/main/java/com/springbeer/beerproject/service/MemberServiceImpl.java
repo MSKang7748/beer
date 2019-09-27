@@ -5,6 +5,8 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.springbeer.beerproject.common.Util;
 import com.springbeer.beerproject.entity.MemberEntity;
 import com.springbeer.beerproject.repository.MemberRepository;
 
@@ -56,8 +58,16 @@ public class MemberServiceImpl implements MemberService {
 
 	@Override
 	public MemberEntity findMemberById(String memberId) {
-		// TODO Auto-generated method stub
-		return null;
+		MemberEntity memberinfo = memberRepository.findByMemberId(memberId);
+		
+		return memberinfo;
 	}
+
+	@Override
+	public void updateMember(MemberEntity member) {
+		memberRepository.save(member);
+		
+	}
+	
 	
 }

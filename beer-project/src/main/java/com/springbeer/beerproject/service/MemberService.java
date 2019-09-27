@@ -19,6 +19,9 @@ public interface MemberService {
 	void modifyMember(MemberEntity member);
 
 	MemberEntity findByMemberId(String memberId);
+	
+	// mypage 수정
+	void updateMember(MemberEntity member);
 
 	
 

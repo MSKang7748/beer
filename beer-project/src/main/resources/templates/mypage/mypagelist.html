@@ -3,36 +3,39 @@
 	<div class="container-contact100" th:each="mypage : ${mypage}">
 		<div class="wrap-contact100">
 			<form class="contact100-form validate-form">
-
-
-				<div class="wrap-input100 validate-input"
-					data-validate="Name is required">
-						<span class="label-input100">Your Name</span> 
-							<input class="input100" type="text" name="name"th:value="${mypage.name}" readonly=readonly> <span class="focus-input100" />
-						</span>
-				</div>
-
-				<div class="wrap-input100 validate-input"
-					data-validate="Valid email is required: ex@abc.xyz">
-						<span class="label-input100">Email</span> <input class="input100" type="text" name="email" th:value="${mypage.email}" readonly=readonly /> 
-						<span class="focus-input100"></span>
-				</div>
-
-
-				<div class="wrap-input100 validate-input"
-					data-validate="Message is required">
+				
+				<div class="wrap-input100 validate-input" data-validate="Message is required">
 					<span class="label-input100">Id</span>
-					<textarea class="input100" name="id" th:text="${mypage.memberId}" readonly=readonly></textarea>
+						<input class="input100" name="id" th:value="${mypage.memberId}"  readonly=readonly />
+					<span class="focus-input100"></span>
+				</div>
+
+				<div class="wrap-input100 validate-input" data-validate="Name is required">
+					<span class="label-input100">Your Name</span> 
+						<input class="input100" type="text" name="name" th:value="${mypage.name}" readonly=readonly /> 
+					<span class="focus-input100"></span>
+				</div>
+
+				<div class="wrap-input100 validate-input" data-validate="Valid email is required: ex@abc.xyz">
+					<span class="label-input100">Email</span> 
+						<input class="input100" type="text" name="email" th:value="${mypage.email}" readonly=readonly /> 
+					<span class="focus-input100"></span>
+				</div>
+				
+				<div class="wrap-input100 validate-input" data-validate="Valid phone is required: ex@abc.xyz">
+					<span class="label-input100">Phone</span> 
+						<input class="input100" type="text" name="phone" th:value="${mypage.phone}" readonly=readonly /> 
 					<span class="focus-input100"></span>
 				</div>
 
 				<div>
-					<div>	
-							<input type="button" onclick="location.href='/subsq/mysubsq'" class="btn btn-primary py-3 px-5" value="구독글보기" /> 	
-							<input type="button" onclick="location.href='/member/mypageupdate'" class="btn btn-primary py-3 px-5" value="정보수정" />
-					<br><br>	
-							<input type="button" onclick="location.href='/products/cartlist'" class="btn btn-primary py-3 px-5" id="cartlist_button" value="구매내역"/>                        	
-							<input type="button" onclick="location.href='/'" class="btn btn-primary py-3 px-5" value="돌아가기" />
+					<div>
+					&nbsp;&nbsp;&nbsp;	
+						<input type="button" onclick="location.href='/subsq/list'" class="btn col-sm-4" value="구독글보기" /> 
+					&nbsp;&nbsp;		
+						<input type="button" onclick="location.href='/products/cartlist'" class="btn col-sm-3" id="cartlist_button" value="구매내역"/>
+					&nbsp;&nbsp;&nbsp;								                        
+						<input type="button" onclick="location.href='/member/mypageupdate'" class="btn col-sm-3" value="정보수정" />
 					</div>
 				</div>
 			</form>
@@ -40,4 +43,3 @@
 	</div>
 
 <footer th:include="@{/commons/footer.html}"></footer>
-

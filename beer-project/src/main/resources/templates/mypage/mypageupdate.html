@@ -5,33 +5,42 @@
 			<form action="/member/mypageupdate" class="contact100-form validate-form" method="post">
 				<span class="contact100-form-title">회원 정보</span>
 
-				<div class="wrap-input100 validate-input"
-					data-validate="Name is required">
-					<span class="label-input100">Your Name</span> <input class="input100" type="text" name="name" placeholder="Enter your name" th:value="${mypage.name}"> 
+				<div class="wrap-input100 validate-input" data-validate="Message is required">
+					<span class="label-input100">Id</span>
+						<input class="input100" name="memberId" th:value="${mypage.memberId}" readonly=readonly />
+					<span class="focus-input100"></span>
+				</div>
+			
+				<div class="wrap-input100 validate-input" data-validate="Valid password is required">
+					<span class="label-input100">Password</span> 
+						<input class="input100" type="password" name="passwd"> 
+					<span class="focus-input100"></span>
+				</div>
+				
+				<div class="wrap-input100 validate-input" data-validate="Name is required">
+					<span class="label-input100">Your Name</span> 
+						<input class="input100" type="text" name="name" th:value="${mypage.name}" readonly=readonly> 
 					<span class="focus-input100"></span>
 				</div>
 
-				<div class="wrap-input100 validate-input"
-					data-validate="Valid email is required: ex@abc.xyz">
-					<span class="label-input100">Email</span> <input class="input100"
-						type="text" name="email" placeholder="Enter your email addess"
-						th:value="${mypage.email}"> <span class="focus-input100"></span>
+				<div class="wrap-input100 validate-input" data-validate="Valid email is required: ex@abc.xyz">
+					<span class="label-input100">Email</span> 
+						<input class="input100" type="text" name="email" th:value="${mypage.email}"> 
+					<span class="focus-input100"></span>
 				</div>
-
-				<div class="wrap-input100 validate-input"
-					data-validate="Message is required">
-					<span class="label-input100">Id</span>
-					<textarea class="input100" name="id"
-						placeholder="Your message here..." th:text="${mypage.memberId}"></textarea>
+				
+				<div class="wrap-input100 validate-input" data-validate="Valid phone is required: ex@abc.xyz">
+					<span class="label-input100">Phone</span> 
+						<input class="input100" type="text" name="phone" th:value="${mypage.phone}"/> 
 					<span class="focus-input100"></span>
 				</div>
 
 				<div>
-					<div>
-						
-							<button type="submit" class="btn btn-primary py-3 px-5">수정완료</button> 
+					<div class="buttons">
+						&nbsp;&nbsp;&nbsp;&nbsp;
+						<input type="submit" class="btn col-sm-5" value="수정완료" /> 
 						&nbsp;&nbsp;
-							<input type="button" onclick="location.href='/member/mypagelist'" class="btn btn-primary py-3 px-5" value="돌아가기" />
+						<input type="button" onclick="location.href='/member/mypagelist'" class="btn col-sm-5" value="돌아가기" />
 					</div>
 				</div>
 			</form>
