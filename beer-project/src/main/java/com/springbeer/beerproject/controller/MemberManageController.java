@@ -60,8 +60,8 @@ public class MemberManageController {
 	public String login(String memberId, String passwd, HttpSession session) {
 		
 		//passwd = Util.getHashedString(passwd, "SHA-256"); //암호화		
-		//MemberEntity member = memberService.findMemberByIdAndPasswd(memberId, passwd);
-		MemberEntity member = memberService.findMemberById(memberId);
+		MemberEntity member = memberService.findMemberByIdAndPasswd(memberId, passwd);
+		//MemberEntity member = memberService.findMemberById(memberId);
 		
 		if (member != null) { //로그인 가능 -> 로그인 처리 : 세션에 로그인 데이터 저장
 			session.setAttribute("loginuser", member); //로그인 처리

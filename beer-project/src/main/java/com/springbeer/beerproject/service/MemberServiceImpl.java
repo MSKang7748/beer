@@ -30,21 +30,23 @@ public class MemberServiceImpl implements MemberService {
 
 	@Override
 	public MemberEntity findMemberById(String memberId) {		
-		Optional<MemberEntity> result = memberRepository.findById(memberId);
-		MemberEntity member = result.orElse(null);	
-		return member;
+		//Optional<MemberEntity> result = memberRepository.findById(memberId);
+		//MemberEntity member = result.orElse(null);	
+		//return member;
+		
+		return null;
 	}
 	
-//	@Override
-//	public MemberEntity findMemberByIdAndPasswd(String memberId, String passwd) {
-//		MemberEntity member = memberRepository.selectMemberByIdAndPasswd(memberId, passwd);
-//		return null;
-//	}
+	@Override
+	public MemberEntity findMemberByIdAndPasswd(String memberId, String passwd) {
+		MemberEntity member = memberRepository.findByMemberIdAndPasswd(memberId, passwd);
+		return member;
+	}
 	
       ///////////////////////////////
 	@Override
 	public void unregisterMember(String memberId) {
-		  memberRepository.deleteById(memberId);   
+		  //memberRepository.deleteById(memberId);   
 	}
 
 	@Override

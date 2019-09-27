@@ -12,7 +12,7 @@ public interface MemberService {
 	void registerMember(MemberEntity member);
 
 	MemberEntity findMemberById(String memberId);
-  //MemberEntity findMemberByIdAndPasswd(String memberId, String passwd);
+	MemberEntity findMemberByIdAndPasswd(String memberId, String passwd);
 	void unregisterMember(String memberId);
 
 	void modifyMember(MemberEntity member);

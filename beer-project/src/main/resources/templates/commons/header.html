@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
-
 <head>
   <title>Wines &mdash; Website Template by Colorlib</title>
   <meta charset="utf-8">
@@ -54,14 +53,15 @@
 
                 <li><a href="/product/cart" class="nav-link text-left">Cart</a></li>
                 <li><a href="/qna/qnalist" class="nav-link text-left">Q&A</a></li>
-                	<a href="/mypage/mypagelist" class="pl-4">Mypage</a>
-                <li><a href="/member/login" class="nav-link text-left">Login</a></li>
-                <li><a href="/member/register" class="nav-link text-left">Register</a></li>
-                
-                <!--  
-                <li><a href="/member/" th:attrappend="href=${ member.name }" class="nav-link text-left">님 환영합니다.</a></li>
-            	<li><a href="/member/logout" class="nav-link text-left">로그아웃</a></li>
-                -->
+                <li><a href="/mypage/mypagelist" class="pl-4">Mypage</a></li>
+               
+                <li th:if="${ session.loginuser == null }"><a href="/member/login" class="nav-link text-left">Login</a></li>
+                <li th:if="${ session.loginuser == null }"><a href="/member/register" class="nav-link text-left">Register</a></li>
+                			
+				<li th:if="${ session.loginuser != null }"><a href="#" th:text="${ session.loginuser.memberId } + '님 환영합니다.'" class="nav-link text-left"></a></li>
+                <li th:if="${ session.loginuser != null }"><a href="/member/logout" class="nav-link text-left">로그아웃</a></li>
+	           
+               
                 
               </ul>                                                                                                                                                                                                                                                                                         
             </nav>
