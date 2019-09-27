@@ -1,28 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<title>Contact V4</title>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="icon" type="image/png" th:href="@{/images/icons/favicon.ico}" />
-<link rel="stylesheet" type="text/css" th:href="@{/vendor/bootstrap/css/bootstrap.min.css}">
-<link rel="stylesheet" type="text/css" th:href="@{/fonts/font-awesome-4.7.0/css/font-awesome.min.css}">
-<link rel="stylesheet" type="text/css" th:href="@{/vendor/animate/animate.css}">
-<link rel="stylesheet" type="text/css" th:href="@{/vendor/css-hamburgers/hamburgers.min.css}">
-<link rel="stylesheet" type="text/css" th:href="@{/vendor/animsition/css/animsition.min.css}">
-<link rel="stylesheet" type="text/css" th:href="@{/vendor/select2/select2.min.css}">
-<link rel="stylesheet" type="text/css" th:href="@{/vendor/daterangepicker/daterangepicker.css}">
-
-<link rel="stylesheet" type="text/css" th:href="@{/css/util2.css}">
-<link rel="stylesheet" type="text/css" th:href="@{/css/main2.css}">
-
-</head>
-<body>
+<header th:include="@{/commons/header.html}"></header>
 
 	<div class="container-contact100" th:each="mypage : ${mypage}">
 		<div class="wrap-contact100">
-			<form class="contact100-form validate-form">
-				<span class="contact100-form-title"> Say Hello! </span>
+			<form action="/member/mypageupdate" class="contact100-form validate-form" method="post">
+				<span class="contact100-form-title">회원 정보</span>
 
 				<div class="wrap-input100 validate-input"
 					data-validate="Name is required">
@@ -41,61 +22,20 @@
 					data-validate="Message is required">
 					<span class="label-input100">Id</span>
 					<textarea class="input100" name="id"
-						placeholder="Your message here..." th:text="${mypage.id}"></textarea>
+						placeholder="Your message here..." th:text="${mypage.memberId}"></textarea>
 					<span class="focus-input100"></span>
 				</div>
 
 				<div>
 					<div>
-						&nbsp&nbsp&nbsp&nbsp
-							<input type="button" onclick="location.href='/mypage/mypagelist'" class="btn btn-primary py-3 px-5" value="수정완료" /> 
-						&nbsp&nbsp
-							<input type="button" onclick="location.href='/mypage/mypagelist'" class="btn btn-primary py-3 px-5" value="돌아가기" />
+						
+							<button type="submit" class="btn btn-primary py-3 px-5">수정완료</button> 
+						&nbsp;&nbsp;
+							<input type="button" onclick="location.href='/member/mypagelist'" class="btn btn-primary py-3 px-5" value="돌아가기" />
 					</div>
 				</div>
 			</form>
 		</div>
 	</div>
 
-
-
-	<div id="dropDownSelect1"></div>
-
-	<!--===============================================================================================-->
-	<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
-	<!--===============================================================================================-->
-	<script src="vendor/animsition/js/animsition.min.js"></script>
-	<!--===============================================================================================-->
-	<script src="vendor/bootstrap/js/popper.js"></script>
-	<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
-	<!--===============================================================================================-->
-	<script src="vendor/select2/select2.min.js"></script>
-	<script>
-		$(".selection-2").select2({
-			minimumResultsForSearch : 20,
-			dropdownParent : $('#dropDownSelect1')
-		});
-	</script>
-	<!--===============================================================================================-->
-	<script src="vendor/daterangepicker/moment.min.js"></script>
-	<script src="vendor/daterangepicker/daterangepicker.js"></script>
-	<!--===============================================================================================-->
-	<script src="vendor/countdowntime/countdowntime.js"></script>
-	<!--===============================================================================================-->
-	<script src="js/main2.js"></script>
-
-	<!-- Global site tag (gtag.js) - Google Analytics -->
-	<script async
-		src="https://www.googletagmanager.com/gtag/js?id=UA-23581568-13"></script>
-	<script>
-		window.dataLayer = window.dataLayer || [];
-		function gtag() {
-			dataLayer.push(arguments);
-		}
-		gtag('js', new Date());
-
-		gtag('config', 'UA-23581568-13');
-	</script>
-
-</body>
-</html>
+<footer th:include="@{/commons/footer.html}"></footer>

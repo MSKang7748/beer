@@ -181,12 +181,15 @@ public class SubsqController {
 	}
 	
 	@GetMapping(value = "/mysubsq")
-	public String mysubsq(Model model) {
+	public String mysubsq(Model model, HttpSession session) {
 
+		MemberEntity member = (MemberEntity) session.getAttribute("loginuser");
+		int memberNo = member.getMemberNo();
+		
 		String subsqDiv = "grain"; // darkbeer말고 id에 따른 div를 넣어야 한다.
 		
 		List<Subscription> mysubsq = subsqService.findMylistByDiv(subsqDiv); //id에 해당되는 구독분야 리스트 가져옴.
-		
+
 		model.addAttribute("mysubsq", mysubsq);
 
 		return "/subscripts/mysubsqlist";

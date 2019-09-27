@@ -76,11 +76,29 @@ public class MemberManageController {
 	 return "redirect:/home"; 
 	 }
 	
-	
-	
 	 ////////////////////////
-
 	
+	@GetMapping(path = "/mypageupdate")
+	public String mypageupdate(Model model, HttpSession session) {
+		
+		MemberEntity member = (MemberEntity) session.getAttribute("loginuser");
+		
+		String memberId = member.getMemberId();
+		
+		MemberEntity mp = memberService.findByMemberId(memberId); 
+
+		model.addAttribute("mypage", mp);
+	
+		return "/mypage/mypageupdate";
+	}
+	
+	@PostMapping(path="/mypageupdate")
+	public String mypageupdatewrite(Model model, HttpSession session) {
+
+		return "/mypage/mypagelist";
+	}
+	
+
 	@RequestMapping(path = "/mypagelist/{memberId}", method = RequestMethod.GET)
 	public String mypage(@PathVariable String memberId, Model model, HttpSession session) {
 		
@@ -90,5 +108,19 @@ public class MemberManageController {
 	
 		return "/mypage/mypagelist";
 	}
+	
+	@GetMapping(path = "/mypagelist")
+	public String mypagereturn(Model model, HttpSession session) {
+		MemberEntity member = (MemberEntity) session.getAttribute("loginuser");
+		
+		String memberId = member.getMemberId();
+		MemberEntity mp = memberService.findByMemberId(memberId); 
+
+		model.addAttribute("mypage", mp);
+	
+		
+		return "/mypage/mypagelist";
+	}
+	
 	
 }

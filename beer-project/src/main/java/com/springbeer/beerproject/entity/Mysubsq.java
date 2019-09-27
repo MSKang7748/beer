@@ -19,9 +19,10 @@ public class Mysubsq {
 	@Column(name = "my_no")
 	private int myNo;
 	
-	@Column(name = "member_id")
-	private String memberId;
+	@Column(name = "member_no")
+	private int memberNo;
 
 	@Column(nullable = true, name = "subsq_div")
 	private String subsqDiv;
+
 }
