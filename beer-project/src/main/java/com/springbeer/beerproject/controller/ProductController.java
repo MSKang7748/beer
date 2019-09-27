@@ -122,8 +122,8 @@ public class ProductController { // 웹페이지 Home 으로 가는 컨트롤러
 	@RequestMapping(value = "/productDelete/{beerNo}", method=RequestMethod.GET)
 	public String productDelete(@PathVariable Long beerNo) {
 
-		productService.productDelete(beerNo);
 		productService.productImageDelete(beerNo);
+		productService.productDelete(beerNo);
 
 	return "redirect:/product/list";
 	}
@@ -133,10 +133,10 @@ public class ProductController { // 웹페이지 Home 으로 가는 컨트롤러
 	
 		List<ProductEntity> products = productService.findProductByBeerNo(beerNo);		
 		
-		for (ProductEntity product : products) {
-			List<ProductFileEntity> productFile = productService.findProductFileByBeerNo(product.getBeerNo());
-			product.setProductFileEntity(productFile);
-		}
+//		for (ProductEntity product : products) {
+//			List<ProductFileEntity> productFile = productService.findProductFileByBeerNo(product.getBeerNo());
+//			product.setProductFileEntity(productFile);
+//		}
 		
 		model.addAttribute("products", products);
 		
