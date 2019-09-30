@@ -28,7 +28,7 @@
             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Commodi, perspiciatis!</p>
           </div>
         </div>
-		<form>
+        		
         <div class="row">
           <div class="col-lg-4 mb-5 col-md-6" th:each="product : ${ products }">
             <div class="wine_v_1 text-center pb-4">
@@ -54,14 +54,18 @@
                   <span class="icon-star"></span>
                   <span class="icon-star-o"></span>
                 </div>
-                
-                <p><a th:href="@{/product/addcart/{No}(No = ${product.beerNo})}" class="buy-now btn btn-sm height-auto px-4 py-3 btn-primary">Add To Cart</a></p>
+                <form id="form-" th:attrappend="id=${product.beerNo}" method="get" action="/product/addcart">
+               		<input type="hidden" name="beerNo" th:value="${product.beerNo}">
+               		<input type="hidden" name="memberNo" th:value="${session.loginuser.MemberNo}">
+	                <p>
+	                	<a  id="add-to-cart-" th:attrappend="id=${product.beerNo}" href="javascript:" th:attr="data-beerno=${product.beerNo}" class="btn btn-sm height-auto px-4 py-3 btn-primary">Add To Cart</a>
+	                </p>
+        		</form> 		
                  
               </div>
             </div>
           </div>
         </div>
-        </form>
       </div>
     </div>
 
@@ -106,3 +110,13 @@
     </div>
   
  <footer th:include="@{/commons/footer.html}"></footer>
+ 
+<script type="text/javascript">
+	$(function() {
+		$("a[id^=add-to-cart]").on('click', function(event) {
+			event.preventDefault();
+			var beerNo = $(this).attr("data-beerno");
+			$('#form-' + beerNo).submit();
+		});
+	});
+</script>

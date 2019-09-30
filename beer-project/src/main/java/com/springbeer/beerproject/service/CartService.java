@@ -14,6 +14,8 @@ public interface CartService {
 //	List<CartEntity> findByBeerNo(Long beerNo);
 
 	void addtoCartByBeerNo(CartEntity cartentity); // to click add to cart as a result into the value in the cartEntity
+
+	void cartDelete(Long beerNo);
 	
 
 }

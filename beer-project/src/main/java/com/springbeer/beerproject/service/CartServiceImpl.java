@@ -25,6 +25,12 @@ public class CartServiceImpl implements CartService {
 		cartRepository.save(cartentity);
 		
 	}
+
+	@Override
+	public void cartDelete(Long beerNo) {
+		cartRepository.deleteById(beerNo);
+		
+	}
 	
 	
 	

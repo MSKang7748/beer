@@ -198,19 +198,24 @@ public class ProductController { // 웹페이지 Home 으로 가는 컨트롤러
 	return "/products/cart";
 	}
 	
-	@GetMapping(value = "/addcart/{beerNo}")
-	public String addtoCart(@PathVariable Long beerNo, Model model) {
+	@RequestMapping(value = "/cart/{beerNo}", method=RequestMethod.GET) 
+	public String cartDelete(@PathVariable Long beerNo) {
+	 
+		 cartService.cartDelete(beerNo);
+	
+	 return "redirect:/product/cart"; 
+	 }
+	
+	@GetMapping(value = "/addcart")
+	public String addtoCart(CartEntity cart,  Model model) {
 		
-		
-		CartEntity cart = new CartEntity();
-		cart.setBeerNo(beerNo);
 		cartService.addtoCartByBeerNo(cart);
 
-		return "redirect:/product/cartview/" + beerNo ; // 여기에 beerNo 더해서 보내야 한다.
+		return "redirect:/product/cartview/" + cart.getBeerNo(); // 여기에 beerNo 더해서 보내야 한다.
 	}
 	
 	@GetMapping(value = "/cartview/{beerNo}")
-	public String addtoCartrt(@PathVariable Long beerNo, Model model) {
+	public String cartList(@PathVariable Long beerNo, Model model) {
 		
 		List<ProductEntity> products = productService.cartFindByBeerNo(beerNo);
 		

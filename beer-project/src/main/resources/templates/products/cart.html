@@ -18,7 +18,7 @@
 	      <div class="site-mobile-menu-body"></div>
 	    </div>
 	
-	    <div class="site-section  pb-0">
+	    <div class="site-section  pb-0"> 
 	      <div class="container">
 	        <div class="row mb-5 justify-content-center">
 	          <div class="col-7 section-title text-center mb-5">
@@ -39,28 +39,27 @@
 	                    <th class="product-remove">Remove</th>
 	                  </tr>
 	                </thead>
-	                <tbody th:each="products : ${products}">
+	                <tbody th:each="product : ${products}">
 	                  <tr>
 	                    <td class="product-thumbnail">
-	                      <img th:each="pfile:${products.productFileEntity}" th:src="@{/images/{fileName}(fileName=${pfile.productSavedFileName})}" alt="Image" class="img-fluid">
+	                      <img th:each="pfile:${product.productFileEntity}" th:src="@{/images/{fileName}(fileName=${pfile.productSavedFileName})}" alt="Image" class="img-fluid">
 	                    </td>
 	                    <td class="product-name">
-	                      <h2 class="h5 cart-product-title text-black" th:text="${products.beerName}"></h2>
+	                      <h2 class="h5 cart-product-title text-black" th:text="${product.beerName}"></h2>
 	                    </td>
 	                    <td>
-	                    	<input type="number" id="price" th:value="${products.beerPrice}" readonly="readonly"/>
+	                    	<input type="number" id="price" th:value="${product.beerPrice}" readonly="readonly"/>
 	                    </td>
 	                    <td>
 	                      <div class="input-group mb-3" style="max-width: 120px;">
 	                        
 	                        </div>
 	                        <input type="number" class="form-control text-center border mr-0" value="1" min="1" id="count" oninput="countValue()"
-	                          aria-label="Example text with button addon" aria-describedby="button-addon1" name=cartCnt>
-	                        
-
+	                          aria-label="Example text with button addon" aria-describedby="button-addon1" name=cartCnt>                     
 	                    </td>
-	                    <td id="orderDetail" th:text="${products.beerPrice}"></td>
-	                    <td><a href="@{/product/productDelete/{mo}(mo=${product.beerNo})}" class="btn btn-primary height-auto btn-sm">X</a></td>
+	                    
+	                    <td id="orderDetail" th:text="${product.beerPrice}"></td>
+	                    <td><a href="/product/cart/" th:attrappend="href=${product.beerNo}" class="btn btn-primary height-auto btn-sm">X</a></td>
 	                  </tr>
 	    
 	                </tbody>
@@ -111,7 +110,7 @@
 	                    <span class="text-black">Subtotal</span>
 	                  </div>
 	                  <div class="col-md-6 text-right">
-	                    <strong class="text-black">$230.00</strong>
+	                    <strong class="text-black" >$230.00</strong>
 	                  </div>
 	                </div>
 	                <div class="row mb-5">
