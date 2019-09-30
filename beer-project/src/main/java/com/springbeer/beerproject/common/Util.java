@@ -17,8 +17,6 @@ import org.springframework.util.ObjectUtils;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
-import com.springbeer.beerproject.entity.SubFile;
-import com.springbeer.beerproject.entity.Subscription;
 
 public class Util {
 	

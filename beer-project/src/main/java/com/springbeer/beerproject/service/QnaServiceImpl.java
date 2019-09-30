@@ -6,8 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.springbeer.beerproject.entity.Qna;
-import com.springbeer.beerproject.entity.SubFile;
-import com.springbeer.beerproject.entity.Subscription;
 import com.springbeer.beerproject.repository.QnaRepository;
 
 @Service

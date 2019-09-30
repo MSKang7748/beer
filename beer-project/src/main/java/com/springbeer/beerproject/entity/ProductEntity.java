@@ -13,6 +13,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -28,23 +29,27 @@ public class ProductEntity {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long beerNo;
 	
-	@Column(name = "beer_name")
+	@Column(name = "beer_name", nullable=false)
 	private String beerName;
 	
-	@Column(name = "beer_content")
+	@Column(name = "beer_content", nullable=false)
 	private String beerContent;
 	
-	@Column(name = "beer_div")
+	@Column(name = "beer_div", nullable=false)
 	private String beerDiv;
 	
-	@Column(name = "beer_price")
+	@Column(name = "beer_price", nullable=false)
 	private int beerPrice;
 	
 	@Column
 	private String id;
-
+	
 	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinColumn(name="beer_no") 
 	private Collection<ProductFileEntity> productFileEntity;
+	
+	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@JoinColumn(name="memberNo") 
+	private MemberEntity member;
 	
 }
