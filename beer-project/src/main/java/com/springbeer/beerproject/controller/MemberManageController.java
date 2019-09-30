@@ -99,12 +99,14 @@ public class MemberManageController {
 		String passwd = member.getPasswd();
 		String email = member.getEmail();
 		String phone = member.getPhone();
+		//String subsqdiv = member.getSubsqDiv();
 		
 		MemberEntity memberinfo = memberService.findMemberById(memberId);
 
 		memberinfo.setEmail(email);
 		memberinfo.setPhone(phone);
 		memberinfo.setPasswd(passwd);
+		//memberinfo.setSubsqDiv(subsqdiv);
 		
 		memberService.updateMember(memberinfo);
 		

@@ -10,14 +10,14 @@ import javax.persistence.Table;
 import lombok.Data;
 
 @Entity 
-@Table(name="subfile")
+@Table(name="lectureboardfile")
 @Data
-public class SubFile {
+public class LectureBoardFile {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name="sub_no")
-	private int subNo;
+	@Column(name="file_no")
+	private int fileNo;
 	
 	@Column(name = "subsq_savedfilename")
 	private String subsqSavedFileName;

@@ -22,44 +22,26 @@ import org.hibernate.annotations.Type;
 import lombok.Data;
 
 @Entity
-@Table(name="member")
+@Table(name="lectureboard")
 @Data
-public class MemberEntity {
-
+public class LectureBoard {
+	
 	@Id
 	@GeneratedValue(strategy= GenerationType.AUTO  )	
-	@Column(name="member_no")
-	private int memberNo;
+	@Column(name="board_no")
+	private int boardNo;
 	
-	@Column(name="member_id")
-	private String memberId;
+	@Column(name="board_title")
+	private String boardTitle;
 	
-	@Column(nullable=false)
-	private String passwd;
-	
-	@Column(nullable=false)
-	private String name;
-	
-	@Column(nullable=false)
-	private String phone;
-	
-	@Column(nullable=false)
-	private String email;
-	
-	@Column(nullable=false)
-	private String userType;
+	@Column(name="board_content")
+	private String boardContent;
 	
 	@Column(nullable=false)
 	private Date createdDatetime = new Date();
-
-	@OneToMany(mappedBy="member")
-	private List<ProductEntity> productEntity;
 	
 	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL) // 해당 entity가 만들어지면 fileList는 자동으로 조회가 됨 = eager
-	@JoinColumn(name="member_no") 
-	private Collection<Subscription> subscription;
+	@JoinColumn(name="board_no") // subsq_no를 file에서 외래키로 받는다.
+	private Collection<LectureBoardFile> lectureboardfile;
 	
-	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL) // 해당 entity가 만들어지면 fileList는 자동으로 조회가 됨 = eager
-	@JoinColumn(name="member_no") 
-	private Collection<Lecture> lecture;
 }

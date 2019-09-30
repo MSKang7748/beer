@@ -22,8 +22,6 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import com.springbeer.beerproject.entity.CartEntity;
 import com.springbeer.beerproject.entity.ProductEntity;
 import com.springbeer.beerproject.entity.ProductFileEntity;
-import com.springbeer.beerproject.entity.SubFile;
-import com.springbeer.beerproject.entity.Subscription;
 import com.springbeer.beerproject.repository.ProductRepository;
 import com.springbeer.beerproject.service.CartService;
 import com.springbeer.beerproject.service.ProductService;
