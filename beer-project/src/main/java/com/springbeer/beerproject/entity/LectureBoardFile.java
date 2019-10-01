@@ -24,5 +24,8 @@ public class LectureBoardFile {
 	
 	@Column(name = "subsq_userfilename")
 	private String subsqUserFileName;
+	
+	@Column(name="board_no")
+	private int boardNo;
 
 }

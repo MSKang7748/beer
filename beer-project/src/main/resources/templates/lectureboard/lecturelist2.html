@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<title>Table V01</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="icon" type="image/png" th:href="@{/images/icons/favicon.ico}"/>
+	<link rel="stylesheet" type="text/css" th:href="@{/vendor/bootstrap/css/bootstrap.min.css}">
+	<link rel="stylesheet" type="text/css" th:href="@{/fonts/font-awesome-4.7.0/css/font-awesome.min.css}">
+	<link rel="stylesheet" type="text/css" th:href="@{/vendor/animate/animate.css}">
+	<link rel="stylesheet" type="text/css" th:href="@{/vendor/select2/select2.min.css}">
+	<link rel="stylesheet" type="text/css" th:href="@{/vendor/perfect-scrollbar/perfect-scrollbar.css}">
+	<link rel="stylesheet" type="text/css" th:href="@{/css/util4.css}">
+	<link rel="stylesheet" type="text/css" th:href="@{/css/main4.css}">
+	<link href="https://fonts.googleapis.com/css?family=Cinzel:400,700|Montserrat:400,700|Roboto&display=swap" rel="stylesheet"> 
+    <link rel="stylesheet" th:href="@{/fonts/icomoon/style.css}">
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/css/jquery-ui.css}">
+    <link rel="stylesheet" th:href="@{/css/owl.carousel.min.css}">
+    <link rel="stylesheet" th:href="@{/css/owl.theme.default.min.css}">
+    <link rel="stylesheet" th:href="@{/css/owl.theme.default.min.css}">
+    <link rel="stylesheet" th:href="@{/css/jquery.fancybox.min.css}">
+    <link rel="stylesheet" th:href="@{/css/bootstrap-datepicker.css}">
+    <link rel="stylesheet" th:href="@{/fonts/flaticon/font/flaticon.css}">
+    <link rel="stylesheet" th:href="@{/css/aos.css}">
+    <link th:href="@{/css/jquery.mb.YTPlayer.min.css}" media="all" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+	
+	<div class="header-top">
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-12 text-center">
+            <a href="/" class="site-logo">
+              <img th:src="@{/images/logo.png}" alt="Image" class="img-fluid">
+            </a>
+          </div>
+          <a href="#" class="mx-auto d-inline-block d-lg-none site-menu-toggle js-menu-toggle text-black"><span
+                class="icon-menu h3"></span></a>
+        </div>
+      </div>
+      <div class="site-navbar py-2 js-sticky-header site-navbar-target d-none pl-0 d-lg-block" role="banner">
+
+      <div class="container">
+        <div class="d-flex align-items-center">
+          
+          <div class="mx-auto">
+            <nav class="site-navigation position-relative text-left" role="navigation">
+              <ul class="site-menu main-menu js-clone-nav mx-auto d-none pl-0 d-lg-block border-none">
+                <li class="active"><a href="/" class="nav-link text-left">Home</a></li>
+
+                <li><a href="/subsq/lecturelist" class="nav-link text-left">Lecture</a></li>
+                <li><a href="/product/list" class="nav-link text-left">Product</a></li>
+
+                <li><a href="/product/cart" class="nav-link text-left">Cart</a></li>
+                <li><a href="/qna/qnalist" class="nav-link text-left">Q&A</a></li>
+              </ul>                                                                                                                                                                                                                                                                                         
+            </nav>
+
+          </div>
+         
+        </div>
+      </div>
+    </div>
+    </div>
+ </head>
+ 
+<body>
+    <div class="site-section bg-light">
+    <div class="container">
+        <div class="page-header">
+            <h1>Lecture</h1>
+        </div>
+        <div id="mainHide">
+            <table class="table table-hover">
+						<thead>
+							<tr class="table100-head">
+								<th class="col-md-2">Title</th>
+								<th class="col-md-2">Content</th>
+								<th class="col-md-5">Date</th>
+								<th class="col-md-6">구독</th>
+							</tr>
+						</thead>
+						<tbody th:each="lecturelist : ${lecturelist}">
+								<tr>
+									<td class="col-md-2"><a th:href="@{/subsq/boardlist(lectureNo=${lecturelist.lectureNo})}" th:text=${lecturelist.lectureTitle}></a></td>
+									<td class="col-md-3" th:text=${lecturelist.lectureContent}></td>
+									<td class="col-md-5" th:text=${lecturelist.createdDatetime}></td>
+									<td>
+									<input type="checkbox" th:value="${lecturelist.lectureNo}" />
+									</td>
+								</tr>
+						</tbody>
+					</table>
+					<br>
+					<br>
+					<br>
+			</div>	        
+		</div>
+	  </div>
+	 </div>
+
+	<script th:src="@{/vendor/jquery/jquery-3.2.1.min.js}"></script>
+	<script th:src="@{/vendor/bootstrap/js/popper.js}"></script>
+	<script th:src="@{/vendor/bootstrap/js/bootstrap.min.js}"></script>
+	<script th:src="@{/vendor/select2/select2.min.js}"></script>
+	<script th:src="@{/js/main.js}"></script>
+	
+	    <div class="footer">
+      <div class="container">
+        
+        <div class="row">
+          <div class="col-12 text-center">
+            <div class="social-icons">
+              <a href="#"><span class="icon-facebook"></span></a>
+              <a href="#"><span class="icon-twitter"></span></a>
+              <a href="#"><span class="icon-youtube"></span></a>
+              <a href="#"><span class="icon-instagram"></span></a>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12">
+            <div class="copyright">
+                <p>
+                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                    Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="icon-heart text-danger" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank" >Colorlib</a>
+                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                    </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+
+  </div>
+  <!-- .site-wrap -->
+
+
+  <!-- loader -->
+  <div id="loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#ff5e15"/></svg></div>
+  
+  <script th:src="@{/js/jquery-3.3.1.min.js}"></script>
+  <script th:src="@{/js/jquery-migrate-3.0.1.min.js}"></script>
+  <script th:src="@{/js/jquery-ui.js}"></script>
+  <script th:src="@{/js/popper.min.js}"></script>
+  <script th:src="@{/js/bootstrap.min.js}"></script>
+  <script th:src="@{/js/owl.carousel.min.js}"></script>
+  <script th:src="@{/js/jquery.stellar.min.js}"></script>
+  <script th:src="@{/js/jquery.countdown.min.js}"></script>
+  <script th:src="@{/js/bootstrap-datepicker.min.js}"></script>
+  <script th:src="@{/js/jquery.easing.1.3.js}"></script>
+  <script th:src="@{/js/aos.js}"></script>
+  <script th:src="@{/js/jquery.fancybox.min.js}"></script>
+  <script th:src="@{/js/jquery.sticky.js}"></script>
+  <script th:src="@{/js/jquery.mb.YTPlayer.min.js}"></script>
+  <script th:src="@{/vendor/bootstrap/js/popper.js}"></script>
+  <script th:src="@{/vendor/bootstrap/js/bootstrap.min.js}"></script>
+  <script th:src="@{/vendor/select2/select2.min.js}"></script>
+  <script th:src="@{/js/main.js}"></script>
+	
+</body>
+</html>

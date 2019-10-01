@@ -1,0 +1,61 @@
+<header th:include="@{/commons/header.html}"></header>
+
+<body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
+
+  <div class="site-wrap">
+
+    <div class="hero-2" th:style="'background: url(/images/hero_2.jpg);'">
+     <div class="container">
+        <div class="row justify-content-center text-center align-items-center">
+          <div class="col-md-8">
+            <span class="sub-title">Get In Touch</span>
+            <h2>Making Lecture</h2>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="site-section bg-light">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="section-title mb-5">
+              <h2>Write</h2>
+            </div>
+            <form action="/subsq/lecturemake" method="post" enctype="multipart/form-data">
+                  <div class="row">
+                   <!--     <div class="col-md-6 form-group">
+                          <label for="fname">ID</label>
+                          <input type="text" class="form-control form-control-lg"> <!-- memberNo를 받아올 방법이 없다. -->
+                    <!--   </div> -->
+                      
+ 						<div class="col-md-6 form-group">
+                          <label for="lname">분류</label>
+                          <select type="selectbox" id = "lectureContent" name="lectureContent" class="form-control form-control-sm">
+                             <option value="Darkbeer">흑맥주</option>
+                             <option value="Grain">맥주원료</option>
+                             <option value="Way">맥주제조법</option>
+                             <option value="Tool">맥주도구</option>
+                          </select>
+                      </div>
+                  </div>
+                  <div class="row">
+                      <div class="col-md-6 form-group">
+                          <label for="eaddress">제목</label>
+                          <input type="text" name="lectureTitle" id="lectureTitle" class="form-control form-control-lg">
+                      </div>
+                  </div>
+
+
+                     <input type="submit" class="btn btn-primary py-3 px-5" value="등록"/>
+                	 <input type="button" onclick="location.href='/subsq/list'" class="btn btn-primary py-3 px-5" id="return" value="돌아가기" />
+                </form>
+               </div>
+            </div>
+          </div>
+        </div>
+        
+      </div>
+
+<footer th:include="@{/commons/footer.html}"></footer> 

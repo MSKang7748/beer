@@ -49,11 +49,10 @@
             <nav class="site-navigation position-relative text-left" role="navigation">
               <ul class="site-menu main-menu js-clone-nav mx-auto d-none pl-0 d-lg-block border-none">
                 <li><a href="/" class="nav-link text-left">Home</a></li>
-                <li class="active"><a href="/subsq/list" class="nav-link text-left">Content</a></li>
+                <li class="active"><a href="/subsq/list" class="nav-link text-left">Lecture</a></li>
                 <li><a href="/product/list" class="nav-link text-left">Wines</a></li>
                 <li><a href="/product/cart" class="nav-link text-left">Cart</a></li>
                 <li><a href="/qna/qnalist" class="nav-link text-left">Q&A</a></li>
-                <li><a href="/subsq/write" class="nav-link text-left">Write</a></li>
               </ul>                                                                                                                                                             
             </nav>
 
@@ -79,19 +78,19 @@
         </div>
         <div class="row">
         
-          <div class="col-lg-4 mb-4" th:each="Subscription : ${Subscription}">
+		<div class="col-lg-4 mb-4" th:each="Board : ${Board}">
             <div class="entry2">
               
               <div class="excerpt">
-              <span class="post-category text-white bg-secondary mb-3" th:text="${Subscription.subsqDiv}"></span>
- 		   	  <img th:src="@{'/images/' + ${Subscription.files[0].subsqSavedFileName}}" alt="Image" class="img-fluid rounded">
-              <h2><a th:text="${Subscription.subsqTitle}"></a></h2>
+              <span class="post-category text-white bg-secondary mb-3" th:text="${Board.BoardTitle}"></span>
+ 		   	  <img th:src="@{'/images/' + ${Board.lectureboardfile[0].subsqSavedFileName}}" alt="Image" class="img-fluid rounded">
+              <h2><a th:text="${Board.boardTitle}"></a></h2>
               <div class="post-meta align-items-center text-left clearfix">
-                <span class="d-inline-block mt-1" th:text="${Subscription.id}"></span>
-                <span th:text="${Subscription.subsqDate}">&nbsp;-&nbsp;</span>
+                <span class="d-inline-block mt-1" th:text="${Board.boardNo}"></span>
+                <span th:text="${Board.createdDatetime}">&nbsp;-&nbsp;</span>
               </div>
-                <p th:text="${Subscription.subsqContent}"></p>
-                <p><a th:href="@{/subsq/detail(subsqNo=${Subscription.subsqNo})}">More detail</a></p>
+                <p th:text="${Board.boardContent}"></p>
+                <p><a th:href="@{/subsq/detail(boardNo=${Board.boardNo})}">More detail</a></p>
               </div>
     				
 			</div>

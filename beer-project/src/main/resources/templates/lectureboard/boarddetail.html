@@ -14,7 +14,7 @@
     </div>
 
 
-    <div class="site-section bg-light" th:each="subsqdetail : ${subsqdetail}">
+    <div class="site-section bg-light" th:each="boarddetail : ${boarddetail}">
       <div class="container">
         <div class="row">
 
@@ -24,26 +24,28 @@
             </div>
             <form>
                   <div class="row">
+                  <!-- 
                       <div class="col-md-6 form-group">
                           <label for="fname">ID</label>
-                          <input type="text" id="id" name="id" class="form-control form-control-lg" readonly="readonly" th:value="${subsqdetail.id}">
-                      </div>
-                      <div class="col-md-6 form-group">
+                          <input type="text" id="id" name="id" class="form-control form-control-lg" readonly="readonly">
+                      </div>-->
+                      
+                      <div class="col-md-6 form-group" th:each="lectures : ${lectures}">
                           <label for="lname">분류</label>
-                          <input type="text" id="subsqDiv" name="subsqDiv" class="form-control form-control-lg" readonly="readonly" th:value="${subsqdetail.subsqDiv}">
+                          <input type="text" id="lectureNo" name="lectureNo" class="form-control form-control-lg" readonly="readonly" th:value="${lectures.lectureContent}">
                       </div>
                   </div>
                   <div class="row">
                       <div class="col-md-6 form-group">
                           <label for="eaddress">제목</label>
-                          <input type="text" id="subsqTitle" name="subsqTitle" class="form-control form-control-lg" readonly="readonly" th:value="${subsqdetail.subsqTitle}">
+                          <input type="text" id="boardTitle" name="boardTitle" class="form-control form-control-lg" readonly="readonly" th:value="${boarddetail.boardTitle}">
                       </div>
                   </div>
                   
                   <div class="row">
                       <div class="col-md-12 form-group">
                           <label for="message">내용</label>
-                          <textarea id="subsqContent" name="subsqContent" cols="30" rows="10" class="form-control" readonly="readonly" th:text="${subsqdetail.subsqContent}"></textarea>
+                          <textarea id="boardContent" name="boardContent" cols="30" rows="10" class="form-control" readonly="readonly" th:text="${boarddetail.boardContent}"></textarea>
                       </div>
                   </div>
                   
@@ -51,14 +53,14 @@
                       <div class="col-md-12 form-group">
                           <label for="file">첨부파일</label>
                           <br>
-                          <img th:each="pfile:${subsqdetail.files}" th:src="@{/images/{fileName}(fileName=${pfile.subsqSavedFileName})}" />
+                          <img th:each="pfile:${boarddetail.lectureboardfile}" th:src="@{/images/{fileName}(fileName=${pfile.subsqSavedFileName})}" />
 
                       </div>
                   </div>
 
-                     <input type="button" th:onclick="|window.location.href='/subsq/update?subsqNo=${subsqdetail.subsqNo}'|" class="btn btn-primary py-3 px-5" id="update" value="수정하기"/>                       
-                	 <input type="button" th:onclick="|window.location.href='/subsq/delete?subsqNo=${subsqdetail.subsqNo}'|" class="btn btn-primary py-3 px-5" id="delete" value="삭제하기"/>
-                	 <input type="button" onclick="location.href='/subsq/list'" class="btn btn-primary py-3 px-5" id="return" value="돌아가기" />
+                     <input type="button" th:onclick="|window.location.href='/subsq/update?boardNo=${boarddetail.boardNo}'|" class="btn btn-primary py-3 px-5" id="update" value="수정하기"/>                       
+                	 <input type="button" th:onclick="|window.location.href='/subsq/delete?boardNo=${boarddetail.boardNo}'|" class="btn btn-primary py-3 px-5" id="delete" value="삭제하기"/>
+                	 <input type="button" onclick="location.href='/subsq/list'" class="btn btn-primary py-3 px-5" id="return" value="돌아가기" /> 
                 </form>
                </div>
             </div>
@@ -67,7 +69,6 @@
 
       </div>
     </div>
-    
-  
+ 
 
 <footer th:include="@{/commons/footer.html}"></footer> 

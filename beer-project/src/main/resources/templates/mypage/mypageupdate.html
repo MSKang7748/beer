@@ -34,16 +34,6 @@
 						<input class="input100" type="text" name="phone" th:value="${mypage.phone}"/> 
 					<span class="focus-input100"></span>
 				</div>
-				
-				<div class="wrap-input100 validate-input"
-					data-validate="Valid email is required: ex@abc.xyz">
-					<span class="label-input100">Subscription</span> <br>
-						<input class="input10" type="checkbox" name="subsqDiv" th:value=Tool id="Tool">Tool
-						<input class="input10" type="checkbox" name="subsqDiv" th:value=DarkBeer id="DarkBeer">DarkBeer
-						<input class="input10" type="checkbox" name="subsqDiv" th:value=RedBeer id="RedBeer">RedBeer
-						<input class="input10" type="checkbox" name="subsqDiv" th:value=BlackBeer id="BlackBeer">BlackBeer
-					<span class="focus-input100"></span>
-				</div>
 
 				<div>
 					<div class="buttons">
@@ -56,41 +46,5 @@
 			</form>
 		</div>
 	</div>
-	
-<script src="//code.jquery.com/jquery.min.js"></script>
-
-<script>
-<!-- $("#Tool").click(function() {
-	alert("Tool을 구독하시겠습니까?");
-});
-$("#DarkBeer").click(function() {
-	alert("DarkBeer를 구독하시겠습니까?");
-});
-$("#RedBeer").click(function() {
-	alert("RedBeer를 구독하시겠습니까?");
-});
-$("#BlackBeer").click(function() {
-	alert("BlackBeer를 구독하시겠습니까?"); -->
-
- (function($)){
-	var $from = $('#Tool');
-	$form.on('submit', function(e)) {
-		e.preventDefault();
-	    $.ajax({
-	      url: $form.attr('action'),
-	      type: 'post',
-	      data: $form.serialize(),
-	      success: function(response) {
-	        // if the response contains any errors, replace the form
-	        if ($(response).find('.has-error').length) {
-	          $form.replaceWith(response);
-	        } else {
-	          // in this case we can actually replace the form
-	          // with the response as well, unless we want to 
-	          // show the success message a different way
-	        }
-	}
-} 
-</script>
 
 <footer th:include="@{/commons/footer.html}"></footer>

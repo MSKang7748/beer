@@ -38,6 +38,9 @@ public class Lecture {
 	@Column(name="lecture_content")
 	private String lectureContent;
 	
+	@Column(name="member_no")
+	private Integer memberNo;
+	
 	@Column(nullable=false)
 	private Date createdDatetime = new Date();
 	

@@ -26,8 +26,13 @@ public class Subscription {
 	@Column(name="subsq_no")
 	private int subsqNo;
 	
-	
 	@Column(name = "subsq_date")
 	private Date subsqDate = new Date(); // 기본 값 설정
+	
+	@Column(name="member_no")
+	private int memberNo;
+	
+	@Column(name="lecture_no")
+	private int lectureNo;
 	
 }

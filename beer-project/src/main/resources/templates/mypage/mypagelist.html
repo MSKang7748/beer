@@ -27,17 +27,11 @@
 						<input class="input100" type="text" name="phone" th:value="${mypage.phone}" readonly=readonly /> 
 					<span class="focus-input100"></span>
 				</div>
-				
-				<div class="wrap-input100 validate-input" data-validate="Subscription is required">
-					<span class="label-input100">Subscription</span> 
-						<input class="input100" type="text" name="subsqDiv" th:value="${mypage.subsqDiv}" readonly=readonly /> 
-					<span class="focus-input100"></span>
-				</div>
 
 				<div>
 					<div>
 					&nbsp;&nbsp;&nbsp;	
-						<input type="button" onclick="location.href='/subsq/list'" class="btn col-sm-4" value="구독글보기" /> 
+						<input type="button" onclick="location.href='/subsq/mylecture'" class="btn col-sm-4" value="구독글보기" /> 
 					&nbsp;&nbsp;		
 						<input type="button" onclick="location.href='/products/cartlist'" class="btn col-sm-3" id="cartlist_button" value="구매내역"/>
 					&nbsp;&nbsp;&nbsp;								                        

@@ -19,36 +19,33 @@
     <div class="site-section bg-light">
       <div class="container">
         <div class="row">
-          <div class="col-lg-12">
+          <div class="col-lg-12" th:each="lectures :${lectures}">
             <div class="section-title mb-5">
               <h2>Write</h2>
             </div>
-            <form action="/subsq/write" method="post" enctype="multipart/form-data">
+            <form th:action="@{'/subsq/write/' + ${lectures.lectureNo}}" method="post" enctype="multipart/form-data">
                   <div class="row">
-                      <div class="col-md-6 form-group">
+                       <div class="col-md-6 form-group" th:each="member : ${member}" >
                           <label for="fname">ID</label>
-                          <input type="text" name="id" id="id" class="form-control form-control-lg">
-                      </div>
- 						<div class="col-md-6 form-group">
+                          <input type="text" class="form-control form-control-lg" readonly=readonly th:value="${member.memberId}"> <!-- memberNo를 받아올 방법이 없다. -->
+                       </div> 
+                      
+ 						<div class="col-md-6 form-group" >
                           <label for="lname">분류</label>
-                          <select type="selectbox" name="subsqDiv" id="subsqDiv" class="form-control form-control-sm">
-                             <option value="Darkbeer">분류</option>
-                             <option value="Grain">맥주원료</option>
-                             <option value="Way">맥주제조</option>
-                             <option value="Whitebeer">밀맥주</option>
-                          </select>
+							<input type="text" class="form-control form-control-lg" readonly=readonly th:value ="${lectures.lectureContent}"/>
+							<input type="hidden" th:value="${lectures.lectureNo}" />
                       </div>
                   </div>
                   <div class="row">
                       <div class="col-md-6 form-group">
                           <label for="eaddress">제목</label>
-                          <input type="text" name="subsqTitle" id="subsqTitle" class="form-control form-control-lg">
+                          <input type="text" name="boardTitle" id="boardTitle" class="form-control form-control-lg">
                       </div>
                   </div>
                   <div class="row">
                       <div class="col-md-12 form-group">
                           <label for="file">첨부파일</label>
-                          <input type="file" id="subfile" name="subfile"></textarea>
+                          <input type="file" id="lbfile" name="lbfile">
 	                          <div id='preview'>
 	                          <!-- 미리보기 공간 -->
 	                      	  </div>
@@ -57,7 +54,7 @@
                   <div class="row">
                       <div class="col-md-12 form-group">
                           <label for="message">내용</label>
-                          <textarea name="subsqContent" id="subsqContent" cols="30" rows="10" class="form-control"></textarea>
+                          <textarea name="boardContent" id="boardContent" cols="30" rows="10" class="form-control"></textarea>
                       </div>
                   </div>
 
@@ -68,12 +65,11 @@
             </div>
           </div>
         </div>
-
+        
       </div>
-    </div>
-   
+
     <script> // 첨부파일 이미지 미리 보기
-    	var files = document.querySelector('#subfile');
+    	var files = document.querySelector('#lbfile');
     	var preview = document.querySelector('#preview');
     	
     	files.addEventListener('change',function(e){
