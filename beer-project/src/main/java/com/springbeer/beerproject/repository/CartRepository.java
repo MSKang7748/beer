@@ -9,14 +9,21 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.springbeer.beerproject.entity.CartEntity;
+import com.springbeer.beerproject.entity.ProductEntity;
 
 public interface CartRepository extends CrudRepository<CartEntity, Integer> {
 
 	@Modifying
 	@Transactional
 	@Query(value = "DELETE FROM CartEntity as cart " + 
-			   	   "WHERE cart.beerNo = :beerNo")
-	void deleteById(@Param(value = "beerNo") Long beerNo);
+			   	   "WHERE cart.memberNo = :memberNo")
+	void deleteById(@Param(value = "memberNo") String memberNo);
+
+	@Query(value = "SELECT cart " + 
+			   "FROM CartEntity as cart " + 
+			   "WHERE cart.memberNo = :memberNo", nativeQuery = false)
+	List<CartEntity> findByMemberNo(@Param("memberNo")int memberNo);
+
 	
 
 //	List<CartEntity> findByBeerNo(Long beerNo);

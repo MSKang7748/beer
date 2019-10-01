@@ -39,16 +39,16 @@
 	                    <th class="product-remove">Remove</th>
 	                  </tr>
 	                </thead>
-	                <tbody th:each="product : ${products}">
+	                <tbody th:each="cart : ${carts}">
 	                  <tr>
 	                    <td class="product-thumbnail">
-	                      <img th:each="pfile:${product.productFileEntity}" th:src="@{/images/{fileName}(fileName=${pfile.productSavedFileName})}" alt="Image" class="img-fluid">
+	                      <img th:each="pfile:${cart.product.productFileEntity}" th:src="@{/images/{fileName}(fileName=${pfile.productSavedFileName})}" alt="Image" class="img-fluid">
 	                    </td>
 	                    <td class="product-name">
-	                      <h2 class="h5 cart-product-title text-black" th:text="${product.beerName}"></h2>
+	                      <h2 class="h5 cart-product-title text-black" th:text="${cart.product.beerName}"></h2>
 	                    </td>
 	                    <td>
-	                    	<input type="number" id="price" th:value="${product.beerPrice}" readonly="readonly"/>
+	                    	<input type="number" id="price" th:value="${cart.product.beerPrice}" readonly="readonly"/>
 	                    </td>
 	                    <td>
 	                      <div class="input-group mb-3" style="max-width: 120px;">
@@ -58,8 +58,8 @@
 	                          aria-label="Example text with button addon" aria-describedby="button-addon1" name=cartCnt>                     
 	                    </td>
 	                    
-	                    <td id="orderDetail" th:text="${product.beerPrice}"></td>
-	                    <td><a href="/product/cart/" th:attrappend="href=${product.beerNo}" class="btn btn-primary height-auto btn-sm">X</a></td>
+	                    <td id="orderDetail" th:text="${cart.product.beerPrice}"></td>
+	                    <td><a href="/product/cart/" th:attrappend="href=${cart.product.beerNo}" class="btn btn-primary height-auto btn-sm">X</a></td>
 	                  </tr>
 	    
 	                </tbody>
@@ -110,7 +110,7 @@
 	                    <span class="text-black">Subtotal</span>
 	                  </div>
 	                  <div class="col-md-6 text-right">
-	                    <strong class="text-black" >$230.00</strong>
+	                    <strong class="text-black" th:text="${ #numbers.formatDecimal(total, 0, 'COMMA', 2, 'POINT') }"></strong>
 	                  </div>
 	                </div>
 	                <div class="row mb-5">
@@ -118,7 +118,7 @@
 	                    <span class="text-black">Total</span>
 	                  </div>
 	                  <div class="col-md-6 text-right">
-	                    <strong class="text-black">$230.00</strong>
+	                    <strong class="text-black" th:text="${ #numbers.formatDecimal(total, 0, 'COMMA', 2, 'POINT') }"></strong>
 	                  </div>
 	                </div>
 	    

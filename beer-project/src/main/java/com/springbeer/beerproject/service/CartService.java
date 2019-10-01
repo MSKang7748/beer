@@ -12,10 +12,15 @@ public interface CartService {
 //	List<ProductEntity> findProductByBeerNo(Long beerNo);
 
 //	List<CartEntity> findByBeerNo(Long beerNo);
+	
+	void addToCart(CartEntity cart);
 
-	void addtoCartByBeerNo(CartEntity cartentity); // to click add to cart as a result into the value in the cartEntity
+	void addtoCartByMemberNo(CartEntity cartentity); // to click add to cart as a result into the value in the cartEntity
 
-	void cartDelete(Long beerNo);
+	void cartDelete(String memberNo);
+
+	List<CartEntity> cartFindByMemberNo(int memberNo);
+
 	
 
 }

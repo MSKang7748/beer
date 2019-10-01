@@ -35,6 +35,9 @@ public interface ProductRepository extends CrudRepository<ProductEntity, Integer
 //	@Query(value = "INSERT INTO productFile(fileNo, productSavedFileName, productUserFileName) " +
 //				   "VALUES(productFile.fileNo, productFile.productSavedFileName, productFile.productUserFileName)")
 	void save(@Param("productFile")ProductFileEntity productFile);
+
+
+
 	
 //	@Modifying
 //	@Transactional

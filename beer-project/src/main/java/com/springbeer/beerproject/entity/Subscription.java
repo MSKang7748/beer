@@ -26,11 +26,6 @@ public class Subscription {
 	@Column(name="subsq_no")
 	private int subsqNo;
 	
-	@Column(name = "subsq_title")
-	private String subsqTitle;
-	
-	@Column(name = "subsq_content")
-	private String subsqContent;
 	
 	@Column(name = "subsq_date")
 	private Date subsqDate = new Date(); // 기본 값 설정

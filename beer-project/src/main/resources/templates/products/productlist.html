@@ -20,24 +20,32 @@
     <div class="site-section mt-5">
       <div class="container">
       	<div class="wine-actions">
-			<a href="/product/productWrite" class="btn add">Write</a>
+			<a th:if="${session.loginuser != null && (session.loginuser.userType.equals('specialist') || session.loginuser.userType.equals('admin'))}" th:href="@{/product/productWrite}" class="btn add">Write</a>
         </div>
+        	<form action ="/product/search?$value&$value1" method="get">
+        		<select name="beerDiv">
+        			<option value="제조키트">제조키트</option>
+                    <option value="제조원료">제조원료</option>
+                    <option value="맥주">맥주</option>
+        		</select>
+        		<input type="text" name="beerName" placeholder="Search here" style="border: thick; position: relative;">
+        		<button class="buy-now btn btn-sm height-auto px-4 py-3 btn-primary">Search</button>
+        	</form>
         <div class="row mb-5">
           <div class="col-12 section-title text-center mb-5">
             <h2 class="d-block">Our Products</h2>
             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Commodi, perspiciatis!</p>
           </div>
         </div>
-        		
+		<form>
         <div class="row">
           <div class="col-lg-4 mb-5 col-md-6" th:each="product : ${ products }">
             <div class="wine_v_1 text-center pb-4">
               <a th:href="@{/product/productDetail/{id}(id = ${product.beerNo})}" class="thumbnail d-block mb-4">
-              
               	<img th:each="pfile:${product.productFileEntity}" th:src="@{/images/{fileName}(fileName=${pfile.productSavedFileName})}" alt="Image" class="img-fluid">
               </a>
               <div>
-                <a th:href="@{/product/productDetail/{id}(id = ${product.beerNo})}"><h3 class="heading mb-1" th:text="${ product.beerName }" /></a>
+                <a th:href="@{/product/productDetail/{id}(id = ${product.beerNo})}"><h3 class="heading mb-1" th:text="${ product.beerName }" /><p th:text="${ product.beerDiv }" /></a>
                 <span class="price" th:text="${ product.beerPrice }"></span>
               </div>
               
@@ -54,18 +62,17 @@
                   <span class="icon-star"></span>
                   <span class="icon-star-o"></span>
                 </div>
-                <form id="form-" th:attrappend="id=${product.beerNo}" method="get" action="/product/addcart">
-               		<input type="hidden" name="beerNo" th:value="${product.beerNo}">
-               		<input type="hidden" name="memberNo" th:value="${session.loginuser.MemberNo}">
-	                <p>
-	                	<a  id="add-to-cart-" th:attrappend="id=${product.beerNo}" href="javascript:" th:attr="data-beerno=${product.beerNo}" class="btn btn-sm height-auto px-4 py-3 btn-primary">Add To Cart</a>
-	                </p>
-        		</form> 		
+                
+                <p>
+                	<a th:if="${session.loginuser != null}" th:href="@{'/product/addcart?beerNo=' + ${product.beerNo} + '&memberNo=' + ${ session.loginuser.memberNo }}" class="buy-now btn btn-sm height-auto px-4 py-3 btn-primary">Add To Cart</a>
+                	<a th:if="${session.loginuser == null}" th:href="@{/member/login/}" class="buy-now btn btn-sm height-auto px-4 py-3 btn-primary">Add To Cart</a>
+                </p>
                  
               </div>
             </div>
           </div>
         </div>
+        </form>
       </div>
     </div>
 
@@ -110,13 +117,3 @@
     </div>
   
  <footer th:include="@{/commons/footer.html}"></footer>
- 
-<script type="text/javascript">
-	$(function() {
-		$("a[id^=add-to-cart]").on('click', function(event) {
-			event.preventDefault();
-			var beerNo = $(this).attr("data-beerno");
-			$('#form-' + beerNo).submit();
-		});
-	});
-</script>

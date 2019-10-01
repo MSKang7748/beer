@@ -196,30 +196,38 @@ public class ProductController { // 웹페이지 Home 으로 가는 컨트롤러
 	return "/products/cart";
 	}
 	
-	@RequestMapping(value = "/cart/{beerNo}", method=RequestMethod.GET) 
-	public String cartDelete(@PathVariable Long beerNo) {
+	@RequestMapping(value = "/cart/{memberNo}", method=RequestMethod.GET) 
+	public String cartDelete(@PathVariable String memberNo) {
 	 
-		 cartService.cartDelete(beerNo);
+		 cartService.cartDelete(memberNo);
 	
 	 return "redirect:/product/cart"; 
 	 }
 	
 	@GetMapping(value = "/addcart")
-	public String addtoCart(CartEntity cart,  Model model) {
+	public String addtoCart(CartEntity cart) {
 		
-		cartService.addtoCartByBeerNo(cart);
+		//cartService.addtoCartByMemberNo(cart);
+		cartService.addToCart(cart);
 
-		return "redirect:/product/cartview/" + cart.getBeerNo(); // 여기에 beerNo 더해서 보내야 한다.
+		return "redirect:/product/cartview/" + cart.getMemberNo(); // 여기에 MemberNo 더해서 보내야 한다.
 	}
 	
-	@GetMapping(value = "/cartview/{beerNo}")
-	public String cartList(@PathVariable Long beerNo, Model model) {
+	@GetMapping(value = "/cartview/{memberNo}")
+	public String cartList(@PathVariable int memberNo, Model model) {
 		
-		List<ProductEntity> products = productService.cartFindByBeerNo(beerNo);
+		List<CartEntity> carts = cartService.cartFindByMemberNo(memberNo);
 		
 		//System.out.println(products);
 		
-		model.addAttribute("products", products);
+		float total = 0;
+		for (CartEntity cart : carts) {
+			total += cart.getProduct().getBeerPrice();
+		}
+		
+		model.addAttribute("carts", carts);
+		model.addAttribute("total", total);
+		
 		return "/products/cart";
 	}
 	

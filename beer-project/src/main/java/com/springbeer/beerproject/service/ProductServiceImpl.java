@@ -73,11 +73,8 @@ public class ProductServiceImpl implements ProductService {
 		
 	}
 	
-	@Override
-	public List<ProductEntity> cartFindByBeerNo(Long beerNo) {
-		List<ProductEntity> cartinfo = productRepository.findByBeerNo(beerNo);
-				
-		return cartinfo;
-	}
+	
+
+
 	
 }

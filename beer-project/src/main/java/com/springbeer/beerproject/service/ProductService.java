@@ -24,6 +24,6 @@ public interface ProductService {
 
 	void updateProduct(ProductEntity productEntity);
 	
-	List<ProductEntity> cartFindByBeerNo(Long beerNo);
+
 
 }

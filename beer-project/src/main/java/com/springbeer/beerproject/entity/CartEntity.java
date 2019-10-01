@@ -11,6 +11,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -24,26 +25,26 @@ import lombok.Data;
 @Table(name = "cart")
 @Data
 public class CartEntity {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "cart_id")
 	private int cartId;
-	
+
 	@Column(name = "member_no", nullable = false)
-	private String memberNo;
-	
+	private int memberNo;
+
 	@Column(name = "beer_no")
 	private Long beerNo;
-	
+
 	@Column(name = "cart_cnt")
 	private int cartCnt;
-	
+
 	@Column(name = "cart_date")
 	private Date cartDate = new Date();
-	
-	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	@JoinColumn(name="beer_no") 
-	private Collection<ProductFileEntity> productFileEntity;
+
+	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@JoinColumn(name = "beer_no", insertable = false, updatable = false)
+	private ProductEntity product;
 
 }

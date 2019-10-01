@@ -33,10 +33,11 @@
               <h2>상품정보를 입력해주세요</h2>
             </div>
             <form action="/product/productWrite" method="post" enctype="multipart/form-data">
+            	<input type="hidden" th:value="${session.loginuser.MemberNo}" name="member">
                   <div class="row">
                       <div class="col-md-6 form-group">
                           <label for="fname">ID</label>
-                          <input type="text" name="id" id="id" class="form-control form-control-lg">
+                          <input type="text" class="form-control form-control-lg" th:value="${session.loginuser.memberId}" name="id" readonly="readonly">
                       </div>
                       <div class="col-md-6 form-group">
                           <label for="lname">카테고리</label>
