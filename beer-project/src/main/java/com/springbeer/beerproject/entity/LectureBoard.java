@@ -43,6 +43,9 @@ public class LectureBoard {
 	@Column(nullable=false)
 	private Date createdDatetime = new Date();
 	
+	@Column(nullable=false)
+	private int deletedNo = 1; // default값 주기
+	
 	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL) // 해당 entity가 만들어지면 fileList는 자동으로 조회가 됨 = eager
 	@JoinColumn(name="board_no") // subsq_no를 file에서 외래키로 받는다.
 	private Collection<LectureBoardFile> lectureboardfile;

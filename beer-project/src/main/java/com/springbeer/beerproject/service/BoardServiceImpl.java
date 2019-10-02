@@ -53,15 +53,14 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public void boarddelete(int boardNo) {
-		lectureboardRepository.deleteByBoardNo(boardNo);
+	public void boarddelete(LectureBoard lectureboard) {
+		lectureboardRepository.save(lectureboard);
 		
 	}
 
-
 	@Override
-	public List<Lecture> findlecture() {
-		List<Lecture> findlecture = (List<Lecture>)lectureRepository.findAll(); 
+	public List<Lecture> findlecture(int deleteNo) {
+		List<Lecture> findlecture = (List<Lecture>)lectureRepository.findByDeleteNo(deleteNo); 
 		return findlecture;
 	}
 
@@ -72,15 +71,15 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public List<LectureBoard> findlectureByLectureNo(int lectureNo) {
-		List<LectureBoard> findlecturelist = lectureboardRepository.findByLectureNo(lectureNo);
+	public List<LectureBoard> findlectureByLectureNo(int lectureNo, int deletedNo) {
+		List<LectureBoard> findlecturelist = lectureboardRepository.findByLectureNo(lectureNo, deletedNo);
 		
 		return findlecturelist;
 	}
 
 	@Override
-	public List<Lecture> findlectureByMemberNo(int memberNo) {
-		List<Lecture> findlectures = lectureRepository.findByMemberNo(memberNo);
+	public List<Lecture> findlectureByMemberNo(int memberNo, int deleteNo) {
+		List<Lecture> findlectures = lectureRepository.findByMemberNo(memberNo, deleteNo);
 		
 		return findlectures;
 	}
@@ -97,6 +96,42 @@ public class BoardServiceImpl implements BoardService {
 		Lecture findtype = lectureRepository.findlectureByMemberNoAndLectureNo(memberNo, lectureNo);
 		
 		return findtype;
+	}
+
+	@Override
+	public Subscription findByMemberNoAndLectureNo(int memberNo, int lectureNo) {
+		Subscription findsubsq = subsqRepository.findlectureByMemberNoAndLectureNo(memberNo, lectureNo);
+		
+		return findsubsq;
+	}
+
+	@Override
+	public void saveByMemberNoAndLectureNo(int memberNo, int lectureNo) {
+		Subscription subsq = new Subscription();
+		subsq.setLectureNo(lectureNo);
+		subsq.setMemberNo(memberNo);
+		
+		subsqRepository.save(subsq);
+	}
+
+	@Override
+	public List<Lecture> findsubsqByMemberNo(int memberNo, int deleteNo) {
+		
+		List<Lecture> findsubsq = subsqRepository.findlByMemberNo(memberNo, deleteNo);
+		
+		return findsubsq;
+	}
+
+	@Override
+	public Lecture findlectureByLectureNoAndDeleteNo(int lectureNo, int deleteNo) {
+		Lecture lect = lectureRepository.findLectureByLectureNoAndDeleteNo(lectureNo, deleteNo);
+		
+		return lect;
+	}
+
+	@Override
+	public void deleteUpdate(Lecture lecture) {
+		lectureRepository.save(lecture);
 	}
 
 }
