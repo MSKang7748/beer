@@ -2,6 +2,8 @@ package com.springbeer.beerproject.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import com.springbeer.beerproject.entity.MemberEntity;
 import com.springbeer.beerproject.entity.Qna;
 import com.springbeer.beerproject.service.QnaService;
 
@@ -38,7 +41,11 @@ public class QnaController {
 	}
 	
 	@GetMapping(value = "/qnawrite")
-	public String subsqWrite() {
+	public String subsqWrite(Model model, HttpSession session ) {
+		MemberEntity member = (MemberEntity) session.getAttribute("loginuser");
+		
+		
+		model.addAttribute("member",member);
 		
 	return "/qna/qnawrite";
 	}

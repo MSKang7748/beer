@@ -90,10 +90,10 @@
               <h2>Write</h2>
             </div>
             <form action="/qna/qnawrite" method="post" enctype="multipart/form-data">
-                  <div class="row">
+                  <div class="row" th:each="member :${member}">
                       <div class="col-md-6 form-group">
                           <label for="fname">ID</label>
-                          <input type="text" name="id" id="id" class="form-control form-control-lg">
+                          <input type="text" name="memberId" id="memberId" class="form-control form-control-lg" readonly=readonly th:value="${member.memberId}">
                       </div>
                       <div class="col-md-6 form-group">
                           <label for="lname">분류</label>

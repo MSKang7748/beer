@@ -134,4 +134,11 @@ public class BoardServiceImpl implements BoardService {
 		lectureRepository.save(lecture);
 	}
 
+	@Override
+	public List<Lecture> findAlltoDash(int deleteNo) {
+		
+		List<Lecture> findlecture = (List<Lecture>)lectureRepository.findByDeleteNo(deleteNo); 
+		return findlecture;
+	}
+
 }

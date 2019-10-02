@@ -39,4 +39,6 @@ public interface BoardService {
 
 	void deleteUpdate(Lecture lecture);
 
+	List<Lecture> findAlltoDash(int deleteNo);
+
 }

@@ -259,7 +259,7 @@ public class BoardController {
 		int memberNo = member.getMemberNo();
 		
 		Lecture lectures = boardService.findlectureByMemberNoAndLectureNo(memberNo, lectureNo); // lectureNo와 memberNo를 받아가서 해당 lecture를 가져옴.
-		
+		model.addAttribute("member", member);
 		model.addAttribute("boarddetail", boardDetails);
 		model.addAttribute("lectures",lectures);
 		
