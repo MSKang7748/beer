@@ -79,10 +79,10 @@
         <div class="row">
         
 		<div class="col-lg-4 mb-4" th:each="Board : ${Board}">
-            <div class="entry2">
+            <div class="entry2"  th:each="lecture : ${lecture}">
               
               <div class="excerpt">
-              <span class="post-category text-white bg-secondary mb-3" th:text="${Board.BoardTitle}"></span>
+              <span class="post-category text-white bg-secondary mb-3" th:text="${lecture.lectureContent}"></span>
  		   	  <img th:src="@{'/images/' + ${Board.lectureboardfile[0].subsqSavedFileName}}" alt="Image" class="img-fluid rounded">
               <h2><a th:text="${Board.boardTitle}"></a></h2>
               <div class="post-meta align-items-center text-left clearfix">

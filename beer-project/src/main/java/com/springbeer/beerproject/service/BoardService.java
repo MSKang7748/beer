@@ -15,18 +15,28 @@ public interface BoardService {
 
 	LectureBoard boardDetail(int boardNo);
 	
-	void boarddelete(int boardNo);
+	void boarddelete(LectureBoard lectureboard);
 
-	List<Lecture> findlecture();
+	List<Lecture> findlecture(int deleteNo);
 
 	void addLecture(Lecture lecture);
 
-	List<LectureBoard> findlectureByLectureNo(int lectureNo);
+	List<LectureBoard> findlectureByLectureNo(int lectureNo, int deletedNo);
 
-	List<Lecture> findlectureByMemberNo(int memberNo);
+	List<Lecture> findlectureByMemberNo(int memberNo, int deleteNo);
 
 	List<Lecture> findLectureContentByLectureNo(int lectureNo);
 
 	Lecture findlectureByMemberNoAndLectureNo(int memberNo, int lectureNo);
+
+	Subscription findByMemberNoAndLectureNo(int memberNo, int lectureNo);
+
+	void saveByMemberNoAndLectureNo(int memberNo, int lectureNo);
+
+	List<Lecture> findsubsqByMemberNo(int memberNo, int deleteNo);
+
+	Lecture findlectureByLectureNoAndDeleteNo(int lectureNo, int deleteNo);
+
+	void deleteUpdate(Lecture lecture);
 
 }
