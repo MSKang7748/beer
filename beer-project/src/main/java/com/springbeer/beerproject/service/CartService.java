@@ -17,7 +17,8 @@ public interface CartService {
 
 	void addtoCartByMemberNo(CartEntity cartentity); // to click add to cart as a result into the value in the cartEntity
 
-	void cartDelete(String memberNo);
+//	void cartDelete(int memberNo);
+	void cartDelete(int cartId);
 
 	List<CartEntity> cartFindByMemberNo(int memberNo);
 

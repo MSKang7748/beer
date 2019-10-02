@@ -71,7 +71,7 @@
                 <li><a href="/subsq/lecturelist" class="nav-link text-left">Lecture</a></li>
                 <li><a href="/product/list" class="nav-link text-left">Product</a></li>
 
-                <li><a href="/product/cart" class="nav-link text-left">Cart</a></li>
+                <li th:if="${ session.loginuser != null }"><a href="/product/cartview/" th:attrappend="href=${session.loginuser.memberNo}" class="nav-link text-left">Cart</a></li>
                 <li><a href="/qna/qnalist" class="nav-link text-left">Q&A</a></li>
                
                 <li th:if="${ session.loginuser == null }"><a href="/member/login" class="nav-link text-left">Login</a></li>

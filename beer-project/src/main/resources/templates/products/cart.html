@@ -59,7 +59,7 @@
 	                    </td>
 	                    
 	                    <td id="orderDetail" th:text="${cart.product.beerPrice}"></td>
-	                    <td><a href="/product/cart/" th:attrappend="href=${cart.product.beerNo}" class="btn btn-primary height-auto btn-sm">X</a></td>
+	                    <td><li><a href="/product/removecart/" th:attrappend="href=${cart.cartId}" class="btn btn-primary height-auto btn-sm">X</a></li></td>
 	                  </tr>
 	    
 	                </tbody>

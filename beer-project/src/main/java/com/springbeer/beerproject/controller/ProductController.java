@@ -6,6 +6,7 @@ import java.util.Collection;
 import java.util.List;
 
 import javax.servlet.ServletContext;
+import javax.servlet.http.HttpSession;
 
 import com.springbeer.beerproject.common.Util;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +21,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.springbeer.beerproject.entity.CartEntity;
+import com.springbeer.beerproject.entity.MemberEntity;
 import com.springbeer.beerproject.entity.ProductEntity;
 import com.springbeer.beerproject.entity.ProductFileEntity;
 import com.springbeer.beerproject.repository.ProductRepository;
@@ -196,12 +198,21 @@ public class ProductController { // 웹페이지 Home 으로 가는 컨트롤러
 	return "/products/cart";
 	}
 	
-	@RequestMapping(value = "/cart/{memberNo}", method=RequestMethod.GET) 
-	public String cartDelete(@PathVariable String memberNo) {
-	 
-		 cartService.cartDelete(memberNo);
+//	@RequestMapping(value = "/cart/{memberNo}", method=RequestMethod.GET) 
+//	public String cartDelete(@PathVariable int memberNo) {
+//	 
+//		 cartService.cartDelete(memberNo);
+//	
+//	 return "redirect:/product/cart"; 
+//	 }
 	
-	 return "redirect:/product/cart"; 
+	@RequestMapping(value = "/removecart/{cartId}", method=RequestMethod.GET) 
+	public String cartDelete(@PathVariable int cartId, HttpSession session) {
+	 
+		 cartService.cartDelete(cartId);
+	
+		 MemberEntity memberEntity = (MemberEntity)session.getAttribute("loginuser");
+		 return "redirect:/product/cartview/" + memberEntity.getMemberNo(); 
 	 }
 	
 	@GetMapping(value = "/addcart")

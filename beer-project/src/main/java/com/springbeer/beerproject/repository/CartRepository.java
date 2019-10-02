@@ -13,11 +13,18 @@ import com.springbeer.beerproject.entity.ProductEntity;
 
 public interface CartRepository extends CrudRepository<CartEntity, Integer> {
 
+//	@Modifying
+//	@Transactional
+//	@Query(value = "DELETE FROM CartEntity as cart " + 
+//			   	   "WHERE cart.memberNo = :memberNo")
+//	void deleteById(@Param(value = "memberNo") int memberNo);
+	
+
 	@Modifying
 	@Transactional
 	@Query(value = "DELETE FROM CartEntity as cart " + 
-			   	   "WHERE cart.memberNo = :memberNo")
-	void deleteById(@Param(value = "memberNo") String memberNo);
+			   	   "WHERE cart.cartId = :cartId")
+	void deleteById(@Param(value = "cartId") int cartId);
 
 	@Query(value = "SELECT cart " + 
 			   "FROM CartEntity as cart " + 

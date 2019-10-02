@@ -32,11 +32,17 @@ public class CartServiceImpl implements CartService {
 		
 	}
 
+//	@Override
+//	public void cartDelete(int memberNo) {
+//		cartRepository.deleteById(memberNo);
+//		
+//	}
 	@Override
-	public void cartDelete(String memberNo) {
-		cartRepository.deleteById(memberNo);
+	public void cartDelete(int cartId) {
+		cartRepository.deleteById(cartId);
 		
 	}
+	
 
 	@Override
 	public List<CartEntity> cartFindByMemberNo(int memberNo) {
