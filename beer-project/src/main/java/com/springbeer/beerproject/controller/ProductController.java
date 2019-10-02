@@ -248,4 +248,8 @@ public class ProductController { // 웹페이지 Home 으로 가는 컨트롤러
 	return "/products/checkout";
 	}
 	
+	
+	
+	
+	
 }

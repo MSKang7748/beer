@@ -39,8 +39,8 @@
 	                    <th class="product-remove">Remove</th>
 	                  </tr>
 	                </thead>
-	                <tbody th:each="cart : ${carts}">
-	                  <tr>
+	                <tbody>
+	                  <tr th:each="cart : ${carts}">
 	                    <td class="product-thumbnail">
 	                      <img th:each="pfile:${cart.product.productFileEntity}" th:src="@{/images/{fileName}(fileName=${pfile.productSavedFileName})}" alt="Image" class="img-fluid">
 	                    </td>
@@ -48,17 +48,15 @@
 	                      <h2 class="h5 cart-product-title text-black" th:text="${cart.product.beerName}"></h2>
 	                    </td>
 	                    <td>
-	                    	<input type="number" id="price" th:value="${cart.product.beerPrice}" readonly="readonly"/>
+	                    	<input type="number" id="price" th:attrappend="id=${ cart.cartId }" th:value="${cart.product.beerPrice}" readonly="readonly"/>
 	                    </td>
 	                    <td>
-	                      <div class="input-group mb-3" style="max-width: 120px;">
-	                        
-	                        </div>
-	                        <input type="number" class="form-control text-center border mr-0" value="1" min="1" id="count" oninput="countValue()"
+	                        <input type="number" class="form-control text-center border mr-0" value="1" min="1" 
+	                        	   data-cartid="" th:attrappend="data-cartid=${ cart.cartId }" oninput="countValue(event)"
 	                          aria-label="Example text with button addon" aria-describedby="button-addon1" name=cartCnt>                     
 	                    </td>
 	                    
-	                    <td id="orderDetail" th:text="${cart.product.beerPrice}"></td>
+	                    <td id="orderDetail"><span id="price-total-" th:attrappend="id=${ cart.cartId }" th:text="${cart.product.beerPrice}"></span></td>
 	                    <td><li><a href="/product/removecart/" th:attrappend="href=${cart.cartId}" class="btn btn-primary height-auto btn-sm">X</a></li></td>
 	                  </tr>
 	    
@@ -110,7 +108,7 @@
 	                    <span class="text-black">Subtotal</span>
 	                  </div>
 	                  <div class="col-md-6 text-right">
-	                    <strong class="text-black" th:text="${ #numbers.formatDecimal(total, 0, 'COMMA', 2, 'POINT') }"></strong>
+	                    <strong id="cart_subtotal" class="text-black" th:text="${ #numbers.formatDecimal(total, 0, 'COMMA', 2, 'POINT') }"></strong>
 	                  </div>
 	                </div>
 	                <div class="row mb-5">
@@ -118,7 +116,7 @@
 	                    <span class="text-black">Total</span>
 	                  </div>
 	                  <div class="col-md-6 text-right">
-	                    <strong class="text-black" th:text="${ #numbers.formatDecimal(total, 0, 'COMMA', 2, 'POINT') }"></strong>
+	                    <strong id="cart_total" class="text-black" th:text="${ #numbers.formatDecimal(total, 0, 'COMMA', 2, 'POINT') }"></strong>
 	                  </div>
 	                </div>
 	    
@@ -136,11 +134,29 @@
 	    </div>
 
 <script src="http://code.jquery.com/jquery-3.4.1.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/df-number-format/2.1.6/jquery.number.min.js"></script>
 <script type="text/javascript">
-	function countValue() {
-	      var x = document.getElementById("count").value; // 숫자가 올라갈 수록 x도 증가한다
-	      var price = document.getElementById("price").value;
-	      document.getElementById("orderDetail").innerHTML = price * x
+	function countValue(event) {
+		var cartId = $(event.target).attr("data-cartid")
+		var count = $(event.target).val();
+		price = $('#price' + cartId).val();
+		$('#price-total-' + cartId).text(price * count);
+		
+		var spans = $('span[id^=price-total]');
+		var total = 0;
+		spans.each(function(idx, span) {
+			total += parseInt($(span).text());			
+		})
+		
+		
+		fmt = new Intl.NumberFormat('kr-KO', { style:'currency', currency: "KRW" });
+		
+		$('#cart_total').text(fmt.format(total));
+		$('#cart_subtotal').text(fmt.format(total));
+
+	      //var x = document.getElementById("count").value; // 숫자가 올라갈 수록 x도 증가한다
+	      //var price = document.getElementById("price").value;
+	      //document.getElementById("orderDetail").innerHTML = price * x;
 	}
 </script>
 
