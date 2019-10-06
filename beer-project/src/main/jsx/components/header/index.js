@@ -7,8 +7,8 @@ import './header.scss';
 const Header = (props) => {
   return (
     <header className="Header">
-      <button className="Header-button">
-        <i className="fa fa-chevron-left" />
+      &nbsp;
+      <button className="Header-button" href="/">
         Menu
       </button>
 
@@ -17,8 +17,8 @@ const Header = (props) => {
       </h1>
 
       <UserInfo
-        image="http://loremflickr.com/60/60"
-        userName="Václav Zeman" 
+    //  image="http://loremflickr.com/60/60"
+        userName="admin" 
         notifications={[
           {title: 'Added new product'},
           {title: 'Added new product'},

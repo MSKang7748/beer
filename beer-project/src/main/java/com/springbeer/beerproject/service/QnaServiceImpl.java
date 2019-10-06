@@ -28,7 +28,7 @@ public class QnaServiceImpl implements QnaService {
 
 	@Override
 	public List<Qna> qnadetail(int qnaNo) {
-		List<Qna> qnadetail = qnaRepository.findById(qnaNo);
+		List<Qna> qnadetail = qnaRepository.findByQnaNo(qnaNo);
 		
 		return qnadetail;
 	}

@@ -4,7 +4,14 @@ import java.io.File;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
 
+import javax.mail.Message;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -98,7 +105,7 @@ public class BoardController {
 		
 		model.addAttribute("lecturelist", lecturelist);
 		
-		return "/lectureboard/lecturelist2";
+		return "/lectureboard/lecturelist3";
 	}
 	
 	@GetMapping(value ="/lecturewrite")
@@ -277,7 +284,7 @@ public class BoardController {
 		int memberNo = member.getMemberNo();
 		
 		Lecture lectures = boardService.findlectureByMemberNoAndLectureNo(memberNo, lectureNo);
-		
+
 		model.addAttribute("boarddetail", boardDetails);
 		model.addAttribute("lectures",lectures);
 		model.addAttribute("member",member);
@@ -353,9 +360,49 @@ public class BoardController {
 		
 		MemberEntity member = (MemberEntity) session.getAttribute("loginuser");
 		int memberNo = member.getMemberNo();
+		String memberMail = member.getEmail();
+		String memberId = member.getMemberId();
+		
 		Subscription subsq = boardService.findByMemberNoAndLectureNo(memberNo, lectureNo);
+		
+		Lecture lecture = boardService.findLectureByLectureNo(lectureNo);
+		String lectureTitle = lecture.getLectureTitle();
+		
 		if (subsq == null) {
 		boardService.saveByMemberNoAndLectureNo(memberNo, lectureNo);
+		
+		String host = "smtp.naver.com"; // 현재 naver에만 연동 됨.
+		
+		Properties props = new Properties();
+		props.put("mail.smtp.host", host);
+		props.put("mail.smtp.port", "465");
+		props.put("mail.smtp.auth", "true");
+		props.put("mail.smtp.ssl.enable", "true");
+		props.put("mail.smtp.ssl.trust", host);
+		
+		String from = "diqtmxj@naver.com";
+		String to = memberMail;
+		String title = "구독 신청 확인";
+		String content = String.format("%s회원님은 %s번 %s 강좌를 구독 신청하셨습니다. 앞으로 올라오는 강좌의 게시글을 확인 하실 수 있습니다. 구독해주셔서 감사합니다", memberId, lectureNo, lectureTitle);
+
+		Session session1 = Session.getDefaultInstance(props, new javax.mail.Authenticator() {
+			
+			String user = "diqtmxj@naver.com";
+			String passwd = "rlaekgns0828!"; // 내 메일
+			
+			protected PasswordAuthentication getPasswordAuthentication() {
+				return new PasswordAuthentication(user, passwd);
+			}
+		}) ;
+	
+			Message mineMessage = new MimeMessage(session1);
+			mineMessage.setFrom(new InternetAddress(from));
+			mineMessage.setRecipient(Message.RecipientType.TO, new InternetAddress(to));
+
+			mineMessage.setSubject(title);
+			mineMessage.setText(content);
+			Transport.send(mineMessage);
+			
 		
 		} else {
 			response.setContentType("text/html; charset=UTF-8");

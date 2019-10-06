@@ -141,4 +141,10 @@ public class BoardServiceImpl implements BoardService {
 		return findlecture;
 	}
 
+	@Override
+	public Lecture findLectureByLectureNo(int lectureNo) {
+		Lecture lecture = lectureRepository.findByLectureNo(lectureNo);
+		return lecture;
+	}
+
 }

@@ -16,7 +16,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.springbeer.beerproject.entity.MemberEntity;
+import com.springbeer.beerproject.entity.Notice;
 import com.springbeer.beerproject.entity.Qna;
+import com.springbeer.beerproject.service.NoticeService;
 import com.springbeer.beerproject.service.QnaService;
 
 
@@ -27,16 +29,19 @@ public class QnaController {
 	@Autowired
 	QnaService qnaService;
 	
+	@Autowired
+	NoticeService noticeService;
+	
 	@RequestMapping(value = "/qnalist", method = RequestMethod.GET)
-	public String qnatList(Model model
-		//	,@RequestParam(required = false, defaultValue = "1") int page
-		//	, @RequestParam(required = false, defaultValue = "1") int range, HttpSession session
-			) {
+	public String qnatList(Model model) {
 
 		List<Qna> Qnas = qnaService.findQnaList();
-
+		
+		List<Notice> notices = noticeService.loadNoteList();
+		
+		
 		model.addAttribute("qna",Qnas);
-
+		model.addAttribute("notice", notices);
 		return "/qna/qnalist";
 	}
 	
@@ -44,35 +49,44 @@ public class QnaController {
 	public String subsqWrite(Model model, HttpSession session ) {
 		MemberEntity member = (MemberEntity) session.getAttribute("loginuser");
 		
-		
 		model.addAttribute("member",member);
 		
 	return "/qna/qnawrite";
 	}
 	
 	@PostMapping(value = "/qnawrite") // PostMapping
-	public String contentWrite(Qna qna, Model model) {
-
+	public String contentWrite(Qna qna, Model model, HttpSession session) {
+		MemberEntity member = (MemberEntity) session.getAttribute("loginuser");
+		String memberId = member.getMemberId();
+		
+		qna.setMemberId(memberId);
 		qnaService.writeqna(qna);
+		
 
 	return "redirect:/qna/qnalist";
 	}
 	
 	@GetMapping(value = "/qnadetail")
-	public String qnaDetail(@RequestParam(name="qnaNo") int qnaNo, Model model) {
+	public String qnaDetail(@RequestParam(name="qnaNo") int qnaNo, Model model, HttpSession session) {
 
-		List<Qna> qnaDetails = qnaService.qnadetail(qnaNo);	
-		model.addAttribute("qnadetail", qnaDetails);
+		MemberEntity member = (MemberEntity) session.getAttribute("loginuser");
 		
+		List<Qna> qnaDetails = qnaService.qnadetail(qnaNo);
+		
+		model.addAttribute("qnadetail", qnaDetails);
+		model.addAttribute("member", member);
 	return "/qna/qnadetail";
 	}
 	
 	@RequestMapping(value = "/qnaupdate", method = RequestMethod.GET)
-	public String qnaUpdate(@RequestParam(name="qnaNo") int qnaNo, Model model) {
+	public String qnaUpdate(@RequestParam(name="qnaNo") int qnaNo, Model model,  HttpSession session) {
+		MemberEntity member = (MemberEntity) session.getAttribute("loginuser");
 		
 		List<Qna> qnaUpdate = qnaService.qnadetail(qnaNo);		
 		
 		model.addAttribute("qnaupdate", qnaUpdate);
+
+		model.addAttribute("member", member);
 
 	return "/qna/qnaupdate";
 	}

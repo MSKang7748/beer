@@ -23,9 +23,9 @@
             </div>
             <form th:action="@{'/qna/qnaupdates/' + ${qnaupdate.qnaNo}}" method="post" >
 				 <div class="row">
-                      <div class="col-md-6 form-group">
+                      <div class="col-md-6 form-group" th:each="member: ${member}">
                           <label for="fname">ID</label>
-                          <input type="text" id="id" name="id" class="form-control form-control-lg" th:value="${qnaupdate.id}">
+                          <input type="text" id="memberId" name="memberId" class="form-control form-control-lg" th:value="${member.memberId}" readonly= readonly >
                           <input type="hidden" id="qnaNo" name="qnaNo" th:value=${qnaupdate.qnaNo} />
                       </div>
                       <div class="col-md-6 form-group">
@@ -38,10 +38,7 @@
                           <label for="eaddress">제목</label>
                           <input type="text" id="qnaTitle" name="qnaTitle" class="form-control form-control-lg"  th:value="${qnaupdate.qnaTitle}">
                       </div>
-                     <!--  <div class="col-md-6 form-group">
-                          <label for="tel">관련 글 번호</label>
-                          <input type="text" id="textno" class="form-control form-control-lg">
-                      </div> -->
+
                   </div>
                   <div class="row">
                       <div class="col-md-12 form-group">

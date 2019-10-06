@@ -41,4 +41,6 @@ public interface BoardService {
 
 	List<Lecture> findAlltoDash(int deleteNo);
 
+	Lecture findLectureByLectureNo(int lectureNo);
+
 }

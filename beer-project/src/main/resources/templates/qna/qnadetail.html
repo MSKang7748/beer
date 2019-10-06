@@ -23,10 +23,10 @@
               <h2>Modify</h2>
             </div>
             <form >
-                  <div class="row">
+                  <div class="row" th:each="member :${member}">
                       <div class="col-md-6 form-group">
                           <label for="fname">ID</label>
-                          <input type="text" id="id" name="id" class="form-control form-control-lg" readonly="readonly" th:value="${qnadetail.id}">
+                          <input type="text" name="memberId" id="memberId" class="form-control form-control-lg" readonly=readonly th:value="${member.memberId}">
                       </div>
                       <div class="col-md-6 form-group">
                           <label for="lname">분류</label>
@@ -38,10 +38,6 @@
                           <label for="eaddress">제목</label>
                           <input type="text" id="qnaTitle" name="qnaTitle" class="form-control form-control-lg" readonly="readonly" th:value="${qnadetail.qnaTitle}">
                       </div>
-                     <!--  <div class="col-md-6 form-group">
-                          <label for="tel">관련 글 번호</label>
-                          <input type="text" id="textno" class="form-control form-control-lg">
-                      </div> -->
                   </div>
                   <div class="row">
                       <div class="col-md-12 form-group">

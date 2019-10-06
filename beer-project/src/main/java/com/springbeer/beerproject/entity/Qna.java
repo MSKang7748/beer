@@ -26,7 +26,7 @@ public class Qna {
 	private int qnaNo;
 	
 	@Column(nullable = false) 
-	private String id;
+	private String memberId;
 	
 	@Column(name = "qna_title")
 	private String qnaTitle;
@@ -46,8 +46,7 @@ public class Qna {
 	@Column(name = "ans_date")
 	private Date ansDate = new Date(); // 기본 값 설정
 	
-	@Column(name = "ans_bool", nullable=false)
-	@Type(type="org.hibernate.type.NumericBooleanType") // 1과 0으로 바뀌게 함으로써 표기 할 생각임. (boolean을 적용 할 수 없다)
-	private boolean ansCheck;
+	@Column(name = "ans_bool", nullable=false) // 1과 0으로 바뀌게 함으로써 표기 할 생각임. (boolean을 적용 할 수 없다)
+	private int ansCheck = 0;
 	
 }

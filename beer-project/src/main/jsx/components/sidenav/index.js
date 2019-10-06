@@ -9,38 +9,27 @@ import './sidenav.scss';
 const SideNav = (props) => {
   const menuItems = [
     {
-      title: 'Dashboard',
+      title: 'NoticeManager',
       link: '/',
       faClass: 'fa-dashboard'
     },
     {
-      title: 'Users',
-      link: '/users',
+      title: 'Lectures',
+      link: '/lectures',
       faClass: 'fa-users', // Font awesome class
       count: 15 // Notification count
-    },
-    {
-      title: 'BestLecture',
-      link: '/bestlecture',
-      faClass: 'fa-bar-chart'
-    },
-    {
-      title: 'Finance',
-      link: '/finance',
-      faClass: 'fa-bank'
     }
   ];
 
   return (// classname과 sideNav를 조합.
     <nav className={cx('SideNav', props.customClass)}>
 			<span className="SideNav-companyLogo">
-				Beer Present
+        BeerGeek
 			</span>
 
       <Menu 
         items={menuItems}
         caption="Pages" />
-
       <ActionBar />
     </nav>
   );// 사이드바 밑에 위치한 것 들이 액션바. (actionbar폴더 안에 구현)

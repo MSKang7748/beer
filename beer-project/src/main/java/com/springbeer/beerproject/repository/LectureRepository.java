@@ -34,6 +34,8 @@ public interface LectureRepository extends CrudRepository<Lecture, Integer> {
                    "FROM Lecture as lect "+
 		           "WHERE lect.lectureNo =:lectureNo AND lect.deleteNo =:deleteNo ", nativeQuery = false)
 	Lecture findLectureByLectureNoAndDeleteNo(@Param("lectureNo") int lectureNo, @Param("deleteNo") int deleteNo);
+
+	Lecture findByLectureNo(int lectureNo);
  
 
 }

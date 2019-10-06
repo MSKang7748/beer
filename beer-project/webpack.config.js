@@ -3,7 +3,7 @@ var path = require('path'); // build와 관련된 설정들
 module.exports = {
     context: path.resolve(__dirname, 'src/main/jsx'), // 이 폴더에 있는 jsx를 쓰겠다.
     entry: {
-        init: './index.jsx' // 맨 처음에 시작하는 jsx페이지는 index다.
+        init: './index.jsx'
     },
     devtool: 'sourcemaps',
     cache: true,
