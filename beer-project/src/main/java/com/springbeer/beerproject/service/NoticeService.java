@@ -21,4 +21,6 @@ public interface NoticeService {
 
 	List<Lecture> loadLectureList();
 
+	Notice noticeDetail(Long id);
+
 }

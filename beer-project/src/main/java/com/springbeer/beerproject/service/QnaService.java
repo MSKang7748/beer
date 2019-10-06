@@ -2,6 +2,7 @@ package com.springbeer.beerproject.service;
 
 import java.util.List;
 
+import com.springbeer.beerproject.entity.Notice;
 import com.springbeer.beerproject.entity.Qna;
 
 public interface QnaService {

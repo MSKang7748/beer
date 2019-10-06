@@ -74,8 +74,17 @@ public class QnaController {
 		List<Qna> qnaDetails = qnaService.qnadetail(qnaNo);
 		
 		model.addAttribute("qnadetail", qnaDetails);
-		model.addAttribute("member", member);
 	return "/qna/qnadetail";
+	}
+	
+	@GetMapping(value = "/noticedetail")
+	public String noticeDetail(@RequestParam(name="id") Long id, Model model, HttpSession session) {
+
+		Notice noticeDetails = noticeService.noticeDetail(id);
+		
+		model.addAttribute("noticedetail", noticeDetails);
+		
+	return "/qna/noticedetail";
 	}
 	
 	@RequestMapping(value = "/qnaupdate", method = RequestMethod.GET)

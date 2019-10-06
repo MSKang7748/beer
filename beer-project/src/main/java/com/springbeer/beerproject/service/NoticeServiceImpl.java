@@ -55,7 +55,6 @@ public class NoticeServiceImpl implements NoticeService {
 	@Override
 	public void updateNote(Notice note) {
 		noticeRepository.save(note);
-		
 	}
 
 	@Override
@@ -65,5 +64,13 @@ public class NoticeServiceImpl implements NoticeService {
 		
 		List<Lecture> findlecture = (List<Lecture>)lectureRepository.findByDeleteNo(deleteNo); 
 		return findlecture;
+	}
+
+	@Override
+	public Notice noticeDetail(Long id) {
+		
+		Notice notice = noticeRepository.findByid(id);
+		
+		return notice;
 	}
 }

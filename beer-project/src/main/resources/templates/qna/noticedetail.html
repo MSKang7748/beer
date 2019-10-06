@@ -14,7 +14,7 @@
     </div>
 
 
-    <div class="site-section bg-light" th:each="qnadetail : ${qnadetail}">
+    <div class="site-section bg-light" th:each="noticedetail : ${noticedetail}">
       <div class="container">
         <div class="row">
 
@@ -24,30 +24,19 @@
             </div>
             <form >
                   <div class="row" >
-                      <div class="col-md-6 form-group">
-                          <label for="fname">ID</label>
-                          <input type="text" name="memberId" id="memberId" class="form-control form-control-lg" readonly=readonly th:value="${qnadetail.memberId}">
-                      </div>
-                      <div class="col-md-6 form-group">
-                          <label for="lname">분류</label>
-                          <input type="text" id="qnaDiv" name="qnaDiv" class="form-control form-control-lg" readonly="readonly" th:value="${qnadetail.qnaDiv}">
-                      </div>
                   </div>
                   <div class="row">
                       <div class="col-md-6 form-group">
                           <label for="eaddress">제목</label>
-                          <input type="text" id="qnaTitle" name="qnaTitle" class="form-control form-control-lg" readonly="readonly" th:value="${qnadetail.qnaTitle}">
+                          <input type="text" id="title" name="title" class="form-control form-control-lg" readonly="readonly" th:value="${noticedetail.title}">
                       </div>
                   </div>
                   <div class="row">
                       <div class="col-md-12 form-group">
                           <label for="message">내용</label>
-                          <textarea name="qnaContent" id="qnaContent" cols="30" rows="10" class="form-control" readonly="readonly" th:text="${qnadetail.qnaContent}"></textarea>
+                          <textarea name="content" id="content" cols="30" rows="10" class="form-control" readonly="readonly" th:text="${noticedetail.content}"></textarea>
                       </div>
                   </div>
-
-                     <input type="button" th:onclick="|window.location.href='/qna/qnaupdate?qnaNo=${qnadetail.qnaNo}'|" class="btn btn-primary py-3 px-5" id="update" value="수정하기"/>                       
-                	 <input type="button" th:onclick="|window.location.href='/qna/qnadelete?qnaNo=${qnadetail.qnaNo}'|" class="btn btn-primary py-3 px-5" id="delete" value="삭제하기"/>
                 	 <input type="button" onclick="location.href='/qna/qnalist'" class="btn btn-primary py-3 px-5" id="return" value="돌아가기" />
                 </form>
                </div>
