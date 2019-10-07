@@ -34,10 +34,15 @@ class NoteManager extends Component {
 
         return(
             <div>
+                <div className="col-md-10 pull-right">
+
+                <div align="center"><h1>Best Lecture List</h1></div>
+
                 <div align="right" width="300">
                 </div>
                 <LectureTable lectures = { lectures } />
             </div>
+        </div>
         ); // ControlPanel이 클릭되면 handleAddNoteClick 이벤트 연결. // NoteTable이 목록인데 NoteTable.jsx와 연결되고 notes를 데이터로 보냄.
     }
 }

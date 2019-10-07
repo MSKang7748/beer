@@ -25,7 +25,6 @@ class NoteTable extends Component {
                 <table className="table-bordered table-striped " align="right" width="1200">
                     <thead>
                         <tr>
-                            <th></th>
                             <th className="align-middle text-center">강좌제목</th>
                             <th className="align-middle text-center">강좌분야</th>
                             <th className="align-middle text-center">강좌오픈일</th>

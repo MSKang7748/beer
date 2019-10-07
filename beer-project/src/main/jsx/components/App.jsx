@@ -3,7 +3,7 @@ import { Route } from 'react-router-dom';
 import SideNav from './sidenav';
 import Header from '../components/header';
 import NoteManager from './notes/NoteManager.jsx';
-import LectureTable from './lectures/LectureTable.jsx';
+import LectureManager from './lectures/LectureManager.jsx';
 
 class App extends Component {
 
@@ -29,7 +29,7 @@ class App extends Component {
                         
                         <main className="Content">
                             <Route exact path="/" title="NoteManager" component={ NoteManager }/>
-                            <Route exact path="/lectures" title="Lectures" component={ LectureTable }/>
+                            <Route exact path="/lectures" title="Lectures" component={ LectureManager }/>
                         </main>
                     </div>
                 </div>
