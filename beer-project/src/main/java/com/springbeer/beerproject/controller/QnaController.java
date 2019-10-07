@@ -68,14 +68,46 @@ public class QnaController {
 	
 	@GetMapping(value = "/qnadetail")
 	public String qnaDetail(@RequestParam(name="qnaNo") int qnaNo, Model model, HttpSession session) {
-
+		
 		MemberEntity member = (MemberEntity) session.getAttribute("loginuser");
 		
+		if(member == null) {
+			return "redirect:/member/login";
+		}
+		
+		String memberId1 = member.getMemberId();
+		
+		List<Qna> qnaDetails = qnaService.qnadetail(qnaNo);
+		Qna qna = qnaDetails.get(0);
+		String memberId2 = qna.getMemberId();
+		
+		if(memberId1.equals(memberId2)) {
+			model.addAttribute("qnadetail", qnaDetails);
+			return "/qna/qnadetail";
+			
+		}
+		if(member.getUserType().equals("admin")) {
+			
+			model.addAttribute("member",member);
+			model.addAttribute("qnadetail", qnaDetails);
+			return "/qna/qnadetail3";
+		}
+		
+		model.addAttribute("qnadetail", qnaDetails);
+	return "/qna/qnadetail2";
+	}
+	
+	@GetMapping(value = "/answrite")
+	public String ansWrite(@RequestParam(name="qnaNo") int qnaNo, Model model, HttpSession session) {
+
 		List<Qna> qnaDetails = qnaService.qnadetail(qnaNo);
 		
 		model.addAttribute("qnadetail", qnaDetails);
-	return "/qna/qnadetail";
+		
+		return "/qna/answrite";
 	}
+	
+	
 	
 	@GetMapping(value = "/noticedetail")
 	public String noticeDetail(@RequestParam(name="id") Long id, Model model, HttpSession session) {
@@ -86,6 +118,24 @@ public class QnaController {
 		
 	return "/qna/noticedetail";
 	}
+	
+	@PostMapping(value = "/ansupdate/{qnaNo}")
+	public String ansWrite(@PathVariable("qnaNo") int qnaNo, Qna qna, Model model) {
+		
+		String ansContent = qna.getAnsContent();
+		List<Qna> qnas = qnaService.qnadetail(qnaNo);
+		Qna qnaa = qnas.get(0);
+		
+		int ansCheck = 1;
+		
+		qnaa.setAnsContent(ansContent);
+		qnaa.setAnsCheck(ansCheck);
+		
+		qnaService.writeqna(qnaa);
+
+	return "redirect:/qna/qnalist";
+	}
+	
 	
 	@RequestMapping(value = "/qnaupdate", method = RequestMethod.GET)
 	public String qnaUpdate(@RequestParam(name="qnaNo") int qnaNo, Model model,  HttpSession session) {
@@ -107,8 +157,6 @@ public class QnaController {
 		
 		return "redirect:/qna/qnalist";
 	}
-	
-	
 	
 	@PostMapping(value = "/updatewrite")
 	public String qnaUpdateWrite(Model model, Qna qna) {

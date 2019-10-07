@@ -43,9 +43,6 @@ public class Qna {
 	@Column(name = "ans_content")
 	private String ansContent;
 	
-	@Column(name = "ans_date")
-	private Date ansDate = new Date(); // 기본 값 설정
-	
 	@Column(name = "ans_bool", nullable=false) // 1과 0으로 바뀌게 함으로써 표기 할 생각임. (boolean을 적용 할 수 없다)
 	private int ansCheck = 0;
 	
