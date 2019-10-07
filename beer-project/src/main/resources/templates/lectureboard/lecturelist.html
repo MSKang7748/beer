@@ -72,17 +72,21 @@
             <table class="table table-hover">
 						<thead>
 							<tr class="table100-head">
-								<th class="col-md-1">Title</th>
-								<th class="col-md-2">Content</th>
-								<th class="col-md-5">Date</th>
-								<th class="col-md-6">Delete</th>
+								<th>Title &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+								<th>Content</th>
+								<th>Date</th>
+								<th>Delete</th>
 							</tr>
 						</thead>
 						<tbody th:each="lecturelist : ${lecturelist}">
 								<tr>
-									<td class="col-md-1"><a th:href="@{/subsq/boardlist(lectureNo=${lecturelist.lectureNo})}" th:text=${lecturelist.lectureTitle}></a></td>
-									<td class="col-md-3" th:text=${lecturelist.lectureContent}></td>
-									<td class="col-md-5" th:text=${lecturelist.createdDatetime}></td>
+									<td><a th:href="@{/subsq/boardlist(lectureNo=${lecturelist.lectureNo})}" th:text=${lecturelist.lectureTitle}></a></td>
+									<td th:text=${lecturelist.lectureContent}></td>
+									<td th:text=${lecturelist.createdDatetime}></td>
 									<td>
 										<input type="checkbox" id="lectureNo" name="lectureNo" th:value="${lecturelist.lectureNo}" />
 									</td>

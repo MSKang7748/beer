@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+ 	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"	  
+	  layout:decorator="layouts/main">
+
+<header th:include="@{/commons/header.html}"></header>
+
+<body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
+
+  <div class="site-wrap">
+
+    <div class="site-mobile-menu site-navbar-target">
+      <div class="site-mobile-menu-header">
+        <div class="site-mobile-menu-close mt-3">
+          <span class="icon-close2 js-menu-toggle"></span>
+        </div>
+      </div>
+      <div class="site-mobile-menu-body"></div>
+    </div>
+    <div class="site-section mt-5">
+      <div class="container">
+      	<div class="wine-actions">
+			<a th:if="${session.loginuser != null && session.loginuser.userType.equals('specialist')}" th:href="@{/product/productWrite}" class="btn add">Write</a>
+        </div>
+        	<form action ="/product/search?$value&$value1" method="get">
+        		<select name="category">
+        			<option value="제조키트">제조키트</option>
+                    <option value="제조원료">제조원료</option>
+                    <option value="맥주">맥주</option>
+        		</select>
+        		<input type="text" name="name" placeholder="Search here" style="border: thick; position: relative;">
+        		<button class="buy-now btn btn-sm height-auto px-4 py-3 btn-primary">Search</button>
+        	</form>
+        <div class="row mb-5">
+          <div class="col-12 section-title text-center mb-5">
+            <h2 class="d-block">Our Products</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Commodi, perspiciatis!</p>
+          </div>
+        </div>
+		<form>
+        <div class="row">
+          <div class="col-lg-4 mb-5 col-md-6" th:each="product : ${ search }">
+            <div class="wine_v_1 text-center pb-4">
+              <a th:href="@{/product/productDetail/{id}(id = ${product.beerNo})}" class="thumbnail d-block mb-4">
+              
+              	<img th:each="pfile:${product.productFileEntity}" th:src="@{/images/{fileName}(fileName=${pfile.productSavedFileName})}" alt="Image" class="img-fluid">
+              </a>
+              <div>
+                <a th:href="@{/product/productDetail/{id}(id = ${product.beerNo})}"><h3 class="heading mb-1" th:text="${ product.beerName }" /></a>
+                <span class="price" th:text="${ product.beerPrice }"></span>
+              </div>
+              
+
+              <div class="wine-actions">
+                  
+                <a th:href="@{/product/productDetail/{beerNo}(beerNo = ${product.beerNo})}"><h3 class="heading-2" th:text="${ product.beerName }" /></a>
+                <span class="price d-block" th:text="${ product.beerPrice }"></span>
+                
+                <div class="rating">
+                  <span class="icon-star"></span>
+                  <span class="icon-star"></span>
+                  <span class="icon-star"></span>
+                  <span class="icon-star"></span>
+                  <span class="icon-star-o"></span>
+                </div>
+                
+                <p>
+                	<a th:if="${session.loginuser != null}" th:href="@{/product/addcart/{No}(No = ${product.beerNo})}" class="buy-now btn btn-sm height-auto px-4 py-3 btn-primary">Add To Cart</a>
+                	<a th:if="${session.loginuser == null}" th:href="@{/member/login/}" class="buy-now btn btn-sm height-auto px-4 py-3 btn-primary">Add To Cart</a>
+                </p>
+                 
+              </div>
+            </div>
+          </div>
+        </div>
+        </form>
+      </div>
+    </div>
+
+    <div class="hero-2" style="background-image: url('/images/hero_2.jpg');">
+     <div class="container">
+        <div class="row justify-content-center text-center align-items-center">
+          <div class="col-md-8">
+            <span class="sub-title">Welcome</span>
+            <h2>Wines For Everyone</h2>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="site-section bg-light">
+      <div class="container">
+        <div class="owl-carousel owl-slide-3 owl-slide">
+        
+          <blockquote class="testimony">
+            <img th:src="@{/images/person_1.jpg}" alt="Image">
+            <p>&ldquo;Lorem ipsum dolor sit amet, consectetur adipisicing elit. Libero sapiente beatae, nemo quasi quo neque consequatur rem porro reprehenderit, a dignissimos unde ut enim fugiat deleniti quae placeat in cumque?&rdquo;</p>
+            <p class="small text-primary">&mdash; Collin Miller</p>
+          </blockquote>
+          <blockquote class="testimony">
+            <img th:src="@{/images/person_2.jpg}" alt="Image">
+            <p>&ldquo;Lorem ipsum dolor sit amet, consectetur adipisicing elit. Libero sapiente beatae, nemo quasi quo neque consequatur rem porro reprehenderit, a dignissimos unde ut enim fugiat deleniti quae placeat in cumque?&rdquo;</p>
+            <p class="small text-primary">&mdash; Harley Perkins</p>
+          </blockquote>
+          <blockquote class="testimony">
+            <img th:src="@{/images/person_3.jpg}" alt="Image">
+            <p>&ldquo;Lorem ipsum dolor sit amet, consectetur adipisicing elit. Libero sapiente beatae, nemo quasi quo neque consequatur rem porro reprehenderit, a dignissimos unde ut enim fugiat deleniti quae placeat in cumque?&rdquo;</p>
+            <p class="small text-primary">&mdash; Levi Morris</p>
+          </blockquote>
+          <blockquote class="testimony">
+            <img th:src="@{/images/person_1.jpg}" alt="Image">
+            <p>&ldquo;Lorem ipsum dolor sit amet, consectetur adipisicing elit. Libero sapiente beatae, nemo quasi quo neque consequatur rem porro reprehenderit, a dignissimos unde ut enim fugiat deleniti quae placeat in cumque?&rdquo;</p>
+            <p class="small text-primary">&mdash; Allie Smith</p>
+          </blockquote>
+        
+        </div>
+      </div>
+    </div>
+  
+ <footer th:include="@{/commons/footer.html}"></footer>

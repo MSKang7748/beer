@@ -124,7 +124,11 @@ public class MemberManageController {
 	public String mypage(@PathVariable String memberId, Model model, HttpSession session) {
 		
 		MemberEntity mp = memberService.findByMemberId(memberId); 
-
+		String userType = mp.getUserType();
+		if (userType.equals("admin")) {
+			model.addAttribute("mypage", mp);
+			return "/mypage/mypagelist2";
+		}
 		model.addAttribute("mypage", mp);
 	
 		return "/mypage/mypagelist";

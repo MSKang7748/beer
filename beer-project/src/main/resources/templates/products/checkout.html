@@ -4,8 +4,8 @@
 
   <div class="site-wrap">
 
-    <div class="site-mobile-menu site-navbar-target">
-      <div class="site-mobile-menu-header">
+    <div class="site-mobile-menu site-navbar-target" >
+      <div class="site-mobile-menu-header" >
         <div class="site-mobile-menu-close mt-3">
           <span class="icon-close2 js-menu-toggle"></span>
         </div>
@@ -13,25 +13,25 @@
       <div class="site-mobile-menu-body"></div>
     </div>
 
-    <div class="site-section">
+    <div class="site-section" th:each="member:${member}">
       <div class="container">
         <div class="row mb-5">
           <div class="col-md-12">
             <div class="bg-light rounded p-3">
-              <p class="mb-0">Returning customer? <a href="/login" class="d-inline-block">Click here</a> to login</p>
+              
             </div>
           </div>
         </div>
-        <div class="row">
-          <div class="col-md-6 mb-5 mb-md-0">
+        <div class="row" >
+          <div style="margin:auto;" class="col-md-6 mb-5 mb-md-0" >
             <h2 class="h3 mb-3 text-black font-heading-serif">Billing Details</h2>
             <div class="p-3 p-lg-5 border">
               
              
               <div class="form-group row">
                 <div class="col-md-12">
-                  <label for="c_companyname" class="text-black"> Name </label>
-                  <input type="text" class="form-control" id="c_companyname" name="c_companyname">
+                  <label for="c_companyname" class="text-black"> Name <span class="text-danger">*</span></label>
+                  <input type="text" class="form-control" id="c_companyname" name="c_companyname" th:value="${member.name}">
                   
                 </div>
               </div>
@@ -44,17 +44,17 @@
               </div>
     
               <div class="form-group">
-                <input type="text" class="form-control" placeholder="Apartment, suite, unit etc. (optional)">
+                <input type="text" class="form-control" placeholder=" etc.">
               </div>
     
               <div class="form-group row mb-5">
                 <div class="col-md-6">
                   <label for="c_email_address" class="text-black">Email Address <span class="text-danger">*</span></label>
-                  <input type="text" class="form-control" id="c_email_address" name="c_email_address">
+                  <input type="text" class="form-control" id="c_email_address" name="c_email_address" th:value="${member.email}">
                 </div>
                 <div class="col-md-6">
                   <label for="c_phone" class="text-black">Phone <span class="text-danger">*</span></label>
-                  <input type="text" class="form-control" id="c_phone" name="c_phone" placeholder="Phone Number">
+                  <input type="text" class="form-control" id="c_phone" name="c_phone" th:value="${member.phone}">
                 </div>
               </div>
     
@@ -67,9 +67,7 @@
                     <p class="mb-3">Create an account by entering the information below. If you are a returning customer
                       please login at the top of the page.</p>
                     <div class="form-group">
-                      <label for="c_account_password" class="text-black">Account Password</label>
-                      <input type="email" class="form-control" id="c_account_password" name="c_account_password"
-                        placeholder="">
+
                     </div>
                   </div>
                 </div>
@@ -77,10 +75,7 @@
     
     
               <div class="form-group">
-                <label for="c_ship_different_address" class="text-black" data-toggle="collapse"
-                  href="#ship_different_address" role="button" aria-expanded="false"
-                  aria-controls="ship_different_address"><input type="checkbox" value="1" id="c_ship_different_address">
-                  Ship To A Different Address?</label>
+                
                 <div class="collapse" id="ship_different_address">
                   <div class="py-2">
     
@@ -165,107 +160,44 @@
                 <textarea name="c_order_notes" id="c_order_notes" cols="30" rows="5" class="form-control"
                   placeholder="Write your notes here..."></textarea>
               </div>
-    
+             <div class="form-group">
+                    <button class="btn btn-primary btn-lg btn-block" onclick="location.href='/product/thankyou'">Place Order</button>
+                  </div>
             </div>
           </div>
-          <div class="col-md-6">
-    
-            <div class="row mb-5">
-              <div class="col-md-12">
-                <h2 class="h3 mb-3 text-black font-heading-serif">Coupon Code</h2>
-                <div class="p-3 p-lg-5 border">
-    
-                  <label for="c_code" class="text-black mb-3">Enter your coupon code if you have one</label>
-                  <div class="input-group w-75">
-                    <input type="text" class="form-control" id="c_code" placeholder="Coupon Code" aria-label="Coupon Code"
-                      aria-describedby="button-addon2">
-                    <div class="input-group-append">
-                      <button class="btn btn-primary btn-sm rounded px-4" type="button" id="button-addon2">Apply</button>
-                    </div>
-                  </div>
-    
-                </div>
-              </div>
-            </div>
-    
-            <div class="row mb-5">
-              <div class="col-md-12">
-                <h2 class="h3 mb-3 text-black font-heading-serif">Your Order</h2>
-                <div class="p-3 p-lg-5 border">
-                  <table class="table site-block-order-table mb-5">
-                    <thead>
-                      <th>Product</th>
-                      <th>Total</th>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td>Bioderma <strong class="mx-2">x</strong> 1</td>
-                        <td>$55.00</td>
-                      </tr>
-                      <tr>
-                        <td>Ibuprofeen <strong class="mx-2">x</strong> 1</td>
-                        <td>$45.00</td>
-                      </tr>
-                      <tr>
-                        <td class="text-black font-weight-bold"><strong>Cart Subtotal</strong></td>
-                        <td class="text-black">$350.00</td>
-                      </tr>
-                      <tr>
-                        <td class="text-black font-weight-bold"><strong>Order Total</strong></td>
-                        <td class="text-black font-weight-bold"><strong>$350.00</strong></td>
-                      </tr>
-                    </tbody>
-                  </table>
-    
-                  <div class="border mb-3 p-3 rounded">
-                    <h3 class="h6 mb-0"><a class="d-block" data-toggle="collapse" href="#collapsebank" role="button"
-                        aria-expanded="false" aria-controls="collapsebank">Direct Bank Transfer</a></h3>
-    
-                    <div class="collapse" id="collapsebank">
-                      <div class="py-2 pl-0">
-                        <p class="mb-0">Make your payment directly into our bank account. Please use your Order ID as the
-                          payment reference. Your order won’t be shipped until the funds have cleared in our account.</p>
-                      </div>
-                    </div>
-                  </div>
-    
-                  <div class="border mb-3 p-3 rounded">
-                    <h3 class="h6 mb-0"><a class="d-block" data-toggle="collapse" href="#collapsecheque" role="button"
-                        aria-expanded="false" aria-controls="collapsecheque">Cheque Payment</a></h3>
-    
-                    <div class="collapse" id="collapsecheque">
-                      <div class="py-2 pl-0">
-                        <p class="mb-0">Make your payment directly into our bank account. Please use your Order ID as the
-                          payment reference. Your order won’t be shipped until the funds have cleared in our account.</p>
-                      </div>
-                    </div>
-                  </div>
-    
-                  <div class="border mb-5 p-3">
-                    <h3 class="h6 mb-0"><a class="d-block" data-toggle="collapse" href="#collapsepaypal" role="button"
-                        aria-expanded="false" aria-controls="collapsepaypal">Paypal</a></h3>
-    
-                    <div class="collapse" id="collapsepaypal">
-                      <div class="py-2 pl-0">
-                        <p class="mb-0">Make your payment directly into our bank account. Please use your Order ID as the
-                          payment reference. Your order won’t be shipped until the funds have cleared in our account.</p>
-                      </div>
-                    </div>
-                  </div>
-    
-                  <div class="form-group">
-                    <button class="btn btn-primary btn-lg btn-block" onclick="window.location='thankyou.html'">Place
-                      Order</button>
-                  </div>
-    
-                </div>
-              </div>
-            </div>
-    
+          
+             
           </div>
         </div>
         <!-- </form> -->
       </div>
     </div>
+    
+    <script src="http://code.jquery.com/jquery-3.4.1.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/df-number-format/2.1.6/jquery.number.min.js"></script>
+   <script type="text/javascript">
+      function countValue(event) {
+         var cartId = $(event.target).attr("data-cartid")
+         var count = $(event.target).val();
+         price = $('#price' + cartId).val();
+         $('#price-total-' + cartId).text(price * count);
+         
+         var spans = $('span[id^=price-total]');
+         var total = 0;
+         spans.each(function(idx, span) {
+            total += parseInt($(span).text());         
+         })
+         
+         
+         fmt = new Intl.NumberFormat('kr-KO', { style:'currency', currency: "KRW" });
+         
+         $('#cart_total').text(fmt.format(total));
+         $('#cart_subtotal').text(fmt.format(total));
+   
+            //var x = document.getElementById("count").value; // 숫자가 올라갈 수록 x도 증가한다
+            //var price = document.getElementById("price").value;
+            //document.getElementById("orderDetail").innerHTML = price * x;
+      }
+   </script>
 
  <footer th:include="@{/commons/footer.html}"></footer>

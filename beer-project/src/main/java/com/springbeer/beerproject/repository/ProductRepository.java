@@ -36,6 +36,11 @@ public interface ProductRepository extends CrudRepository<ProductEntity, Integer
 //				   "VALUES(productFile.fileNo, productFile.productSavedFileName, productFile.productUserFileName)")
 	void save(@Param("productFile")ProductFileEntity productFile);
 
+	@Query(value = "SELECT pe " +
+			"FROM ProductEntity as pe " +
+			"WHERE UPPER(beerName) like '%'||UPPER(:beerName)||'%' AND beerDiv = :beerDiv")
+	List<ProductEntity> productSearch(@Param("beerName")String beerName, @Param("beerDiv")String beerDiv);
+
 
 
 	

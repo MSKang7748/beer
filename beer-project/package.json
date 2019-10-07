@@ -22,7 +22,8 @@
     "react-google-charts": "^3.0.15",
     "react-modal": "^3.10.1",
     "react-router-dom": "^5.1.2",
-    "sass-loader": "^8.0.0"
+    "sass-loader": "^8.0.0",
+    "upath": "^1.2.0"
   },
   "devDependencies": {
     "@babel/core": "^7.5.5",

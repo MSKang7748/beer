@@ -1,0 +1,58 @@
+<header th:include="@{/commons/header.html}"></header>
+
+<body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
+
+  <div class="site-wrap">
+
+    <div class="site-mobile-menu site-navbar-target">
+      <div class="site-mobile-menu-header">
+        <div class="site-mobile-menu-close mt-3">
+          <span class="icon-close2 js-menu-toggle"></span>
+        </div>
+      </div>
+      <div class="site-mobile-menu-body"></div>
+    </div>
+
+    <div class="site-section">
+      <div class="container">
+        <div class="row mb-5">
+          <div class="col-md-12">
+            <div class="bg-light rounded p-3">
+              
+            </div>
+          </div>
+          <img th:src=@{/images/캡처.jpg} />
+        </div>
+        </div>
+        <!-- </form> -->
+      </div>
+    </div>
+    
+    <script src="http://code.jquery.com/jquery-3.4.1.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/df-number-format/2.1.6/jquery.number.min.js"></script>
+	<script type="text/javascript">
+		function countValue(event) {
+			var cartId = $(event.target).attr("data-cartid")
+			var count = $(event.target).val();
+			price = $('#price' + cartId).val();
+			$('#price-total-' + cartId).text(price * count);
+			
+			var spans = $('span[id^=price-total]');
+			var total = 0;
+			spans.each(function(idx, span) {
+				total += parseInt($(span).text());			
+			})
+			
+			
+			fmt = new Intl.NumberFormat('kr-KO', { style:'currency', currency: "KRW" });
+			
+			$('#cart_total').text(fmt.format(total));
+			$('#cart_subtotal').text(fmt.format(total));
+	
+		      //var x = document.getElementById("count").value; // 숫자가 올라갈 수록 x도 증가한다
+		      //var price = document.getElementById("price").value;
+		      //document.getElementById("orderDetail").innerHTML = price * x;
+		}
+	</script>
+
+ <footer th:include="@{/commons/footer.html}"></footer>

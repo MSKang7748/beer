@@ -72,6 +72,13 @@ public class ProductServiceImpl implements ProductService {
 		productRepository.save(productEntity);
 		
 	}
+
+	@Override
+	public List<ProductEntity> productSearch(String beerName, String beerDiv) {
+		List<ProductEntity> productSearch = productRepository.productSearch(beerName, beerDiv);
+		
+		return productSearch;
+	}
 	
 	
 

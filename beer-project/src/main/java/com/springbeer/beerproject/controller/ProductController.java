@@ -243,13 +243,36 @@ public class ProductController { // 웹페이지 Home 으로 가는 컨트롤러
 	}
 	
 	@RequestMapping(value = "/checkout", method=RequestMethod.GET)
-	public String productCheckout(Model model) {
+	public String productCheckout(Model model, HttpSession session) {
+
+		MemberEntity member = (MemberEntity) session.getAttribute("loginuser");
+		
+		model.addAttribute("member", member);
 	
 	return "/products/checkout";
 	}
 	
+	@RequestMapping(value = "/thankyou", method=RequestMethod.GET)
+	public String thankyou(Model model, HttpSession session) {
+
+		
 	
+	return "/products/thankyou";
+	}
+
 	
+	@RequestMapping(value = "/search", method = RequestMethod.GET)
+	public String productSearch(@RequestParam(name="beerName") String beerName, @RequestParam(name="beerDiv") String beerDiv, Model model) {
+		
+		
+		List<ProductEntity> search = productService.productSearch(beerName, beerDiv);
+		
+		model.addAttribute("search", search);
+		
+		return "/products/searchproductList"; 
+	}
+	
+
 	
 	
 }

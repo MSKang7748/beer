@@ -51,7 +51,7 @@
         <div class="row align-items-center">
           <div class="col-12 text-center">
             <a href="/" class="site-logo">
-              <img th:src="@{/images/logo.png}" alt="Image" class="img-fluid">
+              <img th:src="@{/images/header.png}" alt="Image" class="img-fluid">
             </a>
           </div>
           <a href="#" class="mx-auto d-inline-block d-lg-none site-menu-toggle js-menu-toggle text-black"><span
@@ -66,12 +66,14 @@
           <div class="mx-auto">
             <nav class="site-navigation position-relative text-left" role="navigation">
               <ul class="site-menu main-menu js-clone-nav mx-auto d-none pl-0 d-lg-block border-none">
-                <li class="active"><a href="index.html" class="nav-link text-left">Home</a></li>
+                <li class="active"><a href="/" class="nav-link text-left">Home</a></li>
+
                 <li><a href="/subsq/lecturelist" class="nav-link text-left">Lecture</a></li>
                 <li><a href="/product/list" class="nav-link text-left">Product</a></li>
-                <li><a href="/product/cart" class="nav-link text-left">Cart</a></li>
+
+                <li th:if="${ session.loginuser != null }"><a href="/product/cartview/" th:attrappend="href=${session.loginuser.memberNo}" class="nav-link text-left">Cart</a></li>
+                
                 <li><a href="/qna/qnalist" class="nav-link text-left">Q&A</a></li>
-                <li><a href="/dashboard" class="nav-link text-left">Dash</a></li>
                
                 <li th:if="${ session.loginuser == null }"><a href="/member/login" class="nav-link text-left">Login</a></li>
                 <li th:if="${ session.loginuser == null }"><a href="/member/register" class="nav-link text-left">Register</a></li>

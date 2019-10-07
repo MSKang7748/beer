@@ -23,6 +23,8 @@ public interface ProductService {
 	void insertProductFile(ProductFileEntity productFile);
 
 	void updateProduct(ProductEntity productEntity);
+
+	List<ProductEntity> productSearch(String beerName, String beerDiv);
 	
 
 

@@ -20,7 +20,7 @@
     </div>
     <div class="site-section bg-primary py-5 page-title-wrap mt-5" th:each="product : ${ products }">
       <div class="container">
-        <h1 th:text="${ product.beerName }"></h1>
+        <!-- <h1 th:text="${ product.beerName }"></h1> -->
       </div>
     </div>
 
@@ -35,9 +35,11 @@
           </div>
           <div class="col-lg-5 ml-auto">
             <h2 class="text-primary" th:text="${ product.beerName }"></h2>
+            <br>
             <p th:text="${ product.beerContent }"></p>
 			<br>
-            <p style="text-align: right;" th:text="${ product.beerPrice } + '원'"></p>
+            가격 <p th:text="${ product.beerPrice } + '원'"></p>
+            <br>
             <div class="mb-5">
               <div class="input-group mb-3" style="max-width: 200px;">
                 <div class="input-group-prepend">
@@ -51,13 +53,17 @@
               </div>
     
             </div>
-            <p><a href="@{/product/productDetail/{beerNo}(beerNo = ${product.beerNo})}" class="buy-now btn btn-sm height-auto px-4 py-3 btn-primary">Add To Cart</a></p>
+            <p>
+                	<a th:if="${session.loginuser != null}" th:href="@{'/product/addcart?beerNo=' + ${product.beerNo} + '&memberNo=' + ${ session.loginuser.memberNo }}" class="buy-now btn btn-sm height-auto px-4 py-3 btn-primary">Add To Cart</a>
+                	<a th:if="${session.loginuser == null}" th:href="@{/member/login/}" class="buy-now btn btn-sm height-auto px-4 py-3 btn-primary">Add To Cart</a>
+                </p>
 
 
           </div>
         </div>
-        <p><a th:href="@{/product/productDelete/{no}(no=${product.beerNo})}" class="buy-now btn btn-sm height-auto px-4 py-3 btn-primary">삭제</a></p>
-        <p><a th:href="@{/product/productUpdate/(beerNo=${product.beerNo})}" class="buy-now btn btn-sm height-auto px-4 py-3 btn-primary">수정</a></p>
+        <p><a th:href="@{/product/productDelete/{no}(no=${product.beerNo})}" class="buy-now btn btn-sm height-auto px-4 py-3 btn-primary">삭제</a>&nbsp;<a th:href="@{/product/productUpdate/(beerNo=${product.beerNo})}" class="buy-now btn btn-sm height-auto px-4 py-3 btn-primary">수정</a></p>
+        <br>
+        <p></p>
       </div>
     </div>
 
