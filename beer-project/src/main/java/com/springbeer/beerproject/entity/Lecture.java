@@ -44,6 +44,9 @@ public class Lecture {
 	@Column(nullable=false)
 	private Date createdDatetime = new Date();
 	
+	@Column(name="lecture_cnt")
+	private int lectureCnt = 0 ; // choice를 눌러서 구독하기가 되면, cnt가 늘어나게 함.
+	
 	@Column(nullable=false)
 	private int deleteNo = 1; // default값 주기
 	

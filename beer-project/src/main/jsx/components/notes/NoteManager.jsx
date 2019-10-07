@@ -143,7 +143,7 @@ class NoteManager extends Component {
                     onSaveNote={ this.handleOnUpdateNote }/>
                 </Modal>
 
-                <div align="right" width="300">
+                <div align="right" width="150">
                     <ControlPanel onAddNoteModalClick = {this.handleOnAddNoteModalClick}/>
                 </div>
                 <NoteTable notes = { notes } onDeleteNote={this.handleOnDeleteNote} onEditNoteModalClick = {this.handleOnEditNoteModalClick }/>

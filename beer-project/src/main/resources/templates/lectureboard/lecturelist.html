@@ -80,6 +80,7 @@
 								<th>Content</th>
 								<th>Date</th>
 								<th>Delete</th>
+								<th>Cnt</th>
 							</tr>
 						</thead>
 						<tbody th:each="lecturelist : ${lecturelist}">
@@ -89,6 +90,8 @@
 									<td th:text=${lecturelist.createdDatetime}></td>
 									<td>
 										<input type="checkbox" id="lectureNo" name="lectureNo" th:value="${lecturelist.lectureNo}" />
+									</td>
+									<td th:text=${lecturelist.lectureCnt}>
 									</td>
 								</tr>
 						</tbody>

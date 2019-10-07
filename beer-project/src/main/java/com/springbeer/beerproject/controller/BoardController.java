@@ -366,10 +366,16 @@ public class BoardController {
 		Subscription subsq = boardService.findByMemberNoAndLectureNo(memberNo, lectureNo);
 		
 		Lecture lecture = boardService.findLectureByLectureNo(lectureNo);
+		int lecture1 = 1;
+		int lecture2 = lecture.getLectureCnt();
+		int lecture3 = lecture1 + lecture2;	
+		lecture.setLectureCnt(lecture3);
+		
 		String lectureTitle = lecture.getLectureTitle();
 		
 		if (subsq == null) {
 		boardService.saveByMemberNoAndLectureNo(memberNo, lectureNo);
+		boardService.addLecture(lecture); 
 		
 		String host = "smtp.naver.com"; // 현재 naver에만 연동 됨.
 		
@@ -413,7 +419,7 @@ public class BoardController {
 			return "redirect:/subsq/lecture";
 		}
 		
-		return "/home";
+		return "redirect:/subsq/lecture";
 	}
 	
 	@GetMapping(value="/mylectdel/{lectureNo}")

@@ -61,8 +61,7 @@ public class NoticeServiceImpl implements NoticeService {
 	public List<Lecture> loadLectureList() {
 		
 		int deleteNo = 1;
-		
-		List<Lecture> findlecture = (List<Lecture>)lectureRepository.findByDeleteNo(deleteNo); 
+		List<Lecture> findlecture = (List<Lecture>)lectureRepository.findListByDeleteNo(deleteNo); 
 		return findlecture;
 	}
 

@@ -32,7 +32,7 @@ class NoteTable extends Component {
 
         return( // 이하 div는 column명이 뜨는 table임
             <div>
-                <table className="table-bordered table-striped " align="right" width="1200">
+                <table className="table-bordered table-striped " align="right" width="740">
                     <thead>
                         <tr>
                             <th></th>
