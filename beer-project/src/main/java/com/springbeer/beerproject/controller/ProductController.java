@@ -45,7 +45,7 @@ public class ProductController { // 웹페이지 Home 으로 가는 컨트롤러
 
 		model.addAttribute("products", products);
 
-		return "/products/productlist";
+		return "products/productlist";
 	}
 
 	@RequestMapping(value = "/productDetail/{beerNo}", method=RequestMethod.GET)
@@ -60,13 +60,13 @@ public class ProductController { // 웹페이지 Home 으로 가는 컨트롤러
 		
 		model.addAttribute("products", products);
 		
-		return "/products/productdetail";
+		return "products/productdetail";
 	}
 	
 	@RequestMapping(value = "/productWrite", method=RequestMethod.GET)
 	public String productWriteForm() {
 		
-	return "/products/productwrite";
+	return "products/productwrite";
 	}
 	
 	@RequestMapping(value = "/productWrite")
@@ -140,7 +140,7 @@ public class ProductController { // 웹페이지 Home 으로 가는 컨트롤러
 		
 		model.addAttribute("products", products);
 		
-		return "/products/productupdate";
+		return "products/productupdate";
 	}
 	
 	@RequestMapping(value = "/productUpdate/{beerNo}", method=RequestMethod.POST)
@@ -150,7 +150,6 @@ public class ProductController { // 웹페이지 Home 으로 가는 컨트롤러
 		MultipartFile mf = req.getFile("beerFile");
 		boolean test = mf.isEmpty();
 		
-		System.out.println(test);
 		if (test == false) {
 			
 			ServletContext application = req.getServletContext();
@@ -175,7 +174,6 @@ public class ProductController { // 웹페이지 Home 으로 가는 컨트롤러
 				productEntity.setProductFileEntity(files);
 				
 				productService.updateProduct(productEntity);
-//				productService.insertProductFile(productFile);
 			
 			} catch (Exception ex) {
 				ex.printStackTrace();
@@ -195,16 +193,8 @@ public class ProductController { // 웹페이지 Home 으로 가는 컨트롤러
 	@RequestMapping(value = "/cart")
 	public String productCart(Model model) {
 	
-	return "/products/cart";
+	return "products/cart";
 	}
-	
-//	@RequestMapping(value = "/cart/{memberNo}", method=RequestMethod.GET) 
-//	public String cartDelete(@PathVariable int memberNo) {
-//	 
-//		 cartService.cartDelete(memberNo);
-//	
-//	 return "redirect:/product/cart"; 
-//	 }
 	
 	@RequestMapping(value = "/removecart/{cartId}", method=RequestMethod.GET) 
 	public String cartDelete(@PathVariable int cartId, HttpSession session) {
@@ -239,7 +229,7 @@ public class ProductController { // 웹페이지 Home 으로 가는 컨트롤러
 		model.addAttribute("carts", carts);
 		model.addAttribute("total", total);
 		
-		return "/products/cart";
+		return "products/cart";
 	}
 	
 	@RequestMapping(value = "/checkout", method=RequestMethod.GET)
@@ -249,15 +239,13 @@ public class ProductController { // 웹페이지 Home 으로 가는 컨트롤러
 		
 		model.addAttribute("member", member);
 	
-	return "/products/checkout";
+	return "products/checkout";
 	}
 	
 	@RequestMapping(value = "/thankyou", method=RequestMethod.GET)
 	public String thankyou(Model model, HttpSession session) {
 
-		
-	
-	return "/products/thankyou";
+	return "products/thankyou";
 	}
 
 	
@@ -269,7 +257,7 @@ public class ProductController { // 웹페이지 Home 으로 가는 컨트롤러
 		
 		model.addAttribute("search", search);
 		
-		return "/products/searchproductList"; 
+		return "products/searchproductList"; 
 	}
 	
 

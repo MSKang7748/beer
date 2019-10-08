@@ -59,7 +59,7 @@ public class BoardController {
 				List<Lecture> lecturelist = boardService.findlectureByMemberNo(memberNo, deleteNo);
 				model.addAttribute("lecturelist", lecturelist);
 				
-				return "/lectureboard/lecturelist";
+				return "lectureboard/lecturelist";
 			}
 		
 			if (usertype.equals("specialist")) { // specialist로 분류된 사용자일 경우 admin과 같은 page 보여줌.
@@ -67,13 +67,13 @@ public class BoardController {
 				List<Lecture> lecturelist = boardService.findlectureByMemberNo(memberNo, deleteNo);
 				model.addAttribute("lecturelist", lecturelist);
 				
-				return "/lectureboard/lecturelist";
+				return "lectureboard/lecturelist";
 			}
 		
 		List<Lecture> lecturelist = boardService.findlecture(deleteNo); // admin, specialist가 아닌 나머지가 들어가는 lecturelist
 		model.addAttribute("lecturelist", lecturelist);
 		
-		return "/lectureboard/lecturelist2";
+		return "lectureboard/lecturelist2";
 	}
 	
 	@GetMapping(value="/mylecture")
@@ -90,7 +90,7 @@ public class BoardController {
 			List<Lecture> lecturelist = boardService.findlectureByMemberNo(memberNo, deleteNo);
 			model.addAttribute("lecturelist", lecturelist);
 			
-			return "/lectureboard/lecturelist";
+			return "lectureboard/lecturelist";
 		}
 	
 		if (usertype.equals("specialist")) { // specialist로 분류된 사용자일 경우 admin과 같은 page 보여줌.
@@ -98,20 +98,20 @@ public class BoardController {
 			List<Lecture> lecturelist = boardService.findlectureByMemberNo(memberNo, deleteNo);
 			model.addAttribute("lecturelist", lecturelist);
 			
-			return "/lectureboard/lecturelist";
+			return "lectureboard/lecturelist";
 		}
 		
 		List<Lecture> lecturelist = boardService.findsubsqByMemberNo(memberNo, deleteNo); // 일반 user의 subscription table 내용 가져옴. // checkbox 한 번 더 클릭하면 구독 취소하기로 바뀌는 것 추가하기.
 		
 		model.addAttribute("lecturelist", lecturelist);
 		
-		return "/lectureboard/lecturelist3";
+		return "lectureboard/lecturelist3";
 	}
 	
 	@GetMapping(value ="/lecturewrite")
 	public String lecturewrite(Model model) { // lecturewrite로 이동만 해주는 메소드.
 		
-		return "/lectureboard/lecturewrite";
+		return "lectureboard/lecturewrite";
 	}
 	
 	@PostMapping(value="/lecturemake")
@@ -142,7 +142,7 @@ public class BoardController {
 				
 				model.addAttribute("lecture",lecture);
 				model.addAttribute("Board",lecturelist);
-				return "/lectureboard/boardlist";
+				return "lectureboard/boardlist";
 			}
 		
 			if (usertype.equals("specialist")) {
@@ -152,7 +152,7 @@ public class BoardController {
 				
 				model.addAttribute("lecture",lecture);
 				model.addAttribute("Board",lecturelist);
-				return "/lectureboard/boardlist";
+				return "lectureboard/boardlist";
 			}
 
 			List<LectureBoard> lecturelist = boardService.findlectureByLectureNo(lectureNo, deletedNo); // lecture No에 따른 boardlist로 이동.
@@ -161,7 +161,7 @@ public class BoardController {
 		model.addAttribute("lecture",lecture);
 		model.addAttribute("Board",lecturelist);
 		
-		return "/lectureboard/boardlist2";
+		return "lectureboard/boardlist2";
 	}
 	
 	@RequestMapping(value = "/lecturelist", method = RequestMethod.GET) // 로그인 후에 list누르면 구독 한 것(강좌)에 포함된 글만 보이게. 수정요망
@@ -177,11 +177,10 @@ public class BoardController {
 		
 			if (usertype.equals("admin")) {
 				
-				int memberNo = member.getMemberNo();
-				List<Lecture> lecturelist = boardService.findlectureByMemberNo(memberNo, deleteNo); //memberNo column이 entity 안에 있어야 만들 수 있음.
-			    
-				model.addAttribute("lectures",lecturelist);
-				return "/lectureboard/lecturelist";
+				List<Lecture> lecturelist = boardService.findAlllectureByDeleteNo(deleteNo); //memberNo column이 entity 안에 있어야 만들 수 있음.
+				
+				model.addAttribute("lecturelist",lecturelist);
+				return "lectureboard/lecturelist";
 			}
 		
 			if (usertype.equals("specialist")) {
@@ -190,14 +189,14 @@ public class BoardController {
 				List<Lecture> lecturelist = boardService.findlectureByMemberNo(memberNo, deleteNo); //memberNo column이 entity 안에 있어야 만들 수 있음.
 
 				model.addAttribute("lecturelist",lecturelist);
-				return "/lectureboard/lecturelist";
+				return "lectureboard/lecturelist";
 			}
 
 		List<Lecture> lecturelist = boardService.findlecture(deleteNo);
 		
 		model.addAttribute("lecturelist", lecturelist);
 
-		return "/lectureboard/lecturelist2";
+		return "lectureboard/lecturelist2";
 	}
 
 	
@@ -212,7 +211,7 @@ public class BoardController {
 		model.addAttribute("lectures", lectures);
 		model.addAttribute("member",member);
 		
-	return "/lectureboard/boardwrite";
+	return "lectureboard/boardwrite";
 	
 	}
 
@@ -270,7 +269,7 @@ public class BoardController {
 		model.addAttribute("boarddetail", boardDetails);
 		model.addAttribute("lectures",lectures);
 		
-	return "/lectureboard/boarddetail";
+	return "lectureboard/boarddetail";
 	}
 	
 	@RequestMapping(value = "/update", method=RequestMethod.GET)
@@ -293,7 +292,7 @@ public class BoardController {
 
 		model.addAttribute("boardupdate", boardUpdate);
 
-	return "/lectureboard/boardupdate";
+	return "lectureboard/boardupdate";
 	
 	}
 	

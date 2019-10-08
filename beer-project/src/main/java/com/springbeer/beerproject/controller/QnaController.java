@@ -42,7 +42,7 @@ public class QnaController {
 		
 		model.addAttribute("qna",Qnas);
 		model.addAttribute("notice", notices);
-		return "/qna/qnalist";
+		return "qna/qnalist";
 	}
 	
 	@GetMapping(value = "/qnawrite")
@@ -51,7 +51,7 @@ public class QnaController {
 		
 		model.addAttribute("member",member);
 		
-	return "/qna/qnawrite";
+	return "qna/qnawrite";
 	}
 	
 	@PostMapping(value = "/qnawrite") // PostMapping
@@ -83,18 +83,18 @@ public class QnaController {
 		
 		if(memberId1.equals(memberId2)) {
 			model.addAttribute("qnadetail", qnaDetails);
-			return "/qna/qnadetail";
+			return "qna/qnadetail";
 			
 		}
 		if(member.getUserType().equals("admin")) {
 			
 			model.addAttribute("member",member);
 			model.addAttribute("qnadetail", qnaDetails);
-			return "/qna/qnadetail3";
+			return "qna/qnadetail3";
 		}
 		
 		model.addAttribute("qnadetail", qnaDetails);
-	return "/qna/qnadetail2";
+	return "qna/qnadetail2";
 	}
 	
 	@GetMapping(value = "/answrite")
@@ -104,7 +104,7 @@ public class QnaController {
 		
 		model.addAttribute("qnadetail", qnaDetails);
 		
-		return "/qna/answrite";
+		return "qna/answrite";
 	}
 	
 	
@@ -116,7 +116,7 @@ public class QnaController {
 		
 		model.addAttribute("noticedetail", noticeDetails);
 		
-	return "/qna/noticedetail";
+	return "qna/noticedetail";
 	}
 	
 	@PostMapping(value = "/ansupdate/{qnaNo}")
@@ -147,7 +147,7 @@ public class QnaController {
 
 		model.addAttribute("member", member);
 
-	return "/qna/qnaupdate";
+	return "qna/qnaupdate";
 	}
 
 	@PostMapping(value ="/qnaupdates/{qnaNo}")

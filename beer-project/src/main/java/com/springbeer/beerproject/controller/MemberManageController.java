@@ -45,7 +45,7 @@ public class MemberManageController {
 		
 //		System.out.println(member); //에러 찾을 때 콘솔에 연결 데이터 확인.
 		memberService.registerMember(member);		
-		return "/home";
+		return "home";
 	}
 	
 	/////////////////////
@@ -89,7 +89,7 @@ public class MemberManageController {
 
 		model.addAttribute("mypage", mp);
 	
-		return "/mypage/mypageupdate";
+		return "mypage/mypageupdate";
 	}
 	
 	@PostMapping(path = "mypageupdate")
@@ -127,11 +127,11 @@ public class MemberManageController {
 		String userType = mp.getUserType();
 		if (userType.equals("admin")) {
 			model.addAttribute("mypage", mp);
-			return "/mypage/mypagelist2";
+			return "mypage/mypagelist2";
 		}
 		model.addAttribute("mypage", mp);
 	
-		return "/mypage/mypagelist";
+		return "mypage/mypagelist";
 	}
 	
 	@GetMapping(path = "/mypagelist")
@@ -144,7 +144,7 @@ public class MemberManageController {
 		model.addAttribute("mypage", mp);
 	
 		
-		return "/mypage/mypagelist";
+		return "mypage/mypagelist";
 	}
 	
 	

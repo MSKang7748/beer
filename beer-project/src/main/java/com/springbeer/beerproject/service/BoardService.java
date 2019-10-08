@@ -43,4 +43,6 @@ public interface BoardService {
 
 	Lecture findLectureByLectureNo(int lectureNo);
 
+	List<Lecture> findAlllectureByDeleteNo(int deleteNo);
+
 }

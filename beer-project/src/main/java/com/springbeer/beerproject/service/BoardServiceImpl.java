@@ -147,4 +147,10 @@ public class BoardServiceImpl implements BoardService {
 		return lecture;
 	}
 
+	@Override
+	public List<Lecture> findAlllectureByDeleteNo(int deleteNo) {
+		List<Lecture> lectures = lectureRepository.findAllbyDeleteNo(deleteNo);
+		return lectures;
+	}
+
 }
